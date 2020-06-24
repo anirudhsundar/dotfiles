@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -x
+
+###################################
+##### Auto setup useful tools #####
+###################################
+
+# FZF
+if [[ ! -f $HOME/.fzf/bin/fzf ]]; then
+  git clone https://github.com/junegunn/fzf.git $HOME/.fzf
+  yes | $HOME/.fzf/install
+fi
+
+# DIFF-SO-FANCY
+if [[ ! -f $HOME/bin/diff-so-fancy ]]; then
+  curl -o $HOME/bin/diff-so-fancy https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+fi
+
+
+
+
+#######################
+# TMUX
+#######################
+
+if [[ ! -d $HOME/.tmux/plugins/tpm ]]; then
+  mkdir -p $HOME/.tmux/plugins
+  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+fi
+
+
+#######################
+# Node for COC vim
+#######################
+if [[ ! -d $HOME/.node_local ]]; then
+  mkdir -p $HOME/.node_local
+  curl -sL install-node.now.sh/lts > $HOME/.node_local/install-node.now.sh
+  chmod +x $HOME/.node_local/install-node.now.sh
+  yes | $HOME/.node_local/install-node.now.sh --prefix=$HOME/.node_local/node
+fi
+
