@@ -6,13 +6,16 @@
 
 - link:
     ~/.tmux.conf: tmux.conf
-    ~/.vim: vim
+    ~/.bash: bash
+    ~/.bashrc: bashrc
     ~/.vimrc: vimrc
 
-- create:
-    - ~/downloads
-    - ~/.vim/undo-history
-
 - shell:
-  - [./bash_setup, Installing packages]
+  - 
+    command: ./bash_setup
+    description: Installing packages
+    stdin: true
+    stdout: true
+    stderr: true
+
   - [git submodule update --init --recursive, Installing submodules]

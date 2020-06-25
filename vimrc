@@ -217,6 +217,8 @@ vnoremap <Up> <Nop>
 " coc.nvim configurations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Global extensions list
+let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-python']
 
 " TextEdit might fail if hidden is not set.
 set hidden

@@ -1,15 +1,13 @@
 export SHELL=$(which bash)
 
-/local/mnt/workspace/anirudh/tools/home_backup
-
 # Setup multiline prompt with git branch info
-source bash/prompt.bash
+source $HOME/.bash/prompt.bash
 
 # Setup common aliases
-source bash/aliases.bash
+source $HOME/.bash/aliases.bash
 
 # Update PATH env with auto installed packages
-source bash/paths.bash
+source $HOME/.bash/paths.bash
 
 # Ignore and erase duplicates and 
 # ignore commands that start with space
@@ -19,3 +17,6 @@ export HISTCONTROL=ignoreboth:erasedups
 # Temp settings
 #export SSH_AUTH_SOCK=/tmp/ssh-y4jUISdYfREO/agent.31604
 #export SSH_AGENT_PID=31605
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f $HOME/.local_bash_paths ] && source $HOME/.local_bash_paths
