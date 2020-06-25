@@ -41,6 +41,9 @@ Plug 'chazy/cscope_maps'
 " Focus events work properly for vim in tmux panes
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
+" Share vim clipboard across panes
+Plug 'roxma/vim-tmux-clipboard'
+
 " access cppman from vim with keywordprg 'K' command
 Plug 'gauteh/vim-cppman'
 
