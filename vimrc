@@ -126,7 +126,7 @@ highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterDelete ctermfg=1
 highlight GitGutterChangeDelete ctermfg=4
-nnoremap <Leader>og :GitGutterToggle<CR>
+nnoremap <Leader><leader>g :GitGutterToggle<CR>
 
 " incsearch
 map / <Plug>(incsearch-forward)
@@ -213,7 +213,9 @@ vnoremap <Up> <Nop>
 
 
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc.nvim configurations
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 " TextEdit might fail if hidden is not set.
