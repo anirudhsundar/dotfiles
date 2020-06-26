@@ -9,6 +9,7 @@
     ~/.bash: bash
     ~/.bashrc: bashrc
     ~/.vimrc: vimrc
+    ~/.bash_profile: 
 
 - shell:
   - 

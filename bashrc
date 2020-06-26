@@ -14,6 +14,9 @@ source $HOME/.bash/paths.bash
 # (sets ignorespace, ignoredups and erasedups)
 export HISTCONTROL=ignoreboth:erasedups
 
+# set 256 color in terminal
+export TERM=xterm-256color
+
 # Temp settings
 #export SSH_AUTH_SOCK=/tmp/ssh-y4jUISdYfREO/agent.31604
 #export SSH_AGENT_PID=31605
