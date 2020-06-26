@@ -10,6 +10,8 @@
     ~/.bashrc: bashrc
     ~/.vimrc: vimrc
     ~/.bash_profile: 
+    ~/.gitconfig: 
+    ~/.inputrc: 
 
 - shell:
   - 
