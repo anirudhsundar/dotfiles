@@ -1,0 +1,57 @@
+# terminfo and termcap for nice 256 color terminal
+
+# allow bold colors
+attrcolor b ".I"
+
+# tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# erase background with current bg color
+defbce "on"
+
+#escape ^Nn
+
+ 
+# shell
+#shell bash
+# kill startup message
+#startup_message off
+# detach on hangup
+autodetach on
+
+# define a bigger scrollback, default is 100 lines
+defscrollback 2048
+
+hardstatus on
+
+hardstatus alwayslastline
+
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+
+#hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+
+hardstatus string "%{b Kw}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a"
+
+# http://gentoo-wiki.com/TIP_Using_screen
+
+#Another frequent cause of using scrollback buffer is, when programs like Vim exit they leave their content on the window.
+#To get rid of this behavior use:
+altscreen on
+
+#bind -c selectHighs 0 select 10 #these three commands are
+#bind -c selectHighs 1 select 11 #added to the command-class
+#bind -c selectHighs 2 select 12 #selectHighs
+#bind -c selectHighs 3 select 13 #selectHighs
+#bind -c selectHighs 4 select 14 #selectHighs
+#bind -c selectHighs 5 select 15 #selectHighs
+
+#bind - command -c selectHighs   #bind the hyphen to
+
+# Bind F5 and F6 to previous and next screen window
+bindkey -k k5 prev
+bindkey -k k6 next
+vbell off
+#bindkey ^[O3D prev
+#bindkey ^[O3C next
+#hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{g}%c %{w}| %{y}%d.%m.%Y %{w}| %{g}%l %{w}| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
+#hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{y}%c %{w}| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
