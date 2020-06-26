@@ -82,6 +82,9 @@ Plug 'tpope/vim-eunuch'
 " Nice completions
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Syntax highlighting for jsonc
+Plug 'kevinoid/vim-jsonc'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -374,7 +377,21 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
 
 
 
