@@ -121,7 +121,7 @@ let g:gitgutter_max_signs = 500
 let g:gitgutter_map_keys = 0
 " Colors
 let g:gitgutter_override_sign_column_highlight = 0
-highlight clear SignColumn
+autocmd VimEnter * highlight clear signcolumn
 highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterDelete ctermfg=1
@@ -164,7 +164,7 @@ nmap <C-p> :set paste!<CR>
 set hls
 
 " Always show my text in grey
-hi Comment ctermfg=DarkGrey
+autocmd VimEnter * hi Comment ctermfg=DarkGrey
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,7 +243,9 @@ set shortmess+=c
   "" Recently vim can merge signcolumn and number column into one
   "set signcolumn=number
 "else
+if v:version >= 800
   set signcolumn=yes
+endif
 "endif
 
 " Use tab for trigger completion with characters ahead and navigate.
