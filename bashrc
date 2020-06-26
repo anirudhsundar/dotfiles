@@ -23,3 +23,8 @@ export TERM=xterm-256color
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f $HOME/.local_bash_paths ] && source $HOME/.local_bash_paths
+
+# Expand directories for variables
+# Disable with 
+# shopt -u direxpand
+shopt -s direxpand # enable
