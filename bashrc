@@ -4,10 +4,10 @@ export SHELL=$(which bash)
 source $HOME/.bash/prompt.bash
 
 # Setup common aliases
-source $HOME/.bash/aliases.bash
+source $HOME/.shell/aliases.sh
 
 # Update PATH env with auto installed packages
-source $HOME/.bash/paths.bash
+source $HOME/.shell/paths.sh
 
 # Ignore and erase duplicates and 
 # ignore commands that start with space
@@ -22,7 +22,7 @@ export TERM=xterm-256color
 #export SSH_AGENT_PID=31605
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f $HOME/.local_bash_paths ] && source $HOME/.local_bash_paths
+[ -f $HOME/.local_paths ] && source $HOME/.local_paths
 
 # Expand directories for variables
 # Disable with 

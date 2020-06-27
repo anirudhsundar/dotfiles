@@ -1,0 +1,11 @@
+unset ignoreeof
+# Exec bash or zsh if using an interactive shell.
+if ($?prompt) then
+    if ( -d ~/.oh-my-zsh ) then
+        setenv SHELL `which zsh`
+        exec $SHELL
+    else
+        setenv SHELL `which bash`
+        exec $SHELL
+    endif
+endif

@@ -2,17 +2,21 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: ['~', '~/.oh-my-zsh/custom', '~/.shell', '~/.bash']
 
 - link:
-    ~/.tmux.conf: tmux.conf
-    ~/.bash: bash
-    ~/.bashrc: bashrc
-    ~/.vimrc: vimrc
+    ~/.tmux.conf: 
+    ~/.bash: 
+    ~/.shell: 
+    ~/.bashrc: 
+    ~/.vimrc: 
     ~/.bash_profile: 
     ~/.gitconfig: 
     ~/.inputrc: 
     ~/.screenrc: 
+    ~/.cshrc: 
+    ~/.cshrc.local: 
+    ~/.shell: 
 
 - shell:
   - 
@@ -22,4 +26,15 @@
     stdout: true
     stderr: true
 
+  - description: Installing oh-my-zsh
+    command: ./zsh_setup
+    stdout: true
+    stdin: true
+
   - [git submodule update --init --recursive, Installing submodules]
+
+- link:
+    ~/.oh-my-zsh/custom/custom.zsh:
+      if: "[ -d ~/.oh-my-zsh ]"
+      path: zsh/custom.zsh
+

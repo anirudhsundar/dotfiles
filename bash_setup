@@ -5,14 +5,14 @@ set -x
 ##### Auto setup useful tools #####
 ###################################
 
-PATHS_BASH=$HOME/.bash/
+PATHS_SHELL=$HOME/.shell/paths.sh
 
 # FZF
 if [[ ! -f $HOME/.fzf/bin/fzf ]]; then
-  [ -f $HOME/.bash/paths.bash ] && rm $HOME/.bash/paths.bash
+  [ -f ${PATHS_SHELL} ] && rm ${PATHS_SHELL}
   git clone https://github.com/junegunn/fzf.git $HOME/.fzf
   yes | $HOME/.fzf/install
-  echo "export PATH=$HOME/.fzf/bin:\$PATH" >> ${PATHS_BASH}/paths.bash
+  echo "export PATH=$HOME/.fzf/bin:\$PATH" >> ${PATHS_SHELL}
 fi
 
 # DIFF-SO-FANCY
@@ -20,7 +20,7 @@ if [[ ! -f $HOME/bin/diff-so-fancy ]]; then
   mkdir $HOME/bin
   curl -o $HOME/bin/diff-so-fancy https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x $HOME/bin/diff-so-fancy
-  echo "export PATH=$HOME/bin:\$PATH" >> ${PATHS_BASH}/paths.bash
+  echo "export PATH=$HOME/bin:\$PATH" >> ${PATHS_SHELL}
 fi
 
 
@@ -44,11 +44,11 @@ if [[ ! -d $HOME/.node_local ]]; then
   curl -sLo $HOME/.node_local/install-node.now.sh install-node.now.sh/lts
   chmod +x $HOME/.node_local/install-node.now.sh
   $HOME/.node_local/install-node.now.sh --prefix=$HOME/.node_local/node --yes
-  echo "export PATH=$HOME/.node_local/node/bin:\$PATH" >> ${PATHS_BASH}/paths.bash
+  echo "export PATH=$HOME/.node_local/node/bin:\$PATH" >> ${PATHS_SHELL}
 fi
 
 # FORGIT
 if [[ ! -f $HOME/forgit.plugin.zsh ]]; then
   curl -sL -o $HOME/forgit.plugin.zsh git.io/forgit
-  echo "source $HOME/forgit.plugin.zsh" >> ${PATHS_BASH}/paths.bash
+  echo "source $HOME/forgit.plugin.zsh" >> ${PATHS_SHELL}
 fi
