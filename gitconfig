@@ -28,6 +28,7 @@
 [core]
 	whitespace = cr-at-eol
 	pager = diff-so-fancy | less --tabs=4 -RFX
+	editor = vim
 [pull]
 	ff = only
 [grep]
