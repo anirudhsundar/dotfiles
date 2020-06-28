@@ -2,7 +2,7 @@
     link:
       relink: true
 
-- clean: ['~', '~/.oh-my-zsh/custom', '~/.shell', '~/.bash']
+- clean: ['~', '~/.oh-my-zsh/custom', '~/.oh-my-zsh/custom/plugins', '~/.zsh/plugins', '~/.shell', '~/.bash']
 
 - link:
     ~/.tmux.conf: 
@@ -31,10 +31,13 @@
     stdout: true
     stdin: true
 
+  - [git submodule sync --recursive, Syncing new submodule repos if any]
+
   - [git submodule update --init --recursive, Installing submodules]
 
 - link:
     ~/.oh-my-zsh/custom/custom.zsh:
       if: "[ -d ~/.oh-my-zsh ]"
       path: zsh/custom.zsh
+    ~/.zsh: 
 
