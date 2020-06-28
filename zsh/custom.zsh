@@ -11,6 +11,9 @@ source $HOME/.shell/paths.sh
 # Source local paths if it exists
 [ -f $HOME/.local_paths ] && source $HOME/.local_paths
 
+# set 256 color in terminal
+export TERM=xterm-256color
+
 custom_plugins=(k zsh-autosuggestions zsh-syntax-highlighting)
 
 MY_CUSTOM_PLUGINS=$HOME/.zsh/plugins
