@@ -23,3 +23,6 @@ for plugin ($custom_plugins); do
     source $MY_CUSTOM_PLUGINS/$plugin/$plugin.plugin.zsh
   fi
 done
+
+# Autosuggestions bindkey for ctrl-space
+bindkey '^ ' autosuggest-accept
