@@ -7,21 +7,27 @@ set -x
 
 PATHS_SHELL=$HOME/.shell/paths.sh
 
+function add_to_path {
+  if ! grep -q "$1" ${PATHS_SHELL}; then
+    echo $1 >> ${PATHS_SHELL}
+  fi
+}
+
 # FZF
 if [[ ! -f $HOME/.fzf/bin/fzf ]]; then
   [ -f ${PATHS_SHELL} ] && rm ${PATHS_SHELL}
   git clone https://github.com/junegunn/fzf.git $HOME/.fzf
   yes | $HOME/.fzf/install
-  echo "export PATH=$HOME/.fzf/bin:\$PATH" >> ${PATHS_SHELL}
 fi
+add_to_path "export PATH=$HOME/.fzf/bin:\$PATH"
 
 # DIFF-SO-FANCY
 if [[ ! -f $HOME/bin/diff-so-fancy ]]; then
   mkdir $HOME/bin
   curl -o $HOME/bin/diff-so-fancy https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
   chmod +x $HOME/bin/diff-so-fancy
-  echo "export PATH=$HOME/bin:\$PATH" >> ${PATHS_SHELL}
 fi
+add_to_path "export PATH=$HOME/bin:\$PATH"
 
 
 
@@ -44,11 +50,11 @@ if [[ ! -d $HOME/.node_local ]]; then
   curl -sLo $HOME/.node_local/install-node.now.sh install-node.now.sh/lts
   chmod +x $HOME/.node_local/install-node.now.sh
   $HOME/.node_local/install-node.now.sh --prefix=$HOME/.node_local/node --yes
-  echo "export PATH=$HOME/.node_local/node/bin:\$PATH" >> ${PATHS_SHELL}
 fi
+add_to_path "export PATH=$HOME/.node_local/node/bin:\$PATH"
 
 # FORGIT
 if [[ ! -f $HOME/forgit.plugin.zsh ]]; then
   curl -sL -o $HOME/forgit.plugin.zsh git.io/forgit
-  echo "source $HOME/forgit.plugin.zsh" >> ${PATHS_SHELL}
 fi
+add_to_path "source $HOME/forgit.plugin.zsh"
