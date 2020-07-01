@@ -33,3 +33,5 @@
 	ff = only
 [grep]
   lineNumber = true
+[push]
+	default = simple
