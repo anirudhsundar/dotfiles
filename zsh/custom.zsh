@@ -14,7 +14,7 @@ source $HOME/.shell/paths.sh
 # set 256 color in terminal
 export TERM=xterm-256color
 
-custom_plugins=(k zsh-autosuggestions zsh-syntax-highlighting)
+custom_plugins=(k conda-zsh-completion zsh-autosuggestions zsh-syntax-highlighting)
 
 MY_CUSTOM_PLUGINS=$HOME/.zsh/plugins
 

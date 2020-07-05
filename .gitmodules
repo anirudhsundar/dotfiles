@@ -11,3 +11,6 @@
 [submodule "zsh/plugins/k"]
 	path = zsh/plugins/k
 	url = https://github.com/supercrabtree/k
+[submodule "zsh/plugins/conda-zsh-completion"]
+	path = zsh/plugins/conda-zsh-completion
+	url = https://github.com/esc/conda-zsh-completion.git
