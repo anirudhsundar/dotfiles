@@ -14,3 +14,6 @@
 [submodule "zsh/plugins/conda-zsh-completion"]
 	path = zsh/plugins/conda-zsh-completion
 	url = https://github.com/esc/conda-zsh-completion.git
+[submodule "misc/dircolors-solarized"]
+	path = misc/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git

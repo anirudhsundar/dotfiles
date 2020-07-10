@@ -26,3 +26,4 @@ done
 
 # Autosuggestions bindkey for ctrl-space
 bindkey '^ ' autosuggest-accept
+eval `dircolors $HOME/dotfiles/misc/dircolors-solarized/dircolors.256dark`
