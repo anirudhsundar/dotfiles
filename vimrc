@@ -175,12 +175,19 @@ set hls
 autocmd VimEnter * hi Comment ctermfg=DarkGrey
 
 " Switching between tab buffers
-nmap <leader>l :tabn<CR>
-nmap <leader>h :tabp<CR>
-nmap <leader>H :tabl<CR>
+nmap <leader>l :tabnext<CR>
+nmap <leader>h :tabprevious<CR>
+nmap <leader>j :tablast<CR>
+nmap <leader>k :tabfirst<CR>
 nmap <leader>t :tabnew<CR>
 nmap <leader><leader>t :tabnew 
 nmap <leader><C-w> :tabc<CR>
+
+"Bindings for buffer switching
+nmap <leader>L :bnext<CR>
+nmap <leader>H :bprevious<CR>
+nmap <leader>J :blast<CR>
+nmap <leader>K :bfirst<CR>
 
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -380,21 +387,21 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+"nnoremap <silent><nowait> <leader><leader>a  :<C-u>CocList diagnostics<cr>
+"" Manage extensions.
+"nnoremap <silent><nowait> <leader><leader>e  :<C-u>CocList extensions<cr>
+"" Show commands.
+"nnoremap <silent><nowait> <leader><leader>c  :<C-u>CocList commands<cr>
+"" Find symbol of current document.
+"nnoremap <silent><nowait> <leader><leader>o  :<C-u>CocList outline<cr>
+"" Search workspace symbols.
+"nnoremap <silent><nowait> <leader><leader>s  :<C-u>CocList -I symbols<cr>
+"" Do default action for next item.
+"nnoremap <silent><nowait> <leader><leader>j  :<C-u>CocNext<CR>
+"" Do default action for previous item.
+"nnoremap <silent><nowait> <leader><leader>k  :<C-u>CocPrev<CR>
+"" Resume latest coc list.
+"nnoremap <silent><nowait> <leader><leader>p  :<C-u>CocListResume<CR>
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
