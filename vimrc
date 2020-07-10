@@ -68,7 +68,10 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 
 " Better statusline
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
+
+" Airline statusline when powerline fonts are available
+Plug 'vim-airline/vim-airline'
 
 " Vim start screen
 Plug 'mhinz/vim-startify'
@@ -170,6 +173,22 @@ set hls
 
 " Always show my text in grey
 autocmd VimEnter * hi Comment ctermfg=DarkGrey
+
+" Switching between tab buffers
+nmap <leader>l :tabn<CR>
+nmap <leader>h :tabp<CR>
+nmap <leader>H :tabl<CR>
+nmap <leader>t :tabnew<CR>
+nmap <leader><leader>t :tabnew 
+nmap <leader><C-w> :tabc<CR>
+
+" Lightline or Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable tabline if needed
+let g:airline#extensions#tabline#enabled = 1
+
+" --INSERT-- is unncessary because of lightline
+set noshowmode
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
