@@ -20,6 +20,7 @@
 	pullrb = pull --rebase
 	count = diff --stat "4b825dc642cb6eb9a060e54bf8d69288fbee4904" # hash of empty tree
   grc = grep -C 1
+	patch = !git --no-pager diff --no-color
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
