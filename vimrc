@@ -191,6 +191,9 @@ nmap <leader>K :bfirst<CR>
 
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable powerline fonts if available
+let g:airline_powerline_fonts = 1
+
 " Enable tabline if needed
 let g:airline#extensions#tabline#enabled = 1
 

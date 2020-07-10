@@ -40,5 +40,8 @@
     ~/.oh-my-zsh/custom/custom.zsh:
       if: "[ -d ~/.oh-my-zsh ]"
       path: zsh/custom.zsh
+    ~/.oh-my-zsh/custom/themes/agnoster.zsh-theme:
+      if: "[ -d ~/.oh-my-zsh ]"
+      path: zsh/themes/agnoster.zsh-theme
     ~/.zsh: 
 
