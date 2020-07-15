@@ -171,6 +171,20 @@ set incsearch
 nmap <C-p> :set paste!<CR>
 set hls
 
+" Toggle signcolumn mapping
+nnoremap <leader>s :call ToggleSignColumn()<CR>
+
+" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
+function! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=yes
+        let b:signcolumn_on=1
+    endif
+endfunction
+
 " Always show my text in grey
 autocmd VimEnter * hi Comment ctermfg=DarkGrey
 
