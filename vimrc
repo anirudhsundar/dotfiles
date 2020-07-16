@@ -27,6 +27,10 @@ Plug 'preservim/nerdtree'
 
 " Fuzzy file finder for vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Most Recently Used files search using fzf
+Plug 'pbogut/fzf-mru.vim'
 
 " Vim plugin that displays tags in a window, ordered by scope
 Plug 'majutsushi/tagbar'
@@ -120,6 +124,12 @@ nmap <F7> :NERDTreeToggle<CR>
 
 " FZF bindings
 nmap <leader><leader>p :FZF<CR>
+nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>m :FZFMru<CR>
+nnoremap <silent> <Leader><Leader>l :Lines<CR>
+" Unable to use <leader><leader>b as its mapped to easymotion
+nnoremap <silent> <Leader><Leader>c :BLines<CR>
 
 
 " Update Git Gutter signs column colors"
@@ -198,10 +208,11 @@ nmap <leader><leader>t :tabnew
 nmap <leader><C-w> :tabc<CR>
 
 "Bindings for buffer switching
-nmap <leader>L :bnext<CR>
-nmap <leader>H :bprevious<CR>
-nmap <leader>J :blast<CR>
-nmap <leader>K :bfirst<CR>
+" Commented out in favor of using the fzf :Buffers mapping
+" nmap <leader>L :bnext<CR>
+" nmap <leader>H :bprevious<CR>
+" nmap <leader>J :blast<CR>
+" nmap <leader>K :bfirst<CR>
 
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -215,11 +226,12 @@ let g:airline#extensions#tabline#enabled = 1
 set noshowmode
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Useful mappings taken from 
 "      https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc
+" (Thanks to JJGO for that)
 " and modified a little
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Jump to start and end of line using the home row keys
 map H ^
