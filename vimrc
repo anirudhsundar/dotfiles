@@ -145,6 +145,9 @@ highlight GitGutterChange ctermfg=3
 highlight GitGutterDelete ctermfg=1
 highlight GitGutterChangeDelete ctermfg=4
 nnoremap <Leader><leader>g :GitGutterToggle<CR>
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " incsearch
 map / <Plug>(incsearch-forward)
