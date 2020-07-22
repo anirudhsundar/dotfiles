@@ -139,7 +139,7 @@ let g:gitgutter_max_signs = 500
 let g:gitgutter_map_keys = 0
 " Colors
 let g:gitgutter_override_sign_column_highlight = 0
-highlight clear signcolumn
+autocmd VimEnter * highlight clear signcolumn
 highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterDelete ctermfg=1
@@ -204,7 +204,7 @@ function! ToggleSignColumn()
 endfunction
 
 " Always show my text in grey
-hi Comment ctermfg=DarkGrey
+autocmd VimEnter * highlight Comment ctermfg=DarkGrey
 
 " Switching between tab buffers
 nmap <leader>l :tabnext<CR>

@@ -7,6 +7,7 @@
 	prompt = false
 [alias]
   st = status -sb
+  sp = stash pop
   br = branch -vv
   ci = commit -v
   ca = commit --amend -v
@@ -16,7 +17,8 @@
   save = commit -am "Save"
 	d = difftool
 	tr = log --oneline --graph --decorate --all
-  pu = push origin master
+  pushom = push origin master
+  pullom = pull origin master
 	pullrb = pull --rebase
 	count = diff --stat "4b825dc642cb6eb9a060e54bf8d69288fbee4904" # hash of empty tree
   grc = grep -C 1
