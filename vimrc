@@ -139,7 +139,7 @@ let g:gitgutter_max_signs = 500
 let g:gitgutter_map_keys = 0
 " Colors
 let g:gitgutter_override_sign_column_highlight = 0
-autocmd VimEnter * highlight clear signcolumn
+highlight clear signcolumn
 highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterDelete ctermfg=1
@@ -179,9 +179,14 @@ set shiftwidth=2
 set ic
 set incsearch
 
+inoremap jk <esc>
+inoremap <esc> <nop>
+
 " Show status line with row and col separated
 "set statusline=%F\ %=\col:%c\ line:%l\ %P
-nmap <C-p> :set paste!<CR>
+nnoremap <C-p> :set paste!<CR>
+inoremap <C-p> <nop>
+set pastetoggle=<C-p>
 set hls
 
 " Toggle signcolumn mapping
@@ -199,7 +204,7 @@ function! ToggleSignColumn()
 endfunction
 
 " Always show my text in grey
-autocmd VimEnter * hi Comment ctermfg=DarkGrey
+hi Comment ctermfg=DarkGrey
 
 " Switching between tab buffers
 nmap <leader>l :tabnext<CR>
@@ -209,6 +214,9 @@ nmap <leader>k :tabfirst<CR>
 nmap <leader>t :tabnew<CR>
 nmap <leader><leader>t :tabnew 
 nmap <leader><C-w> :tabc<CR>
+
+nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Bindings for buffer switching
 " Commented out in favor of using the fzf :Buffers mapping
