@@ -161,6 +161,10 @@ map zg/ <Plug>(incsearch-easymotion-stay)
 
 nnoremap <leader><leader>u :MundoToggle<CR>
 
+" Easymotion higlight colors
+hi link EasyMotionTarget2First Statement
+hi link EasyMotionTarget2Second Statement
+
 """"""""""""""""""""""""""""""
 " My personal defaults for vim
 """"""""""""""""""""""""""""""
