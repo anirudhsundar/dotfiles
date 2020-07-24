@@ -1,3 +1,4 @@
+" Settings that have to be at the top of file -----------------{{{
 " Never use vi compatible unless we explicitly change this in vimrc
 set nocompatible
 
@@ -5,7 +6,9 @@ colorscheme desert
 
 " leader is space
 let mapleader=" " 
+" }}}
 
+" VimPlug Setup and list of Plugins ---------------{{{
 " Auto download and install vim plugins using vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -94,24 +97,11 @@ Plug 'kevinoid/vim-jsonc'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
+" }}}
 
 
-" Auto toggle between relative and absolution number on focus
-set number relativenumber
-
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
-" Manual toggle mappings for number and relative number
-nmap <C-m> :set number!<CR>
-nmap <leader><C-m> :set relativenumber!<CR>
-
-""""""""""""""""""""""""""""""""
-" Misc Shortcuts for plugins
-""""""""""""""""""""""""""""""""
+" Plugings specific settings--------------------------------{{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Add cppman support and add tmux split for cppman
 command! -nargs=+ Cppman silent! call system("tmux split-window cppman " . expand(<q-args>))
@@ -161,9 +151,44 @@ map zg/ <Plug>(incsearch-easymotion-stay)
 
 nnoremap <leader><leader>u :MundoToggle<CR>
 
-""""""""""""""""""""""""""""""
-" My personal defaults for vim
-""""""""""""""""""""""""""""""
+" Lightline or Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable tabline if needed
+let g:airline#extensions#tabline#enabled = 1
+
+" --INSERT-- is unncessary because of lightline
+set noshowmode
+
+" lightline theme
+"let g:lightline = {
+      "\ 'colorscheme': 'wombat',
+      "\ 'active': {
+      "\   'left': [ [ 'mode', 'paste' ],
+      "\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      "\ },
+      "\ 'component_function': {
+      "\   'cocstatus': 'coc#status',
+      "\   'currentfunction': 'CocCurrentFunction'
+      "\ },
+      "\ }
+
+" }}}
+
+" My personal defaults for vim --------------------------{{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto toggle between relative and absolution number on focus
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" Manual toggle mappings for number and relative number
+nmap <C-m> :set number!<CR>
+nmap <leader><C-m> :set relativenumber!<CR>
+
 
 " Never use tab chars, always use space
 set expandtab
@@ -179,8 +204,14 @@ set shiftwidth=2
 set ic
 set incsearch
 
+" Use jk for going back to command mode
+" My left hand will think me
 inoremap jk <esc>
+" Get used to jk for esc
 inoremap <esc> <nop>
+
+" I'll never use the command-line window
+nnoremap q: <nop>
 
 " Show status line with row and col separated
 "set statusline=%F\ %=\col:%c\ line:%l\ %P
@@ -203,7 +234,7 @@ function! ToggleSignColumn()
     endif
 endfunction
 
-" Always show my text in grey
+" Always show my comment in grey
 autocmd VimEnter * highlight Comment ctermfg=DarkGrey
 
 " Switching between tab buffers
@@ -225,17 +256,18 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " nmap <leader>J :blast<CR>
 " nmap <leader>K :bfirst<CR>
 
-" Lightline or Airline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable tabline if needed
-let g:airline#extensions#tabline#enabled = 1
+" Set vimscript foldmethod to marker
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
-" --INSERT-- is unncessary because of lightline
-set noshowmode
+" }}}
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Useful mappings taken from 
+
+" Useful mappings taken from Others --------------------------------{{{
+" Taken from
 "      https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc
 " (Thanks to JJGO for that)
 " and modified a little
@@ -278,11 +310,11 @@ vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
+" }}}
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" coc.nvim configurations
+" coc.nvim configurations -------------------------{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Global extensions list
@@ -443,18 +475,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
+" }}}
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
 
 
 
