@@ -1,4 +1,4 @@
-" Settings that have to be at the top of file -----------------
+" Settings that have to be at the top of file -----------------{{{
 " Never use vi compatible unless we explicitly change this in vimrc
 set nocompatible
 
@@ -6,9 +6,9 @@ colorscheme desert
 
 " leader is space
 let mapleader=" " 
-" 
+" }}}
 
-" VimPlug Setup and list of Plugins ---------------
+" VimPlug Setup and list of Plugins ---------------{{{
 " Auto download and install vim plugins using vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -97,10 +97,10 @@ Plug 'kevinoid/vim-jsonc'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
-" 
+" }}}
 
 
-" Plugings specific settings--------------------------------
+" Plugings specific settings--------------------------------{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Add cppman support and add tmux split for cppman
@@ -179,9 +179,9 @@ set noshowmode
       "\ },
       "\ }
 
-" 
+" }}}
 
-" My personal defaults for vim --------------------------
+" My personal defaults for vim --------------------------{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto toggle between relative and absolution number on focus
 set number relativenumber
@@ -269,11 +269,11 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-" 
+" }}}
 
 
 
-" Useful mappings taken from Others --------------------------------
+" Useful mappings taken from Others --------------------------------{{{
 " Taken from
 "      https://github.com/JJGO/dotfiles/blob/master/vim/.vimrc
 " (Thanks to JJGO for that)
@@ -317,11 +317,11 @@ vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
-" 
+" }}}
 
 
 
-" coc.nvim configurations -------------------------
+" coc.nvim configurations -------------------------{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Global extensions list
@@ -482,7 +482,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
-" 
+" }}}
 
 
 
