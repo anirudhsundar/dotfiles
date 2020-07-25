@@ -62,6 +62,9 @@ Plug 'airblade/vim-gitgutter'
 " Vim interface for git commands using :Git, :Gsplit :Gedit
 Plug 'tpope/vim-fugitive'
 
+" Add nice graph visualization to git log --graph view
+Plug 'rbong/vim-flog'
+
 " Vim surround with anything
 Plug 'tpope/vim-surround'
 
