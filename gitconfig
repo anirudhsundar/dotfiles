@@ -22,6 +22,7 @@
 	pullrb = pull --rebase
 	count = diff --stat "4b825dc642cb6eb9a060e54bf8d69288fbee4904" # hash of empty tree
   grc = grep -C 1
+  ec = config --global -e
 	patch = !git --no-pager diff --no-color
   authors = shortlog -ns
 [filter "lfs"]
