@@ -8,13 +8,18 @@ source $HOME/.shell/paths.sh
 # Source fzf if it exists
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#refer rg over ag
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+fi
+
 # Source local paths if it exists
 [ -f $HOME/.local_paths ] && source $HOME/.local_paths
 
 # set 256 color in terminal
 export TERM=xterm-256color
 
-custom_plugins=(k conda-zsh-completion zsh-autosuggestions zsh-syntax-highlighting)
+custom_plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 MY_CUSTOM_PLUGINS=$HOME/.zsh/plugins
 
