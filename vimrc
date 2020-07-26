@@ -158,6 +158,9 @@ nnoremap <leader><leader>u :MundoToggle<CR>
 hi link EasyMotionTarget2First Statement
 hi link EasyMotionTarget2Second Statement
 
+" vim-startify change to vcs root when file is directly opened
+let g:startify_change_to_vcs_root = 1
+
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable powerline fonts if available
