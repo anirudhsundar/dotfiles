@@ -154,6 +154,13 @@ map zg/ <Plug>(incsearch-easymotion-stay)
 
 nnoremap <leader><leader>u :MundoToggle<CR>
 
+" Easymotion higlight colors
+hi link EasyMotionTarget2First Statement
+hi link EasyMotionTarget2Second Statement
+
+" vim-startify change to vcs root when file is directly opened
+let g:startify_change_to_vcs_root = 1
+
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable tabline if needed
