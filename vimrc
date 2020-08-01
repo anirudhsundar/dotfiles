@@ -221,7 +221,7 @@ set incsearch
 " My left hand will think me
 inoremap jk <esc>
 " Get used to jk for esc
-inoremap <esc> <nop>
+"inoremap <esc> <nop>
 
 " I'll never use the command-line window
 nnoremap q: <nop>
