@@ -31,3 +31,4 @@ done
 
 # Autosuggestions bindkey for ctrl-space
 bindkey '^ ' autosuggest-accept
+source $MY_CUSTOM_PLUGINS/fzf-tab-completion/zsh/fzf-zsh-completion.sh

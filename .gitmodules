@@ -14,3 +14,6 @@
 [submodule "zsh/plugins/conda-zsh-completion"]
 	path = zsh/plugins/conda-zsh-completion
 	url = https://github.com/esc/conda-zsh-completion.git
+[submodule "zsh/plugins/fzf-tab-completion"]
+	path = zsh/plugins/fzf-tab-completion
+	url = https://github.com/lincheney/fzf-tab-completion.git
