@@ -32,3 +32,4 @@ done
 # Autosuggestions bindkey for ctrl-space
 bindkey '^ ' autosuggest-accept
 eval `dircolors $HOME/dotfiles/misc/dircolors-solarized/dircolors.256dark`
+source $MY_CUSTOM_PLUGINS/fzf-tab-completion/zsh/fzf-zsh-completion.sh

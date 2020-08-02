@@ -17,3 +17,6 @@
 [submodule "misc/dircolors-solarized"]
 	path = misc/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
+[submodule "zsh/plugins/fzf-tab-completion"]
+	path = zsh/plugins/fzf-tab-completion
+	url = https://github.com/lincheney/fzf-tab-completion.git
