@@ -196,8 +196,8 @@ augroup numbertoggle
 augroup END
 
 " Manual toggle mappings for number and relative number
-nmap <C-m> :set number!<CR>
-nmap <leader><C-m> :set relativenumber!<CR>
+nnoremap <C-m> :set number!<CR>
+nnoremap <leader><C-m> :set relativenumber!<CR>
 
 
 " Never use tab chars, always use space
@@ -248,23 +248,23 @@ endfunction
 autocmd VimEnter * highlight Comment ctermfg=DarkGrey
 
 " Switching between tab buffers
-nmap <leader>l :tabnext<CR>
-nmap <leader>h :tabprevious<CR>
-nmap <leader>j :tablast<CR>
-nmap <leader>k :tabfirst<CR>
-nmap <leader>t :tabnew<CR>
-nmap <leader><leader>t :tabnew 
-nmap <leader><C-w> :tabc<CR>
+nnoremap <leader>l :tabnext<CR>
+nnoremap <leader>h :tabprevious<CR>
+nnoremap <leader>j :tablast<CR>
+nnoremap <leader>k :tabfirst<CR>
+nnoremap <leader>t :tabnew<CR>
+nnoremap <leader><leader>t :tabnew 
+nnoremap <leader><C-w> :tabc<CR>
 
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Bindings for buffer switching
 " Commented out in favor of using the fzf :Buffers mapping
-" nmap <leader>L :bnext<CR>
-" nmap <leader>H :bprevious<CR>
-" nmap <leader>J :blast<CR>
-" nmap <leader>K :bfirst<CR>
+nnoremap <leader>L :bnext<CR>
+nnoremap <leader>H :bprevious<CR>
+nnoremap <leader>J :blast<CR>
+nnoremap <leader>K :bfirst<CR>
 
 " Set vimscript foldmethod to marker
 augroup filetype_vim
