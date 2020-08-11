@@ -98,6 +98,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Syntax highlighting for jsonc
 Plug 'kevinoid/vim-jsonc'
 
+" Add eye-candy icons
+Plug 'ryanoasis/vim-devicons'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 " }}}
