@@ -40,3 +40,5 @@
   lineNumber = true
 [push]
 	default = simple
+[credential]
+	helper = cache --timeout=300
