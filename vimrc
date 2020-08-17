@@ -265,6 +265,7 @@ nnoremap <leader>L :bnext<CR>
 nnoremap <leader>H :bprevious<CR>
 nnoremap <leader>J :blast<CR>
 nnoremap <leader>K :bfirst<CR>
+nnoremap <leader>W :bdelete<CR>
 
 " Set vimscript foldmethod to marker
 augroup filetype_vim
