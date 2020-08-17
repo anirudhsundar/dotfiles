@@ -187,13 +187,15 @@ set noshowmode
 " My personal defaults for vim --------------------------{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto toggle between relative and absolution number on focus
-set number relativenumber
+"""" Prefer easymotion movies to relativenumber
+"set number relativenumber
 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+"augroup numbertoggle
+  "autocmd!
+  "autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  "autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+"augroup END
+set number
 
 " Manual toggle mappings for number and relative number
 nnoremap <C-m> :set number!<CR>
