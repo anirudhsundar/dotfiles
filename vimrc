@@ -98,6 +98,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Syntax highlighting for jsonc
 Plug 'kevinoid/vim-jsonc'
 
+" Visual search
+Plug 'nelstrom/vim-visual-star-search'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 " }}}
