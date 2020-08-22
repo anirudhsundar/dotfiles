@@ -287,6 +287,8 @@ augroup END
 nnoremap ) dt)
 nnoremap ] dt]
 
+au FileType cpp set iskeyword-=:,<,>,[,],!
+
 " }}}
 
 
