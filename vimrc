@@ -222,7 +222,7 @@ set softtabstop=2
 set shiftwidth=2
 
 " Always search with ignorecase (will manually turn off when needed)
-set ic
+set ignorecase
 set incsearch
 
 " Use jk for going back to command mode
@@ -287,7 +287,31 @@ augroup END
 nnoremap ) dt)
 nnoremap ] dt]
 
-au FileType cpp set iskeyword-=:,<,>,[,],!
+augroup vimrc_cpp
+  autocmd!
+  autocmd FileType cpp set iskeyword-=:,<,>,[,],!
+augroup END
+
+" Ctrl-d deletes current line in insert mode
+inoremap <c-d> <esc>ddi
+
+" Ctrl-u changes the current word to uppercase in both insert and normal mode
+inoremap <C-u> <esc>viwUi
+
+" Wrap current word
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <leader>( viw<esc>a)<esc>bi(<esc>lel
+nnoremap <leader>[ viw<esc>a]<esc>bi[<esc>lel
+nnoremap <leader>{ viw<esc>a}<esc>bi{<esc>lel
+nnoremap <leader>< viw<esc>a><esc>bi<<esc>lel
+
+"Wrap selected text
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
+vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
+vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
 
 " }}}
 
