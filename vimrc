@@ -307,6 +307,10 @@ vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
 vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
 vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
 
+" Move to next and previous folds
+nnoremap zl zCzjzA
+nnoremap zh zCzkzA
+
 " }}}
 
 
