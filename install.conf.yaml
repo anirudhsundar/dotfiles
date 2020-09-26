@@ -18,6 +18,8 @@
     ~/.cshrc.local: 
     ~/.shell: 
     ~/.zshrc: 
+    ~/.vim/plugin: vim/plugin
+    ~/.vim/plugin/doxygen.vim: doxygen.vim
 
 - shell:
   - 
