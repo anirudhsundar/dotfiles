@@ -103,6 +103,8 @@ Plug 'nelstrom/vim-visual-star-search'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
+
+set runtimepath+=~/.vim/.misc_vim
 " }}}
 
 
