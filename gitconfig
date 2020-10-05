@@ -7,6 +7,7 @@
 	prompt = false
 [alias]
   st = status -sb
+  stn = status -sb --untracked-files=no
   sp = stash pop
   br = branch -vv
   ci = commit -v
