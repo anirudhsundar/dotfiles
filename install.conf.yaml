@@ -19,6 +19,10 @@
     ~/.shell: 
     ~/.zshrc: 
     ~/.vim/plugin: vim/plugin
+    ~/.vim/indent: vim/indent
+    ~/.vim/ftdetect: vim/ftdetect
+    ~/.vim/ftplugin: vim/ftplugin
+    ~/.vim/syntax: vim/syntax
     ~/.vim/plugin/doxygen.vim: doxygen.vim
     ~/.global_gitignore:
 
