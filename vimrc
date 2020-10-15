@@ -93,7 +93,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'tpope/vim-eunuch'
 
 " Auto detect buffer options
-Plug 'tpope/vim-sleuth'
+"Plug 'tpope/vim-sleuth'
 
 " Nice completions
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -218,9 +218,9 @@ set expandtab
 " This is my ususal indentation config for most files
 " Doesn't work on python files as filetype plugin for python
 " is loaded after vimrc
-"set tabstop=2
-"set softtabstop=2
-"set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 " Always search with ignorecase (will manually turn off when needed)
 set ignorecase
