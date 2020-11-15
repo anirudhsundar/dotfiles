@@ -2,7 +2,6 @@
 " Never use vi compatible unless we explicitly change this in vimrc
 set nocompatible
 
-colorscheme desert
 
 " leader is space
 let mapleader=" " 
@@ -106,6 +105,9 @@ Plug 'ryanoasis/vim-devicons'
 
 " Visual search
 Plug 'nelstrom/vim-visual-star-search'
+
+" Molokai theme
+Plug 'sickill/vim-monokai'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -540,6 +542,19 @@ endfunction
 " }}}
 
 
+let tmux_version = split(system("tmux -V"))
+
+if $TMUX != ''
+  if len(tmux_version) == 2
+    if str2float(tmux_version[1]) > 3.0
+      colorscheme monokai
+    else
+      colorscheme desert
+    endif
+  endif
+else
+  colorscheme monokai
+endif
 
 
 
