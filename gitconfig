@@ -15,6 +15,7 @@
   co = checkout
   di = diff
   dis = diff --stat
+  ds = diff --staged
   save = commit -am "Save"
 	d = difftool
 	tr = log --oneline --graph --decorate --all
