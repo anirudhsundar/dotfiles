@@ -8,6 +8,8 @@ source $HOME/.shell/paths.sh
 # Source fzf if it exists
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+source $HOME/.shell/fzf_aliases.sh
+
 #refer rg over ag
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
