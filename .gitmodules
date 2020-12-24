@@ -20,3 +20,6 @@
 [submodule "zsh/plugins/fzf-tab-completion"]
 	path = zsh/plugins/fzf-tab-completion
 	url = https://github.com/lincheney/fzf-tab-completion.git
+[submodule "zsh/plugins/z.lua"]
+	path = zsh/plugins/z.lua
+	url = https://github.com/skywind3000/z.lua

@@ -21,7 +21,7 @@ fi
 # set 256 color in terminal
 export TERM=xterm-256color
 
-custom_plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+custom_plugins=(zsh-autosuggestions zsh-syntax-highlighting z.lua)
 
 MY_CUSTOM_PLUGINS=$HOME/.zsh/plugins
 
