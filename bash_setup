@@ -68,9 +68,11 @@ add_to_path "source $HOME/forgit.plugin.zsh"
 #######################
 # LUA
 #######################
-cd $HOME
-curl -R -O http://www.lua.org/ftp/lua-5.4.2.tar.gz
-tar zxf lua-5.4.2.tar.gz
-cd lua-5.4.2
-make all test
-add_to_path "export PATH=$HOME/lua-5.4.2/src:\$PATH"
+if [[ ! -d $HOME/lua-5.4.2 ]]; then
+  cd $HOME
+  curl -R -O http://www.lua.org/ftp/lua-5.4.2.tar.gz
+  tar zxf lua-5.4.2.tar.gz
+  cd lua-5.4.2
+  make all test
+  add_to_path "export PATH=$HOME/lua-5.4.2/src:\$PATH"
+fi
