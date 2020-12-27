@@ -262,24 +262,24 @@ endfunction
 autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 
 " Switching between tab buffers
-nnoremap <leader>l :tabnext<CR>
-nnoremap <leader>h :tabprevious<CR>
-nnoremap <leader>j :tablast<CR>
-nnoremap <leader>k :tabfirst<CR>
-nnoremap <leader>t :tabnew<CR>
+nnoremap <leader>L :tabnext<CR>
+nnoremap <leader>H :tabprevious<CR>
+nnoremap <leader>J :tablast<CR>
+nnoremap <leader>K :tabfirst<CR>
+nnoremap <leader>T :tabnew<CR>
 nnoremap <leader><leader>t :tabnew 
 nnoremap <leader><C-w> :tabc<CR>
 
-nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Bindings for buffer switching
 " Commented out in favor of using the fzf :Buffers mapping
-nnoremap <leader>L :bnext<CR>
-nnoremap <leader>H :bprevious<CR>
-nnoremap <leader>J :blast<CR>
-nnoremap <leader>K :bfirst<CR>
-nnoremap <leader>W :bdelete<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>h :bprevious<CR>
+nnoremap <leader>j :blast<CR>
+nnoremap <leader>k :bfirst<CR>
+nnoremap <leader>w :bdelete<CR>
 
 " Set vimscript foldmethod to marker
 augroup filetype_vim
