@@ -18,6 +18,8 @@ endif
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
+Plug 'joshdick/onedark.vim'
+
 " Defaults everyone can agree on
 Plug 'tpope/vim-sensible'
 
@@ -541,13 +543,13 @@ let tmux_version = split(system("tmux -V"))
 if $TMUX != ''
   if len(tmux_version) == 2
     if str2float(tmux_version[1]) > 3.0
-      colorscheme monokai
+      colorscheme onedark
     else
       colorscheme desert
     endif
   endif
 else
-  colorscheme monokai
+  colorscheme onedark
 endif
 
 
