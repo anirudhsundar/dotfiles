@@ -18,7 +18,12 @@ endif
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
+" A couple of dark themes
 Plug 'joshdick/onedark.vim'
+Plug 'gosukiwi/vim-atom-dark'
+
+" Enhanced syntax highlight for cpp
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Defaults everyone can agree on
 Plug 'tpope/vim-sensible'
@@ -328,6 +333,9 @@ vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
 nnoremap zl zCzjzA
 nnoremap zh zCzkzA
 
+" Set cursorline always
+set cursorline
+
 " }}}
 
 
@@ -558,7 +566,8 @@ else
   colorscheme onedark
 endif
 
-
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
 
 
 
