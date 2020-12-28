@@ -220,7 +220,7 @@ set noshowmode
   "autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   "autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 "augroup END
-set number
+set relativenumber
 
 " Manual toggle mappings for number and relative number
 nnoremap <C-m> :set number!<CR>
