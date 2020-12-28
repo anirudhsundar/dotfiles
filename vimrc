@@ -48,10 +48,10 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 
 " Easy commenting
-"Plug 'scrooloose/nerdcommenter' " switch to vim-commentary for repeat
+Plug 'scrooloose/nerdcommenter'
 
 "Vim commentary with repeat support
-Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-commentary'
 " cscope_maps
 Plug 'chazy/cscope_maps'
 
@@ -213,15 +213,15 @@ set noshowmode
 
 " My personal defaults for vim --------------------------{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Auto toggle between relative and absolution number on focus
-"""" Prefer easymotion movies to relativenumber
-"set number relativenumber
-
+" Auto toggle between relative and absolute number on focus
 "augroup numbertoggle
   "autocmd!
   "autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   "autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 "augroup END
+
+"use relativenumber and absolute number by default
+set number
 set relativenumber
 
 " Manual toggle mappings for number and relative number
@@ -573,7 +573,6 @@ let g:cpp_experimental_simple_template_highlight = 1
 
 
 
-map cm gc
 
 
 
