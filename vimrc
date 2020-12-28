@@ -48,8 +48,10 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 
 " Easy commenting
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter' " switch to vim-commentary for repeat
 
+"Vim commentary with repeat support
+Plug 'tpope/vim-commentary'
 " cscope_maps
 Plug 'chazy/cscope_maps'
 
@@ -571,7 +573,7 @@ let g:cpp_experimental_simple_template_highlight = 1
 
 
 
-
+map cm gc
 
 
 
