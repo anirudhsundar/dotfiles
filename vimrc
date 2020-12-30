@@ -51,7 +51,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdcommenter'
 
 "Vim commentary with repeat support
-"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 " cscope_maps
 Plug 'chazy/cscope_maps'
 
@@ -337,6 +337,12 @@ nnoremap zh zCzkzA
 
 " Set cursorline always
 set cursorline
+
+" Change cursor for insert and normal mode
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[0 q"
+
+au VimLeave * silent !echo -ne "\e[5 q"
 
 " }}}
 
