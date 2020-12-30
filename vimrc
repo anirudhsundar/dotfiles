@@ -51,7 +51,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdcommenter'
 
 "Vim commentary with repeat support
-"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 " cscope_maps
 Plug 'chazy/cscope_maps'
 
