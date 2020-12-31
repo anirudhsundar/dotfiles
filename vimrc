@@ -23,6 +23,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'joshdick/onedark.vim'
 Plug 'gosukiwi/vim-atom-dark'
 
+" cool plugin that removes hlsearch after search is done
+Plug 'romainl/vim-cool'
+
 " Enhanced syntax highlight for cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
 
