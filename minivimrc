@@ -1,0 +1,96 @@
+" Taken mostly from romainl/minivimrc on github with a few modifications
+" MINIVIMRC
+set nocompatible
+
+" leader is space
+let mapleader=" " 
+
+" filetype support
+filetype plugin indent on
+syntax on
+
+" because it's there
+runtime macros/matchit.vim
+
+" various settings
+set autoindent
+set backspace=indent,eol,start
+set complete+=d
+set foldlevelstart=999
+set foldmethod=indent
+set grepprg=LC_ALL=C\ grep\ -nrsH
+set hidden
+set incsearch
+set noswapfile
+set path& | let &path .= "**"
+set ruler
+set shiftround
+set shiftwidth=2
+let &tabstop=&shiftwidth
+let &softtabstop = &tabstop
+set tags=./tags;,tags;
+set wildcharm=<C-z>
+set wildmenu
+set wildmode=full
+set number
+set relativenumber
+
+" various autocommands
+augroup minivimrc
+	autocmd!
+	" automatic location/quickfix window
+	autocmd QuickFixCmdPost [^l]* cwindow
+	autocmd QuickFixCmdPost    l* lwindow
+	autocmd VimEnter            * cwindow
+  autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
+	" various adjustments of the default colorscheme
+	autocmd ColorScheme * hi ModeMsg      cterm=NONE ctermbg=green    ctermfg=black
+			    \ hi Search       cterm=NONE ctermbg=yellow   ctermfg=black
+			    \ hi StatusLineNC cterm=bold ctermbg=darkgrey
+			    \ hi Visual       cterm=NONE ctermbg=white    ctermfg=darkblue
+	" Git-specific settings
+	autocmd FileType gitcommit nnoremap <buffer> { ?^@@<CR>|nnoremap <buffer> } /^@@<CR>|setlocal iskeyword+=-
+augroup END
+
+" commands for adjusting indentation rules manually
+command! -nargs=1 Spaces let b:wv = winsaveview() | execute "setlocal tabstop=" . <args> . " expandtab"   | silent execute "%!expand -it "  . <args> . "" | call winrestview(b:wv) | setlocal ts? sw? sts? et?
+command! -nargs=1 Tabs   let b:wv = winsaveview() | execute "setlocal tabstop=" . <args> . " noexpandtab" | silent execute "%!unexpand -t " . <args> . "" | call winrestview(b:wv) | setlocal ts? sw? sts? et?
+
+
+" super quick search and replace
+nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
+nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
+
+" pair expansion on the cheap
+inoremap (<CR> (<CR>)<Esc>O
+inoremap (;    (<CR>);<Esc>O
+inoremap (,    (<CR>),<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {;    {<CR>};<Esc>O
+inoremap {,    {<CR>},<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [;    [<CR>];<Esc>O
+inoremap [,    [<CR>],<Esc>O
+
+" smooth searching
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
+
+" smooth listing
+cnoremap <expr> <CR> <SID>CCR()
+function! s:CCR()
+	command! -bar Z silent set more|delcommand Z
+	if getcmdtype() == ":"
+		let cmdline = getcmdline()
+		    if cmdline =~ '\v\C^(dli|il)' | return "\<CR>:" . cmdline[0] . "jump   " . split(cmdline, " ")[1] . "\<S-Left>\<Left>\<Left>"
+		elseif cmdline =~ '\v\C^(cli|lli)' | return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
+		elseif cmdline =~ '\C^changes' | set nomore | return "\<CR>:Z|norm! g;\<S-Left>"
+		elseif cmdline =~ '\C^ju' | set nomore | return "\<CR>:Z|norm! \<C-o>\<S-Left>"
+		elseif cmdline =~ '\v\C(#|nu|num|numb|numbe|number)$' | return "\<CR>:"
+		elseif cmdline =~ '\C^ol' | set nomore | return "\<CR>:Z|e #<"
+		elseif cmdline =~ '\v\C^(ls|files|buffers)' | return "\<CR>:b"
+		elseif cmdline =~ '\C^marks' | return "\<CR>:norm! `"
+		elseif cmdline =~ '\C^undol' | return "\<CR>:u "
+		else | return "\<CR>" | endif
+	else | return "\<CR>" | endif
+endfunction

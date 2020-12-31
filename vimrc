@@ -1,7 +1,7 @@
 " Settings that have to be at the top of file -----------------{{{
 " Never use vi compatible unless we explicitly change this in vimrc
 " Commenting out as it's not needed  because of the presense of this file
-" set nocompatible
+set nocompatible
 
 
 " leader is space
@@ -367,6 +367,21 @@ nnoremap <C-k> :move-2<CR>==
 nnoremap <C-j> :move+<CR>==
 xnoremap <C-k> :move-2<CR>gv=gv
 xnoremap <C-j> :move'>+<CR>gv=gv
+
+" super quick search and replace taken from github.com/romainl/minivimrc
+nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
+nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
+
+" pair expansion on the cheap
+inoremap (<CR> (<CR>)<Esc>O
+inoremap (;    (<CR>);<Esc>O
+inoremap (,    (<CR>),<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {;    {<CR>};<Esc>O
+inoremap {,    {<CR>},<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [;    [<CR>];<Esc>O
+inoremap [,    [<CR>],<Esc>O
 
 
 " Lose Bad Habits
