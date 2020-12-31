@@ -133,8 +133,10 @@ set runtimepath+=~/.vim/.misc_vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Add cppman support and add tmux split for cppman
-command! -nargs=+ Cppman silent! call system("tmux split-window cppman " . expand(<q-args>))
-autocmd FileType cpp nnoremap <silent><buffer> K <Esc>:Cppman <cword><CR>
+command! -nargs=+ Cppman silent! call system("tmux split-window -h cppman " . expand(<q-args>))
+
+" Use <leader>K for calling cppman as K is used by coc for popup doc
+autocmd FileType cpp nnoremap <silent><buffer> <leader>K <Esc>:Cppman <cword><CR>
 
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_width = 70
@@ -186,8 +188,25 @@ nnoremap <leader><leader>u :MundoToggle<CR>
 hi link EasyMotionTarget2First Statement
 hi link EasyMotionTarget2Second Statement
 
-" vim-startify change to vcs root when file is directly opened
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-startify
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" change to vcs root when file is directly opened
 let g:startify_change_to_vcs_root = 1
+
+" start listing from current directory as MRU files are accessible from
+" fzf-mru
+let g:startify_lists = [
+          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          "\ { 'type': 'files',     'header': ['   Files']            }
+          \ ]
+
+" basic bookmarks template, not really used right now
+let g:startify_bookmarks = [
+            \ { 'z': '~/.zshrc' },
+            \ ]
 
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -284,7 +303,6 @@ autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 nnoremap <leader>L :tabnext<CR>
 nnoremap <leader>H :tabprevious<CR>
 nnoremap <leader>J :tablast<CR>
-nnoremap <leader>K :tabfirst<CR>
 nnoremap <leader>T :tabnew<CR>
 nnoremap <leader><leader>t :tabnew 
 nnoremap <leader><C-w> :tabc<CR>
