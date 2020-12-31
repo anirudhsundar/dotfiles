@@ -1,6 +1,7 @@
 " Settings that have to be at the top of file -----------------{{{
 " Never use vi compatible unless we explicitly change this in vimrc
-set nocompatible
+" Commenting out as it's not needed  because of the presense of this file
+" set nocompatible
 
 
 " leader is space
