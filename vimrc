@@ -1,7 +1,7 @@
 " Settings that have to be at the top of file -----------------{{{
 " Never use vi compatible unless we explicitly change this in vimrc
 " Commenting out as it's not needed  because of the presense of this file
-" set nocompatible
+set nocompatible
 
 
 " leader is space
@@ -22,6 +22,9 @@ call plug#begin('~/.vim/plugged')
 " A couple of dark themes
 Plug 'joshdick/onedark.vim'
 Plug 'gosukiwi/vim-atom-dark'
+
+" cool plugin that removes hlsearch after search is done
+Plug 'romainl/vim-cool'
 
 " Enhanced syntax highlight for cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -370,6 +373,21 @@ nnoremap <C-k> :move-2<CR>==
 nnoremap <C-j> :move+<CR>==
 xnoremap <C-k> :move-2<CR>gv=gv
 xnoremap <C-j> :move'>+<CR>gv=gv
+
+" super quick search and replace taken from github.com/romainl/minivimrc
+nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
+nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
+
+" pair expansion on the cheap
+inoremap (<CR> (<CR>)<Esc>O
+inoremap (;    (<CR>);<Esc>O
+inoremap (,    (<CR>),<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {;    {<CR>};<Esc>O
+inoremap {,    {<CR>},<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [;    [<CR>];<Esc>O
+inoremap [,    [<CR>],<Esc>O
 
 
 " Lose Bad Habits
