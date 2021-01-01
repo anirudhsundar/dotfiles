@@ -197,8 +197,8 @@ let g:startify_lists = [
           \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
           \ { 'type': 'sessions',  'header': ['   Sessions']       },
           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          "\ { 'type': 'files',     'header': ['   Files']            }
           \ ]
+          "\ { 'type': 'files',     'header': ['   Files']            }
 
 " basic bookmarks template, not really used right now
 let g:startify_bookmarks = [
