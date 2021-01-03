@@ -119,6 +119,12 @@ Plug 'nelstrom/vim-visual-star-search'
 " Molokai theme
 Plug 'sickill/vim-monokai'
 
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
+" Snippets
+Plug 'honza/vim-snippets'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -145,9 +151,12 @@ nmap <leader><leader>p :FZF<CR>
 nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>m :FZFMru<CR>
+nnoremap <silent> <Leader>fm :History<CR>
 nnoremap <silent> <Leader><Leader>l :Lines<CR>
 " Unable to use <leader><leader>b as its mapped to easymotion
 nnoremap <silent> <Leader><Leader>c :BLines<CR>
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 
 " Update Git Gutter signs column colors"
@@ -271,10 +280,12 @@ nnoremap q: <nop>
 
 " Show status line with row and col separated
 "set statusline=%F\ %=\col:%c\ line:%l\ %P
-nnoremap <C-p> :set paste!<CR>
-inoremap <C-p> <nop>
-set pastetoggle=<C-p>
-set hls
+"inoremap <F2> <nop>
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
 
 " Toggle signcolumn mapping
 nnoremap <leader>s :call ToggleSignColumn()<CR>
