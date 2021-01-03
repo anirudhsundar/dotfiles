@@ -1,0 +1,17 @@
+[                                                                                                                                                                                {
+        "user": "clangd",
+        "repo": "clangd",
+        "file_pattern": "clangd-linux-###.zip"
+    },
+    {
+        "user": "cli",
+        "repo": "cli",
+        "file_pattern": "gh_###_linux_amd64.tar.gz",
+        "remove_v": true
+    },
+    {
+        "user": "BurntSushi",
+        "repo": "ripgrep",
+        "file_pattern": "ripgrep-###-x86_64-unknown-linux-musl.tar.gz"
+    }
+]
