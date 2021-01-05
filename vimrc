@@ -385,9 +385,9 @@ set hls
 " and modified a little
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Jump to start and end of line using the home row keys
-map H ^
-map L $
+" " Jump to start and end of line using the home row keys
+" map H ^
+" map L $
 
 " (Shift)Tab (de)indents code
 vnoremap <Tab> >
