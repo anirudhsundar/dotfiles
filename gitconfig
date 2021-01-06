@@ -21,6 +21,7 @@
 	tr = log --oneline --graph --decorate --all
   pushom = push origin master
   pullom = pull origin master
+  files = show --name-only --oneline
 	pullrb = pull --rebase
 	count = diff --stat "4b825dc642cb6eb9a060e54bf8d69288fbee4904" # hash of empty tree
   grc = grep -C 1
