@@ -125,6 +125,10 @@ Plug 'junegunn/limelight.vim'
 " Snippets
 Plug 'honza/vim-snippets'
 
+" vim-markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -378,6 +382,29 @@ set hls
 set foldlevelstart=99
 set foldmethod=indent
 
+
+" Vim presentation mode for vpm filetype
+autocmd! BufNewFile,BufRead *.vpm call SetVimPresentationMode()
+
+function SetVimPresentationMode()
+  nnoremap <buffer> <silent> <Right> :n<CR>
+  nnoremap <buffer> <silent> <Left> :N<CR>
+  set syntax=markdown
+  set filetype=markdown
+  set textwidth=80
+  set shortmess+=F
+
+  if exists(":Goyo")
+    if !exists('#goyo')
+      nnoremap <buffer> <silent> G :Goyo 60%x75%+20%<CR>
+      nnoremap <buffer> <silent> g :Goyo!<CR>
+      Goyo 60%x75%+20%
+    endif
+  endif
+endfunction
+
+autocmd FileType markdown set conceallevel=2
+
 " }}}
 
 
@@ -390,8 +417,8 @@ set foldmethod=indent
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " " Jump to start and end of line using the home row keys
-" map H ^
-" map L $
+map H ^
+map L $
 
 " (Shift)Tab (de)indents code
 vnoremap <Tab> >
