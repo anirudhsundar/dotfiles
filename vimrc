@@ -386,7 +386,7 @@ au VimLeave * silent !echo -ne "\e[5 q"
 set hls
 
 " Set default foldmethod as indent and start with no folds
-set foldlevelstart=99
+"set foldlevelstart=99
 set foldmethod=indent
 
 
@@ -663,6 +663,13 @@ let g:cpp_experimental_simple_template_highlight = 1
 
 
 
+
+" Local vimrc settings to override this config -------------------{{{
+if filereadable(expand("~/.local_vimrc"))
+  source $HOME/.local_vimrc
+endif
+
+" }}}
 
 
 
