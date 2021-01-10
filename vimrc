@@ -130,6 +130,9 @@ Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+" vimwiki
+Plug 'vimwiki/vimwiki'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -218,6 +221,10 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
             \ { 'z': '~/.zshrc' },
             \ ]
+
+" vimwiki use markdown by default
+let g:vimwiki_list = [{'path': '~/my-notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
