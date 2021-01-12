@@ -393,7 +393,7 @@ au VimLeave * silent !echo -ne "\e[5 q"
 set hls
 
 " Set default foldmethod as indent and start with no folds
-"set foldlevelstart=99
+set foldlevelstart=99
 set foldmethod=indent
 
 
