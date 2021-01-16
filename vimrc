@@ -136,6 +136,9 @@ Plug 'plasticboy/vim-markdown'
 " vimwiki
 Plug 'vimwiki/vimwiki'
 
+" golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -253,6 +256,23 @@ set noshowmode
       "\ },
       "\ }
 
+" vim-go specific settings
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>gr <Plug>(go-run)
+autocmd FileType go nmap <leader>gt <Plug>(go-test)
+autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
+let g:go_list_type = "quickfix"
+
 " }}}
 
 " My personal defaults for vim --------------------------{{{
@@ -282,6 +302,7 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set shiftround
 
 " Always search with ignorecase (will manually turn off when needed)
 set ignorecase
@@ -356,10 +377,10 @@ augroup vimrc_cpp
 augroup END
 
 " Ctrl-d deletes current line in insert mode
-inoremap <c-d> <esc>ddi
+"inoremap <c-d> <esc>ddi
 
 " Ctrl-u changes the current word to uppercase in both insert and normal mode
-inoremap <C-u> <esc>viwUi
+"inoremap <C-u> <esc>viwUi
 
 " Wrap current word
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
@@ -418,6 +439,12 @@ function SetVimPresentationMode()
 endfunction
 
 autocmd FileType markdown set conceallevel=2
+
+" quckfix list mappings
+nnoremap <C-n> :cnext<CR>
+nnoremap <C-p> :cprevious<CR>
+nnoremap <leader>qw :cclose<CR>
+
 
 " }}}
 
