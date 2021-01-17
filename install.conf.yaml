@@ -24,6 +24,7 @@
     ~/.vim/ftdetect: vim/ftdetect
     ~/.vim/ftplugin: vim/ftplugin
     ~/.vim/syntax: vim/syntax
+    ~/.vim/after: vim/after
     ~/.global_gitignore:
 
 - shell:
