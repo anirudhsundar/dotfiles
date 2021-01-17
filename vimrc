@@ -1,7 +1,7 @@
 " Settings that have to be at the top of file -----------------{{{
 " Never use vi compatible unless we explicitly change this in vimrc
 " Commenting out as it's not needed  because of the presense of this file
-set nocompatible
+"set nocompatible
 
 
 " leader is space
@@ -53,10 +53,14 @@ Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
 
 " Easy commenting
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
 
 "Vim commentary with repeat support
-Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-commentary'
+
+" tcomment
+Plug 'tomtom/tcomment_vim'
+
 " cscope_maps
 Plug 'chazy/cscope_maps'
 
@@ -363,18 +367,18 @@ nnoremap <leader>k :bfirst<CR>
 nnoremap <leader>w :bdelete<CR>
 
 " Set vimscript foldmethod to marker
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
+"augroup filetype_vim
+    "autocmd!
+    "autocmd FileType vim setlocal foldmethod=marker
+"augroup END
 
 nnoremap ) dt)
 nnoremap ] dt]
 
-augroup vimrc_cpp
-  autocmd!
-  autocmd FileType cpp set iskeyword-=:,<,>,[,],!
-augroup END
+"augroup vimrc_cpp
+  "autocmd!
+  "autocmd FileType cpp set iskeyword+=:,<,>,[,],!
+"augroup END
 
 " Ctrl-d deletes current line in insert mode
 "inoremap <c-d> <esc>ddi
