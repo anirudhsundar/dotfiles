@@ -9,6 +9,9 @@ source $HOME/.shell/aliases.sh
 # Update PATH env with auto installed packages
 source $HOME/.shell/paths.sh
 
+# Bash specific custom setup
+source $HOME/.bash/custom.bash
+
 # Ignore and erase duplicates and 
 # ignore commands that start with space
 # (sets ignorespace, ignoredups and erasedups)
