@@ -137,8 +137,14 @@ Plug 'plasticboy/vim-markdown'
 " vimwiki
 Plug 'vimwiki/vimwiki'
 
+" taskwiki
+Plug 'tools-life/taskwiki'
+
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Rainbow-csv
+Plug 'mechatroner/rainbow_csv'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -232,6 +238,10 @@ let g:startify_bookmarks = [
 " vimwiki use markdown by default
 let g:vimwiki_list = [{'path': '~/my-notes/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:vimwiki_markdown_link_ext = 1
+
+let g:taskwiki_markup_syntax = 'markdown'
 
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -347,7 +357,6 @@ nnoremap <leader>H :tabprevious<CR>
 nnoremap <leader>J :tablast<CR>
 nnoremap <leader>T :tabnew<CR>
 nnoremap <leader><leader>t :tabnew 
-nnoremap <leader><C-w> :tabc<CR>
 
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -358,7 +367,7 @@ nnoremap <leader>l :bnext<CR>
 nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>j :blast<CR>
 nnoremap <leader>k :bfirst<CR>
-nnoremap <leader>w :bdelete<CR>
+nnoremap <leader><C-w> :bdelete<CR>
 
 " Set vimscript foldmethod to marker
 "augroup filetype_vim

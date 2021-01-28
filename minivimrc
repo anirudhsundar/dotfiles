@@ -34,6 +34,21 @@ set wildmenu
 set wildmode=full
 set number
 set relativenumber
+set ignorecase
+
+" Set cursorline always
+set cursorline
+
+" Use jk for going back to command mode
+" My left hand will think me
+inoremap jk <esc>
+
+" I'll never use the command-line window
+nnoremap q: <nop>
+
+" Manual toggle mappings for number and relative number
+nnoremap <C-m> :set number!<CR>
+nnoremap <leader><C-m> :set relativenumber!<CR>
 
 " various autocommands
 augroup minivimrc
