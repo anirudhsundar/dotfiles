@@ -12,6 +12,9 @@ source $HOME/.shell/paths.sh
 # Bash specific custom setup
 source $HOME/.bash/custom.bash
 
+# Update paths for binaries inside my repo
+source $HOME/.shell/common_paths.sh
+
 # Ignore and erase duplicates and 
 # ignore commands that start with space
 # (sets ignorespace, ignoredups and erasedups)
@@ -31,3 +34,5 @@ export TERM=xterm-256color
 # Disable with 
 # shopt -u direxpand
 shopt -s direxpand # enable
+
+source $HOME/.shell/fzf_aliases.sh

@@ -19,6 +19,7 @@
     ~/.cshrc.local: 
     ~/.shell: 
     ~/.zshrc: 
+    ~/.bin:
     ~/.vim/plugin: vim/plugin
     ~/.vim/indent: vim/indent
     ~/.vim/ftdetect: vim/ftdetect
