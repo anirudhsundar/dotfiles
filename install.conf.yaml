@@ -20,7 +20,7 @@
     ~/.shell: 
     ~/.zshrc: 
     ~/.bin:
-    ~/.lf:
+    ~/.lf: lf_config
     ~/.vim/plugin: vim/plugin
     ~/.vim/indent: vim/indent
     ~/.vim/ftdetect: vim/ftdetect
