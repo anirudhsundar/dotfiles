@@ -35,13 +35,9 @@
 	required = true
 [core]
 	whitespace = cr-at-eol
-	pager = delta
+	pager = diff-so-fancy | less --tabs=4 -RFX
 	editor = vim
 	excludesFile = ~/.global_gitignore
-[delta]
-  plus-color = "#012800"
-  minus-color = "#340001"
-  syntax-theme = Monokai Extended
 [pull]
 	ff = only
 [grep]

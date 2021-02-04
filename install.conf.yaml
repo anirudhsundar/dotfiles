@@ -20,6 +20,7 @@
     ~/.shell: 
     ~/.zshrc: 
     ~/.bin:
+    ~/.lf:
     ~/.vim/plugin: vim/plugin
     ~/.vim/indent: vim/indent
     ~/.vim/ftdetect: vim/ftdetect
@@ -27,6 +28,8 @@
     ~/.vim/syntax: vim/syntax
     ~/.vim/after: vim/after
     ~/.global_gitignore:
+    ~/.config/lf: config/lf
+    ~/.config/nvim: config/nvim
 
 - shell:
   - 

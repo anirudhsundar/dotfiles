@@ -13,6 +13,8 @@ source $HOME/.shell/fzf_aliases.sh
 # Update paths for binaries inside my repo
 source $HOME/.shell/common_paths.sh
 
+# source $HOME/.lf/lf.zsh
+
 #refer rg over ag
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
