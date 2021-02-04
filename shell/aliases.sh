@@ -10,3 +10,6 @@ function cd_up() {
   cd $(printf "%0.s../" $(seq 1 $1 ));
 }
 alias 'cd..'='cd_up'
+
+alias tw='task +work'
+alias th='task +home'
