@@ -3,6 +3,8 @@ alias l='ls -lrtha --color=auto'
 alias grep='grep --color=auto'
 alias ta='tmux a'
 alias minivim='vim -u ~/.minivimrc'
+alias tw='task +work'
+alias th='task +home'
 
 function cd_up() {
   cd $(printf "%0.s../" $(seq 1 $1 ));
