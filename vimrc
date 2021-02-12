@@ -6,6 +6,10 @@
 
 " leader is space
 let mapleader=" " 
+
+augroup vimrc
+  autocmd!
+augroup END
 " }}}
 
 " VimPlug Setup and list of Plugins ---------------{{{
@@ -13,7 +17,7 @@ let mapleader=" "
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC             
 endif
 
 " Plugins will be downloaded under the specified directory.
@@ -467,6 +471,26 @@ inoremap <C-Q>     <esc>:q<cr>
 nnoremap <C-Q>     :q<cr>
 nnoremap <Leader>Q :qa!<cr>
 
+" Taken from junegunn vimrc
+function! s:root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    echo 'Not in git repo'
+  else
+    execute 'lcd' root
+    echo 'Changed directory to: '.root
+  endif
+endfunction
+function! s:rootcur()
+  execute 'lcd' expand("%:h")
+  call s:root()
+endfunction
+
+" :Root -> Change directory to the root of the Git repository
+command! Root call s:root()
+" :RootCur -> change to the root of the git repo of current file
+command! RootCur call s:rootcur()
+
 
 " }}}
 
@@ -531,22 +555,26 @@ vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
-" }}}
 
-" Taken from junegunn vimrc
+" Taken from junegunn's vimrc on github
+
 " ----------------------------------------------------------------------------
-" :Root | Change directory to the root of the Git repository
+" :Chomp
 " ----------------------------------------------------------------------------
-function! s:root()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  if v:shell_error
-    echo 'Not in git repo'
-  else
-    execute 'lcd' root
-    echo 'Changed directory to: '.root
+command! Chomp %s/\s\+$// | normal! ``
+
+" ----------------------------------------------------------------------------
+" Help in new tabs
+" ----------------------------------------------------------------------------
+function! s:helptab()
+  if &buftype == 'help'
+    wincmd T
+    nnoremap <buffer> q :q<cr>
   endif
 endfunction
-command! Root call s:root()
+autocmd vimrc BufEnter *.txt call s:helptab()
+
+" }}}
 
 
 " coc.nvim configurations -------------------------{{{
