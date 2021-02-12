@@ -37,7 +37,7 @@ Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
 
 " A tree explorer plugin for vim
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Fuzzy file finder for vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -47,7 +47,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 
 " Vim plugin that displays tags in a window, ordered by scope
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 " Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
@@ -56,10 +56,10 @@ Plug 'easymotion/vim-easymotion'
 "Plug 'scrooloose/nerdcommenter'
 
 "Vim commentary with repeat support
-"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 
 " tcomment
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
 
 " cscope_maps
 Plug 'chazy/cscope_maps'
@@ -80,7 +80,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Add nice graph visualization to git log --graph view
-Plug 'rbong/vim-flog'
+" Plug 'rbong/vim-flog'
 
 " Vim surround with anything
 Plug 'tpope/vim-surround'
@@ -92,7 +92,7 @@ Plug 'tpope/vim-repeat'
 Plug 'haya14busa/incsearch.vim'
 
 " incsearch with easymotion
-Plug 'haya14busa/incsearch-easymotion.vim'
+" Plug 'haya14busa/incsearch-easymotion.vim'
 
 " Better statusline
 "Plug 'itchyny/lightline.vim'
@@ -104,10 +104,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'mhinz/vim-startify'
 
 " Vim undo history
-Plug 'simnalamburt/vim-mundo'
+" Plug 'simnalamburt/vim-mundo'
 
 " Useful unix commands from vim
-Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-eunuch'
 
 " Auto detect buffer options
 "Plug 'tpope/vim-sleuth'
@@ -128,7 +128,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 " Snippets
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 " vim-markdown
 Plug 'godlygeek/tabular'
@@ -141,11 +141,14 @@ Plug 'vimwiki/vimwiki'
 Plug 'tools-life/taskwiki'
 
 " golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+if v:version >= 800
+  Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+endif
 
 " Rainbow-csv
 Plug 'mechatroner/rainbow_csv'
 
+Plug 'rhysd/git-messenger.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -281,6 +284,10 @@ autocmd FileType go nmap <leader>gt <Plug>(go-test)
 autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
 let g:go_list_type = "quickfix"
 
+
+" vim-commentary
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
 " }}}
 
 " My personal defaults for vim --------------------------{{{
@@ -313,7 +320,7 @@ set shiftwidth=2
 set shiftround
 
 " Always search with ignorecase (will manually turn off when needed)
-set ignorecase
+set ignorecase smartcase
 set incsearch
 
 " Use jk for going back to command mode
@@ -362,7 +369,6 @@ nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Bindings for buffer switching
-" Commented out in favor of using the fzf :Buffers mapping
 nnoremap <leader>l :bnext<CR>
 nnoremap <leader>h :bprevious<CR>
 nnoremap <leader>j :blast<CR>
@@ -452,6 +458,15 @@ nnoremap <C-n> :cnext<CR>
 nnoremap <C-p> :cprevious<CR>
 nnoremap <leader>qw :cclose<CR>
 
+" Save
+inoremap <C-s>     <C-O>:update<cr>
+nnoremap <C-s>     :update<cr>
+
+" Quit
+inoremap <C-Q>     <esc>:q<cr>
+nnoremap <C-Q>     :q<cr>
+nnoremap <Leader>Q :qa!<cr>
+
 
 " }}}
 
@@ -518,6 +533,20 @@ vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
 " }}}
 
+" Taken from junegunn vimrc
+" ----------------------------------------------------------------------------
+" :Root | Change directory to the root of the Git repository
+" ----------------------------------------------------------------------------
+function! s:root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    echo 'Not in git repo'
+  else
+    execute 'lcd' root
+    echo 'Changed directory to: '.root
+  endif
+endfunction
+command! Root call s:root()
 
 
 " coc.nvim configurations -------------------------{{{
@@ -643,8 +672,8 @@ omap ac <Plug>(coc-classobj-a)
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
