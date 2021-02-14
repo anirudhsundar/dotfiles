@@ -5,7 +5,7 @@
 
 
 " leader is space
-let mapleader=" " 
+let mapleader=" "
 
 augroup vimrc
   autocmd!
@@ -17,7 +17,7 @@ augroup END
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC             
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Plugins will be downloaded under the specified directory.
@@ -82,6 +82,9 @@ Plug 'airblade/vim-gitgutter'
 
 " Vim interface for git commands using :Git, :Gsplit :Gedit
 Plug 'tpope/vim-fugitive'
+
+" commit browser
+Plug 'junegunn/gv.vim'
 
 " Add nice graph visualization to git log --graph view
 " Plug 'rbong/vim-flog'
@@ -156,6 +159,13 @@ endif
 Plug 'mechatroner/rainbow_csv'
 
 Plug 'rhysd/git-messenger.vim'
+ 
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+  let g:undotree_WindowLayout = 2
+  nnoremap <leader>U :UndotreeToggle<CR>
+
+Plug 'junegunn/vim-peekaboo'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -317,6 +327,8 @@ set relativenumber
 nnoremap <C-m> :set number!<CR>
 nnoremap <leader><C-m> :set relativenumber!<CR>
 
+" Don't move cursor to start of line on Ctrl-B/F
+set nostartofline
 
 " Never use tab chars, always use space
 set expandtab
@@ -373,7 +385,7 @@ nnoremap <leader>L :tabnext<CR>
 nnoremap <leader>H :tabprevious<CR>
 nnoremap <leader>J :tablast<CR>
 nnoremap <leader>T :tabnew<CR>
-nnoremap <leader><leader>t :tabnew 
+nnoremap <leader><leader>t :tabnew
 
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -497,6 +509,23 @@ command! Root call s:root()
 " :RootCur -> change to the root of the git repo of current file
 command! RootCur call s:rootcur()
 
+" Semi-persistent undo
+if has('persistent_undo')
+  set undodir=/tmp,.
+  set undofile
+endif
+
+" " Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" Always jump half a buffer
+nnoremap <C-F> <C-D>
+nnoremap <C-B> <C-U>
+
+" Open new lines above and below
+nnoremap <leader>o o<esc>
+nnoremap <leader>O O<esc>
 
 " }}}
 
@@ -508,10 +537,6 @@ command! RootCur call s:rootcur()
 " (Thanks to JJGO for that)
 " and modified a little
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" " Jump to start and end of line using the home row keys
-map H ^
-map L $
 
 " (Shift)Tab (de)indents code
 vnoremap <Tab> >
