@@ -17,7 +17,7 @@ source $HOME/.shell/common_paths.sh
 
 #refer rg over ag
 if type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 fi
 
 # Source local paths if it exists

@@ -159,12 +159,15 @@ endif
 Plug 'mechatroner/rainbow_csv'
 
 Plug 'rhysd/git-messenger.vim'
- 
+
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
   let g:undotree_WindowLayout = 2
   nnoremap <leader>U :UndotreeToggle<CR>
 
 Plug 'junegunn/vim-peekaboo'
+
+" Detect indent
+Plug 'timakro/vim-yadi'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -308,6 +311,9 @@ let g:go_list_type = "quickfix"
 " vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
+" Try to auto detect and use the indentation of a file when opened. 
+autocmd BufRead * DetectIndent
+
 " }}}
 
 " My personal defaults for vim --------------------------{{{
@@ -333,9 +339,14 @@ set nostartofline
 " Never use tab chars, always use space
 set expandtab
 
+" Otherwise use file type specific indentation. E.g. tabs for Makefiles
+" and 4 spaces for Python. This is optional.
+filetype plugin indent on
+
+" Set a fallback here in case detection fails and there is no file type
+" plugin available. You can also omit this, then Vim defaults to tabs.
+"
 " This is my ususal indentation config for most files
-" Doesn't work on python files as filetype plugin for python
-" is loaded after vimrc
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -523,10 +534,6 @@ map L $
 nnoremap <C-F> <C-D>
 nnoremap <C-B> <C-U>
 
-" Open new lines above and below
-nnoremap <leader>o o<esc>
-nnoremap <leader>O O<esc>
-
 " }}}
 
 
@@ -544,25 +551,25 @@ vnoremap <S-Tab> <
 
 " Capital JK move code lines/blocks up & down
 " TODO improve functionality
-nnoremap <C-k> :move-2<CR>==
-nnoremap <C-j> :move+<CR>==
-xnoremap <C-k> :move-2<CR>gv=gv
-xnoremap <C-j> :move'>+<CR>gv=gv
+nnoremap <silent> <C-k> :move-2<CR>==
+nnoremap <silent> <C-j> :move+<CR>==
+xnoremap <silent> <C-k> :move-2<CR>gv=gv
+xnoremap <silent> <C-j> :move'>+<CR>gv=gv
 
 " super quick search and replace taken from github.com/romainl/minivimrc
 nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
 nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
 
-" pair expansion on the cheap
-inoremap (<CR> (<CR>)<Esc>O
-inoremap (;    (<CR>);<Esc>O
-inoremap (,    (<CR>),<Esc>O
-inoremap {<CR> {<CR>}<Esc>O
-inoremap {;    {<CR>};<Esc>O
-inoremap {,    {<CR>},<Esc>O
-inoremap [<CR> [<CR>]<Esc>O
-inoremap [;    [<CR>];<Esc>O
-inoremap [,    [<CR>],<Esc>O
+" " pair expansion on the cheap
+" inoremap (<CR> (<CR>)<Esc>O
+" inoremap (;    (<CR>);<Esc>O
+" inoremap (,    (<CR>),<Esc>O
+" inoremap {<CR> {<CR>}<Esc>O
+" inoremap {;    {<CR>};<Esc>O
+" inoremap {,    {<CR>},<Esc>O
+" inoremap [<CR> [<CR>]<Esc>O
+" inoremap [;    [<CR>];<Esc>O
+" inoremap [,    [<CR>],<Esc>O
 
 
 " Lose Bad Habits
@@ -697,8 +704,8 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -765,6 +772,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 "nnoremap <silent><nowait> <leader><leader>k  :<C-u>CocPrev<CR>
 "" Resume latest coc list.
 "nnoremap <silent><nowait> <leader><leader>p  :<C-u>CocListResume<CR>
+
+" coc-clangd specific
+nnoremap <leader>cfh :CocCommand clangd.switchSourceHeader
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
