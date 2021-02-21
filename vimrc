@@ -528,6 +528,12 @@ map L $
 nnoremap <C-F> <C-D>
 nnoremap <C-B> <C-U>
 
+" Useful insert mode mappings
+inoremap <C-H> <C-O>^
+inoremap <C-L> <C-O>$
+inoremap <C-B> <C-O><C-U>
+inoremap <C-F> <C-O><C-D>
+
 " }}}
 
 
@@ -768,7 +774,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 "nnoremap <silent><nowait> <leader><leader>p  :<C-u>CocListResume<CR>
 
 " coc-clangd specific
-nnoremap <leader>cfh :CocCommand clangd.switchSourceHeader
+nnoremap <leader>cfh :CocCommand clangd.switchSourceHeader<cr>
 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
