@@ -1,3 +1,3 @@
-setlocal foldlevelstart=99
+setlocal foldlevelstart=0
 setlocal foldmethod=marker
 

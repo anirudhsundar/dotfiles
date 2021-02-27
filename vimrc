@@ -305,7 +305,7 @@ let g:go_list_type = "quickfix"
 " vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
-" Try to auto detect and use the indentation of a file when opened. 
+" Try to auto detect and use the indentation of a file when opened.
 autocmd BufRead * DetectIndent
 
 " }}}
@@ -454,7 +454,6 @@ au VimLeave * silent !echo -ne "\e[5 q"
 set hls
 
 " Set default foldmethod as indent and start with no folds
-set foldlevelstart=99
 set foldmethod=indent
 
 
@@ -480,7 +479,7 @@ endfunction
 
 autocmd FileType markdown set conceallevel=2
 
-" quckfix list mappings
+" quickfix list mappings
 nnoremap <C-n> :cnext<CR>
 nnoremap <C-p> :cprevious<CR>
 nnoremap <leader>qw :cclose<CR>
@@ -533,6 +532,15 @@ inoremap <C-H> <C-O>^
 inoremap <C-L> <C-O>$
 inoremap <C-B> <C-O><C-U>
 inoremap <C-F> <C-O><C-D>
+
+" Insert current date on <F4>
+inoremap <F4> <C-R>=strftime('%F')<CR>
+
+augroup HighlightTrailSpace
+  autocmd!
+  autocmd SourcePre,VimEnter * highlight TrailSpace ctermbg=red ctermfg=yellow
+  autocmd SourcePre,VimEnter * match TrailSpace /\s\+$/
+augroup END
 
 " }}}
 
