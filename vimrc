@@ -423,19 +423,19 @@ nnoremap ] dt]
 "inoremap <C-u> <esc>viwUi
 
 " Wrap current word
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-nnoremap <leader>( viw<esc>a)<esc>bi(<esc>lel
-nnoremap <leader>[ viw<esc>a]<esc>bi[<esc>lel
-nnoremap <leader>{ viw<esc>a}<esc>bi{<esc>lel
-nnoremap <leader>< viw<esc>a><esc>bi<<esc>lel
+" nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+" nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+" nnoremap <leader>( viw<esc>a)<esc>bi(<esc>lel
+" nnoremap <leader>[ viw<esc>a]<esc>bi[<esc>lel
+" nnoremap <leader>{ viw<esc>a}<esc>bi{<esc>lel
+" nnoremap <leader>< viw<esc>a><esc>bi<<esc>lel
 
 "Wrap selected text
-vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
-vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
-vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
-vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
-vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
+" vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
+" vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+" vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
+" vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
+" vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
 
 " Move to next and previous folds
 nnoremap zl zCzjzA
@@ -454,6 +454,7 @@ au VimLeave * silent !echo -ne "\e[5 q"
 set hls
 
 " Set default foldmethod as indent and start with no folds
+set foldlevelstart=99
 set foldmethod=indent
 
 
@@ -541,6 +542,31 @@ augroup HighlightTrailSpace
   autocmd SourcePre,VimEnter * highlight TrailSpace ctermbg=red ctermfg=yellow
   autocmd SourcePre,VimEnter * match TrailSpace /\s\+$/
 augroup END
+
+" grepprg is always set to use vimgrep as rg is always present at $HOME/.bin
+set grepprg=rg\ --vimgrep
+
+" GrepOperator defined from https://learnvimscriptthehardway.stevelosh.com
+nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
+
+function! s:GrepOperator(type)
+    let saved_unnamed_register = @@
+
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    silent execute "grep! " . shellescape(@@) . ""
+    copen
+
+    let @@ = saved_unnamed_register
+endfunction
+
 
 " }}}
 
