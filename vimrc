@@ -544,7 +544,10 @@ augroup HighlightTrailSpace
 augroup END
 
 " grepprg is always set to use vimgrep as rg is always present at $HOME/.bin
-set grepprg=rg\ --vimgrep
+if trim(split(system('which rg'),'/')[-1]) ==# 'rg'
+  set grepprg=rg\ --vimgrep
+  let s:grepprg_val = 'rg'
+endif
 
 " GrepOperator defined from https://learnvimscriptthehardway.stevelosh.com
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
@@ -561,7 +564,12 @@ function! s:GrepOperator(type)
         return
     endif
 
-    silent execute "grep! " . shellescape(@@) . ""
+    if split(&grepprg, '\v\s+')[0] ==# 'rg'
+      silent execute "grep! --fixed-strings " . shellescape(@@)
+    else
+      silent execute "grep! -R -F " . shellescape(@@) . " ."
+    endif
+
     copen
 
     let @@ = saved_unnamed_register
