@@ -30,6 +30,7 @@
     ~/.global_gitignore:
     ~/.config/lf: config/lf
     ~/.config/nvim: config/nvim
+    ~/.common_mappings.vim:
 
 - shell:
   - 
