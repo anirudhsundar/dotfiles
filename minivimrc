@@ -1,15 +1,12 @@
-" Taken mostly from romainl/minivimrc on github with a few modifications
-" MINIVIMRC
 set nocompatible
 
 " leader is space
-let mapleader=" " 
+let mapleader=" "
 
 " filetype support
 filetype plugin indent on
 syntax on
 
-" because it's there
 runtime macros/matchit.vim
 
 " various settings
@@ -34,7 +31,10 @@ set wildmenu
 set wildmode=full
 set number
 set relativenumber
-set ignorecase
+set ignorecase smartcase
+set nostartofline
+set expandtab
+set hlsearch
 
 " Set cursorline always
 set cursorline
@@ -49,6 +49,12 @@ nnoremap q: <nop>
 " Manual toggle mappings for number and relative number
 nnoremap <C-m> :set number!<CR>
 nnoremap <leader><C-m> :set relativenumber!<CR>
+
+" Show status line with row and col separated
+"set statusline=%F\ %=\col:%c\ line:%l\ %P
+"inoremap <F2> <nop>
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
 
 " various autocommands
 augroup minivimrc
@@ -67,45 +73,133 @@ augroup minivimrc
 	autocmd FileType gitcommit nnoremap <buffer> { ?^@@<CR>|nnoremap <buffer> } /^@@<CR>|setlocal iskeyword+=-
 augroup END
 
-" commands for adjusting indentation rules manually
-command! -nargs=1 Spaces let b:wv = winsaveview() | execute "setlocal tabstop=" . <args> . " expandtab"   | silent execute "%!expand -it "  . <args> . "" | call winrestview(b:wv) | setlocal ts? sw? sts? et?
-command! -nargs=1 Tabs   let b:wv = winsaveview() | execute "setlocal tabstop=" . <args> . " noexpandtab" | silent execute "%!unexpand -t " . <args> . "" | call winrestview(b:wv) | setlocal ts? sw? sts? et?
-
-
 " super quick search and replace
 nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
 nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
 
-" pair expansion on the cheap
-inoremap (<CR> (<CR>)<Esc>O
-inoremap (;    (<CR>);<Esc>O
-inoremap (,    (<CR>),<Esc>O
-inoremap {<CR> {<CR>}<Esc>O
-inoremap {;    {<CR>};<Esc>O
-inoremap {,    {<CR>},<Esc>O
-inoremap [<CR> [<CR>]<Esc>O
-inoremap [;    [<CR>];<Esc>O
-inoremap [,    [<CR>],<Esc>O
 
-" smooth searching
-cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
-cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
+" Switching between tab buffers
+nnoremap <leader>L :tabnext<CR>
+nnoremap <leader>H :tabprevious<CR>
+nnoremap <leader>J :tablast<CR>
+nnoremap <leader>T :tabnew<CR>
+nnoremap <leader><leader>t :tabnew
 
-" smooth listing
-cnoremap <expr> <CR> <SID>CCR()
-function! s:CCR()
-	command! -bar Z silent set more|delcommand Z
-	if getcmdtype() == ":"
-		let cmdline = getcmdline()
-		    if cmdline =~ '\v\C^(dli|il)' | return "\<CR>:" . cmdline[0] . "jump   " . split(cmdline, " ")[1] . "\<S-Left>\<Left>\<Left>"
-		elseif cmdline =~ '\v\C^(cli|lli)' | return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
-		elseif cmdline =~ '\C^changes' | set nomore | return "\<CR>:Z|norm! g;\<S-Left>"
-		elseif cmdline =~ '\C^ju' | set nomore | return "\<CR>:Z|norm! \<C-o>\<S-Left>"
-		elseif cmdline =~ '\v\C(#|nu|num|numb|numbe|number)$' | return "\<CR>:"
-		elseif cmdline =~ '\C^ol' | set nomore | return "\<CR>:Z|e #<"
-		elseif cmdline =~ '\v\C^(ls|files|buffers)' | return "\<CR>:b"
-		elseif cmdline =~ '\C^marks' | return "\<CR>:norm! `"
-		elseif cmdline =~ '\C^undol' | return "\<CR>:u "
-		else | return "\<CR>" | endif
-	else | return "\<CR>" | endif
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"Bindings for buffer switching
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>h :bprevious<CR>
+nnoremap <leader>j :blast<CR>
+nnoremap <leader>k :bfirst<CR>
+nnoremap <leader><C-w> :bdelete<CR>
+
+" Move to next and previous folds
+nnoremap zl zCzjzA
+nnoremap zh zCzkzA
+
+" Change cursor for insert and normal mode
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[0 q"
+
+au VimLeave * silent !echo -ne "\e[5 q"
+
+" Set default foldmethod as indent and start with no folds
+set foldlevelstart=99
+set foldmethod=indent
+
+" quickfix list mappings
+nnoremap <C-n> :cnext<CR>
+nnoremap <C-p> :cprevious<CR>
+nnoremap <leader>qw :cclose<CR>
+
+" Save
+inoremap <C-s>     <C-O>:update<cr>
+nnoremap <C-s>     :update<cr>
+
+" Quit
+inoremap <C-Q>     <esc>:q<cr>
+nnoremap <C-Q>     :q<cr>
+nnoremap <Leader>Q :qa!<cr>
+
+" Taken from junegunn vimrc
+function! s:root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  if v:shell_error
+    echo 'Not in git repo'
+  else
+    execute 'lcd' root
+    echo 'Changed directory to: '.root
+  endif
+endfunction
+function! s:rootcur()
+  execute 'lcd' expand("%:h")
+  call s:root()
+endfunction
+
+" :Root -> Change directory to the root of the Git repository
+command! Root call s:root()
+" :RootCur -> change to the root of the git repo of current file
+command! RootCur call s:rootcur()
+
+" Semi-persistent undo
+if has('persistent_undo')
+  set undodir=/tmp,.
+  set undofile
+endif
+
+" " Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" Always jump half a buffer
+nnoremap <C-F> <C-D>
+nnoremap <C-B> <C-U>
+
+" Useful insert mode mappings
+inoremap <C-H> <C-O>^
+inoremap <C-L> <C-O>$
+inoremap <C-B> <C-O><C-U>
+inoremap <C-F> <C-O><C-D>
+
+" Insert current date on <F4>
+inoremap <F4> <C-R>=strftime('%F')<CR>
+
+augroup HighlightTrailSpace
+  autocmd!
+  autocmd SourcePre,VimEnter * highlight TrailSpace ctermbg=red ctermfg=yellow
+  autocmd SourcePre,VimEnter * match TrailSpace /\s\+$/
+augroup END
+
+" grepprg is always set to use vimgrep as rg is always present at $HOME/.bin
+if trim(split(system('which rg'),'/')[-1]) ==# 'rg'
+  set grepprg=rg\ --vimgrep
+  let s:grepprg_val = 'rg'
+endif
+
+" GrepOperator defined from https://learnvimscriptthehardway.stevelosh.com
+nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
+
+function! s:GrepOperator(type)
+    let saved_unnamed_register = @@
+
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    if split(&grepprg, '\v\s+')[0] ==# 'rg'
+      silent execute "grep! --fixed-strings " . shellescape(@@)
+    else
+      silent execute "grep! -R -F " . shellescape(@@) . " ."
+    endif
+
+    copen
+
+    let @@ = saved_unnamed_register
 endfunction

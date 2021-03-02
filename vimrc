@@ -451,7 +451,7 @@ let &t_EI = "\e[0 q"
 au VimLeave * silent !echo -ne "\e[5 q"
 
 " Always enable hlsearch
-set hls
+set hlsearch
 
 " Set default foldmethod as indent and start with no folds
 set foldlevelstart=99
