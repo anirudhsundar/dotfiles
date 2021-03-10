@@ -169,6 +169,12 @@ Plug 'junegunn/vim-peekaboo'
 " Detect indent
 Plug 'timakro/vim-yadi'
 
+" Dispatch makeprg asynchronously
+Plug 'tpope/vim-dispatch'
+
+" Repl and plugin development helper for vim
+Plug 'tpope/vim-scriptease'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -314,6 +320,10 @@ autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 " Try to auto detect and use the indentation of a file when opened.
 autocmd BufRead * DetectIndent
 
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+
 " }}}
 
 " My personal defaults for vim --------------------------{{{
@@ -325,13 +335,13 @@ autocmd BufRead * DetectIndent
   "autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 "augroup END
 
+"-------------------------------------------------
+" This sets most of my options
+"----------------------------------------------{{{
+
 "use relativenumber and absolute number by default
 set number
 set relativenumber
-
-" Manual toggle mappings for number and relative number
-nnoremap <C-m> :set number!<CR>
-nnoremap <leader><C-m> :set relativenumber!<CR>
 
 " Don't move cursor to start of line on Ctrl-B/F
 set nostartofline
@@ -356,112 +366,29 @@ set shiftround
 set ignorecase smartcase
 set incsearch
 
-" Use jk for going back to command mode
-" My left hand will think me
-inoremap jk <esc>
-" Get used to jk for esc
-"inoremap <esc> <nop>
-
-" I'll never use the command-line window
-nnoremap q: <nop>
-
-" Show status line with row and col separated
-"set statusline=%F\ %=\col:%c\ line:%l\ %P
-"inoremap <F2> <nop>
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-
-" Toggle signcolumn mapping
-nnoremap <leader>s :call ToggleSignColumn()<CR>
-
-" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
-function! ToggleSignColumn()
-    if !exists("b:signcolumn_on") || b:signcolumn_on
-        set signcolumn=no
-        let b:signcolumn_on=0
-    else
-        set signcolumn=yes
-        let b:signcolumn_on=1
-    endif
-endfunction
-
-" Always show my comment in grey
-autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
-
-" Switching between tab buffers
-nnoremap <leader>L :tabnext<CR>
-nnoremap <leader>H :tabprevious<CR>
-nnoremap <leader>J :tablast<CR>
-nnoremap <leader>T :tabnew<CR>
-nnoremap <leader><leader>t :tabnew
-
-nnoremap <leader>ev :edit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
-"Bindings for buffer switching
-nnoremap <leader>l :bnext<CR>
-nnoremap <leader>h :bprevious<CR>
-nnoremap <leader>j :blast<CR>
-nnoremap <leader>k :bfirst<CR>
-nnoremap <leader><C-w> :bdelete<CR>
-
-" Set vimscript foldmethod to marker
-"augroup filetype_vim
-    "autocmd!
-    "autocmd FileType vim setlocal foldmethod=marker
-"augroup END
-
-nnoremap ) dt)
-nnoremap ] dt]
-
-"augroup vimrc_cpp
-  "autocmd!
-  "autocmd FileType cpp set iskeyword+=:,<,>,[,],!
-"augroup END
-
-" Ctrl-d deletes current line in insert mode
-"inoremap <c-d> <esc>ddi
-
-" Ctrl-u changes the current word to uppercase in both insert and normal mode
-"inoremap <C-u> <esc>viwUi
-
-" Wrap current word
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-nnoremap <leader>( viw<esc>a)<esc>bi(<esc>lel
-nnoremap <leader>[ viw<esc>a]<esc>bi[<esc>lel
-nnoremap <leader>{ viw<esc>a}<esc>bi{<esc>lel
-nnoremap <leader>< viw<esc>a><esc>bi<<esc>lel
-
-"Wrap selected text
-vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
-vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
-vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
-vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
-vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
-
-" Move to next and previous folds
-nnoremap zl zCzjzA
-nnoremap zh zCzkzA
-
 " Set cursorline always
 set cursorline
 
-" Change cursor for insert and normal mode
-let &t_SI = "\e[5 q"
-let &t_EI = "\e[0 q"
-
-au VimLeave * silent !echo -ne "\e[5 q"
-
 " Always enable hlsearch
-set hls
+set hlsearch
 
 " Set default foldmethod as indent and start with no folds
+set foldlevelstart=99
 set foldmethod=indent
 
+" Semi-persistent undo
+if has('persistent_undo')
+  set undodir=/tmp,.
+  set undofile
+endif
+
+"-------------------------------------------------
+" End of options
+"----------------------------------------------}}}
+
+"---------------------------------------------
+" Common mappings
+source $HOME/.common_mappings.vim
 
 " Vim presentation mode for vpm filetype
 autocmd! BufNewFile,BufRead *.vpm call SetVimPresentationMode()
@@ -484,70 +411,24 @@ function SetVimPresentationMode()
 endfunction
 
 autocmd FileType markdown set conceallevel=2
+" Toggle signcolumn mapping
+nnoremap <leader>s :call ToggleSignColumn()<CR>
 
-" quickfix list mappings
-nnoremap <C-n> :cnext<CR>
-nnoremap <C-p> :cprevious<CR>
-nnoremap <leader>qw :cclose<CR>
-
-" Save
-inoremap <C-s>     <C-O>:update<cr>
-nnoremap <C-s>     :update<cr>
-
-" Quit
-inoremap <C-Q>     <esc>:q<cr>
-nnoremap <C-Q>     :q<cr>
-nnoremap <Leader>Q :qa!<cr>
-
-" Taken from junegunn vimrc
-function! s:root()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  if v:shell_error
-    echo 'Not in git repo'
-  else
-    execute 'lcd' root
-    echo 'Changed directory to: '.root
-  endif
-endfunction
-function! s:rootcur()
-  execute 'lcd' expand("%:h")
-  call s:root()
+" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
+function! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=yes
+        let b:signcolumn_on=1
+    endif
 endfunction
 
-" :Root -> Change directory to the root of the Git repository
-command! Root call s:root()
-" :RootCur -> change to the root of the git repo of current file
-command! RootCur call s:rootcur()
+" Always show my comment in grey
+autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 
-" Semi-persistent undo
-if has('persistent_undo')
-  set undodir=/tmp,.
-  set undofile
-endif
-
-" " Jump to start and end of line using the home row keys
-map H ^
-map L $
-
-" Always jump half a buffer
-nnoremap <C-F> <C-D>
-nnoremap <C-B> <C-U>
-
-" Useful insert mode mappings
-inoremap <C-H> <C-O>^
-inoremap <C-L> <C-O>$
-inoremap <C-B> <C-O><C-U>
-inoremap <C-F> <C-O><C-D>
-
-" Insert current date on <F4>
-inoremap <F4> <C-R>=strftime('%F')<CR>
-
-augroup HighlightTrailSpace
-  autocmd!
-  autocmd SourcePre,VimEnter * highlight TrailSpace ctermbg=red ctermfg=yellow
-  autocmd SourcePre,VimEnter * match TrailSpace /\s\+$/
-augroup END
-
+autocmd FileType cpp call myvim#makeprg#setMakePrg()
 " }}}
 
 
@@ -560,8 +441,8 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " (Shift)Tab (de)indents code
-vnoremap <Tab> >
-vnoremap <S-Tab> <
+" vnoremap <Tab> >
+" vnoremap <S-Tab> <
 
 " Capital JK move code lines/blocks up & down
 " TODO improve functionality
@@ -569,10 +450,6 @@ nnoremap <silent> <C-k> :move-2<CR>==
 nnoremap <silent> <C-j> :move+<CR>==
 xnoremap <silent> <C-k> :move-2<CR>gv=gv
 xnoremap <silent> <C-j> :move'>+<CR>gv=gv
-
-" super quick search and replace taken from github.com/romainl/minivimrc
-nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
-nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
 
 " " pair expansion on the cheap
 " inoremap (<CR> (<CR>)<Esc>O

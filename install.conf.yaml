@@ -27,9 +27,11 @@
     ~/.vim/ftplugin: vim/ftplugin
     ~/.vim/syntax: vim/syntax
     ~/.vim/after: vim/after
+    ~/.vim/autoload/myvim: vim/autoload/myvim
     ~/.global_gitignore:
     ~/.config/lf: config/lf
     ~/.config/nvim: config/nvim
+    ~/.common_mappings.vim:
 
 - shell:
   - 

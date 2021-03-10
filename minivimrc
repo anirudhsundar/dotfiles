@@ -1,18 +1,17 @@
-" Taken mostly from romainl/minivimrc on github with a few modifications
-" MINIVIMRC
 set nocompatible
 
 " leader is space
-let mapleader=" " 
+let mapleader=" "
 
 " filetype support
 filetype plugin indent on
 syntax on
 
-" because it's there
 runtime macros/matchit.vim
 
-" various settings
+"---------------------------------------------
+" Set various options
+"------------------------------------------{{{
 set autoindent
 set backspace=indent,eol,start
 set complete+=d
@@ -34,21 +33,31 @@ set wildmenu
 set wildmode=full
 set number
 set relativenumber
-set ignorecase
+set ignorecase smartcase
+set nostartofline
+set expandtab
+set hlsearch
 
 " Set cursorline always
 set cursorline
 
-" Use jk for going back to command mode
-" My left hand will think me
-inoremap jk <esc>
+" Set default foldmethod as indent and start with no folds
+set foldlevelstart=99
+set foldmethod=indent
 
-" I'll never use the command-line window
-nnoremap q: <nop>
+" Semi-persistent undo
+if has('persistent_undo')
+  set undodir=/tmp,.
+  set undofile
+endif
 
-" Manual toggle mappings for number and relative number
-nnoremap <C-m> :set number!<CR>
-nnoremap <leader><C-m> :set relativenumber!<CR>
+"---------------------------------------------
+" End of options
+"------------------------------------------}}}
+
+"---------------------------------------------
+" Common mappings
+source $HOME/.common_mappings.vim
 
 " various autocommands
 augroup minivimrc
@@ -67,45 +76,3 @@ augroup minivimrc
 	autocmd FileType gitcommit nnoremap <buffer> { ?^@@<CR>|nnoremap <buffer> } /^@@<CR>|setlocal iskeyword+=-
 augroup END
 
-" commands for adjusting indentation rules manually
-command! -nargs=1 Spaces let b:wv = winsaveview() | execute "setlocal tabstop=" . <args> . " expandtab"   | silent execute "%!expand -it "  . <args> . "" | call winrestview(b:wv) | setlocal ts? sw? sts? et?
-command! -nargs=1 Tabs   let b:wv = winsaveview() | execute "setlocal tabstop=" . <args> . " noexpandtab" | silent execute "%!unexpand -t " . <args> . "" | call winrestview(b:wv) | setlocal ts? sw? sts? et?
-
-
-" super quick search and replace
-nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
-nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
-
-" pair expansion on the cheap
-inoremap (<CR> (<CR>)<Esc>O
-inoremap (;    (<CR>);<Esc>O
-inoremap (,    (<CR>),<Esc>O
-inoremap {<CR> {<CR>}<Esc>O
-inoremap {;    {<CR>};<Esc>O
-inoremap {,    {<CR>},<Esc>O
-inoremap [<CR> [<CR>]<Esc>O
-inoremap [;    [<CR>];<Esc>O
-inoremap [,    [<CR>],<Esc>O
-
-" smooth searching
-cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
-cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
-
-" smooth listing
-cnoremap <expr> <CR> <SID>CCR()
-function! s:CCR()
-	command! -bar Z silent set more|delcommand Z
-	if getcmdtype() == ":"
-		let cmdline = getcmdline()
-		    if cmdline =~ '\v\C^(dli|il)' | return "\<CR>:" . cmdline[0] . "jump   " . split(cmdline, " ")[1] . "\<S-Left>\<Left>\<Left>"
-		elseif cmdline =~ '\v\C^(cli|lli)' | return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
-		elseif cmdline =~ '\C^changes' | set nomore | return "\<CR>:Z|norm! g;\<S-Left>"
-		elseif cmdline =~ '\C^ju' | set nomore | return "\<CR>:Z|norm! \<C-o>\<S-Left>"
-		elseif cmdline =~ '\v\C(#|nu|num|numb|numbe|number)$' | return "\<CR>:"
-		elseif cmdline =~ '\C^ol' | set nomore | return "\<CR>:Z|e #<"
-		elseif cmdline =~ '\v\C^(ls|files|buffers)' | return "\<CR>:b"
-		elseif cmdline =~ '\C^marks' | return "\<CR>:norm! `"
-		elseif cmdline =~ '\C^undol' | return "\<CR>:u "
-		else | return "\<CR>" | endif
-	else | return "\<CR>" | endif
-endfunction
