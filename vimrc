@@ -166,6 +166,12 @@ Plug 'junegunn/vim-peekaboo'
 " Detect indent
 Plug 'timakro/vim-yadi'
 
+" Dispatch makeprg asynchronously
+Plug 'tpope/vim-dispatch'
+
+" Repl and plugin development helper for vim
+Plug 'tpope/vim-scriptease'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -416,38 +422,7 @@ endfunction
 " Always show my comment in grey
 autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 
-" Set vimscript foldmethod to marker
-"augroup filetype_vim
-    "autocmd!
-    "autocmd FileType vim setlocal foldmethod=marker
-"augroup END
-
-"augroup vimrc_cpp
-  "autocmd!
-  "autocmd FileType cpp set iskeyword+=:,<,>,[,],!
-"augroup END
-
-" Ctrl-d deletes current line in insert mode
-"inoremap <c-d> <esc>ddi
-
-" Ctrl-u changes the current word to uppercase in both insert and normal mode
-"inoremap <C-u> <esc>viwUi
-
-" Wrap current word
-" nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-" nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-" nnoremap <leader>( viw<esc>a)<esc>bi(<esc>lel
-" nnoremap <leader>[ viw<esc>a]<esc>bi[<esc>lel
-" nnoremap <leader>{ viw<esc>a}<esc>bi{<esc>lel
-" nnoremap <leader>< viw<esc>a><esc>bi<<esc>lel
-
-"Wrap selected text
-" vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
-" vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
-" vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
-" vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
-" vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
-
+autocmd FileType cpp call myvim#makeprg#setMakePrg()
 " }}}
 
 
@@ -460,8 +435,8 @@ autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " (Shift)Tab (de)indents code
-vnoremap <Tab> >
-vnoremap <S-Tab> <
+" vnoremap <Tab> >
+" vnoremap <S-Tab> <
 
 " Capital JK move code lines/blocks up & down
 " TODO improve functionality

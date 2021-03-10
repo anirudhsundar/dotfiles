@@ -30,7 +30,7 @@ nnoremap <leader>J :tablast<CR>
 nnoremap <leader>T :tabnew<CR>
 nnoremap <leader><leader>t :tabnew
 
-nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>ev :execute 'edit '.fnameescape(resolve(fnamemodify('~/.vimrc', ':p')))<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Bindings for buffer switching
@@ -64,33 +64,14 @@ inoremap <C-Q>     <esc>:q<cr>
 nnoremap <C-Q>     :q<cr>
 nnoremap <Leader>Q :qa!<cr>
 
-" Taken from junegunn vimrc
-function! s:root()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  if v:shell_error
-    echo 'Not in git repo'
-  else
-    execute 'lcd' root
-    echo 'Changed directory to: '.root
-  endif
-endfunction
-function! s:rootcur()
-  execute 'lcd' expand("%:h")
-  call s:root()
-endfunction
-
 " :Root -> Change directory to the root of the Git repository
-command! Root call s:root()
+command! Root call myvim#root#changeRoot(myvim#root#root())
 " :RootCur -> change to the root of the git repo of current file
-command! RootCur call s:rootcur()
+command! RootCur call myvim#root#rootcur()
 
 " " Jump to start and end of line using the home row keys
 map H ^
 map L $
-
-" Always jump half a buffer
-nnoremap <C-F> <C-D>
-nnoremap <C-B> <C-U>
 
 " Useful insert mode mappings
 inoremap <C-H> <C-O>^
