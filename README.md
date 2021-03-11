@@ -1,6 +1,6 @@
-## Personal repo to maintaining my dotfiles
+## Personal setup
 
-This is a personal repo to setup my dotfiles across different machines. 
+This is a personal repo to setup my dotfiles across different machines.
 
 I'm using [**dotbot**](https://github.com/anishathalye/dotbot) to install the dotfiles.
 
