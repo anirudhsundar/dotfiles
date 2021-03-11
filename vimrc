@@ -205,6 +205,27 @@ nnoremap <silent> <Leader>fm :History<CR>
 nnoremap <silent> <Leader><Leader>l :Lines<CR>
 " Unable to use <leader><leader>b as its mapped to easymotion
 nnoremap <silent> <Leader><Leader>c :BLines<CR>
+command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+
+" operator mapping for ripgrep
+nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
+vnoremap <leader>rg :<c-u>call <SID>RipGrepOperator(visualmode())<cr>
+
+function! s:RipGrepOperator(type)
+    let saved_unnamed_register = @@
+
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    silent execute "RgFixed " . @@
+
+    let @@ = saved_unnamed_register
+endfunction
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
