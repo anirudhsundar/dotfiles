@@ -76,7 +76,6 @@ let g:tagbar_width = 70
 "Vim commentary with repeat support
 Plug 'tpope/vim-commentary'
 " vim-commentary
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 
 
@@ -435,6 +434,7 @@ endfunction
 
 " Always show my comment in grey
 autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 autocmd FileType cpp call myvim#makeprg#setMakePrg()
 " }}}
