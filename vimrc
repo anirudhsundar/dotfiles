@@ -97,6 +97,7 @@ Plug 'tpope/vim-surround'
 
 " LSP support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf'
 
 " Detect indent
 Plug 'timakro/vim-yadi'
@@ -214,6 +215,12 @@ nnoremap <silent> <Leader><Leader>l :Lines<CR>
 " Unable to use <leader><leader>b as its mapped to easymotion
 nnoremap <silent> <Leader><Leader>c :BLines<CR>
 command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
+inoremap <expr> <c-x><c-l> fzf#vim#complete#line()
+inoremap <expr> <c-x><c-b> fzf#vim#complete#buffer_line()
+
 
 " operator mapping for ripgrep
 nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
