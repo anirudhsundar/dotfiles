@@ -23,104 +23,40 @@ endif
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
+" Defaults everyone can agree on
+Plug 'tpope/vim-sensible'
+
+" Syntax highlighting related plugins
+"----------------------------------------------{{{
+
 " A couple of dark themes
 Plug 'joshdick/onedark.vim'
 Plug 'gosukiwi/vim-atom-dark'
 
-" cool plugin that removes hlsearch after search is done
-" <C-l> clears the hlsearch and that's preferrable
-"Plug 'romainl/vim-cool'
+" Simple 256 bit color scheme
+Plug 'junegunn/seoul256.vim'
+
+Plug 'morhetz/gruvbox'
+
+" Molokai theme
+Plug 'sickill/vim-monokai'
+
+" Rainbow-csv
+Plug 'mechatroner/rainbow_csv'
+
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" vim-markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 " Enhanced syntax highlight for cpp
 Plug 'octol/vim-cpp-enhanced-highlight'
 
-" Defaults everyone can agree on
-Plug 'tpope/vim-sensible'
 
-" Simple 256 bit color scheme
-Plug 'junegunn/seoul256.vim'
-
-" A tree explorer plugin for vim
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-
-" Fuzzy file finder for vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" Most Recently Used files search using fzf
-Plug 'pbogut/fzf-mru.vim'
-
-" Vim plugin that displays tags in a window, ordered by scope
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-
-" Vim motions on speed!
-Plug 'easymotion/vim-easymotion'
-
-" Easy commenting
-"Plug 'scrooloose/nerdcommenter'
-
-"Vim commentary with repeat support
-Plug 'tpope/vim-commentary'
-
-" tcomment
-" Plug 'tomtom/tcomment_vim'
-
-" cscope_maps
-Plug 'chazy/cscope_maps'
-
-" Focus events work properly for vim in tmux panes
-Plug 'tmux-plugins/vim-tmux-focus-events'
-
-" Share vim clipboard across panes
-Plug 'roxma/vim-tmux-clipboard'
-
-" access cppman from vim with keywordprg 'K' command
-Plug 'gauteh/vim-cppman'
-
-" Git gutter for showing updated git diffs
-Plug 'airblade/vim-gitgutter'
-
-" Vim interface for git commands using :Git, :Gsplit :Gedit
-Plug 'tpope/vim-fugitive'
-
-" commit browser
-Plug 'junegunn/gv.vim'
-
-" Add nice graph visualization to git log --graph view
-" Plug 'rbong/vim-flog'
-
-" Vim surround with anything
-Plug 'tpope/vim-surround'
-
-" Repeat with '.' in plugins
-Plug 'tpope/vim-repeat'
-
-" Better incremental search
-Plug 'haya14busa/incsearch.vim'
-
-" incsearch with easymotion
-" Plug 'haya14busa/incsearch-easymotion.vim'
-
-" Better statusline
-"Plug 'itchyny/lightline.vim'
-
-" Airline statusline when powerline fonts are available
-Plug 'vim-airline/vim-airline'
-
-" Vim start screen
-Plug 'mhinz/vim-startify'
-
-" Vim undo history
-" Plug 'simnalamburt/vim-mundo'
-
-" Useful unix commands from vim
-" Plug 'tpope/vim-eunuch'
-
-" Auto detect buffer options
-"Plug 'tpope/vim-sleuth'
-
-" Nice completions
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Syntax highlighting for jsonc
 Plug 'kevinoid/vim-jsonc'
@@ -128,46 +64,44 @@ Plug 'kevinoid/vim-jsonc'
 " Add eye-candy icons
 Plug 'ryanoasis/vim-devicons'
 
-" Visual search
-Plug 'nelstrom/vim-visual-star-search'
+"----------------------------------------------}}}
 
-" Molokai theme
-Plug 'sickill/vim-monokai'
+"Programming related
+"----------------------------------------------{{{
+" Vim plugin that displays tags in a window, ordered by scope
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_width = 70
 
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+"Vim commentary with repeat support
+Plug 'tpope/vim-commentary'
+" vim-commentary
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
-" Snippets
-" Plug 'honza/vim-snippets'
 
-" vim-markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 
-" vimwiki
-Plug 'vimwiki/vimwiki'
+" cscope_maps
+Plug 'chazy/cscope_maps'
 
-" taskwiki
-Plug 'tools-life/taskwiki'
+" access cppman from vim with keywordprg 'K' command
+"----------------------------------------------{{{
+Plug 'gauteh/vim-cppman'
+" Add cppman support and add tmux split for cppman
+command! -nargs=+ Cppman silent! call system("tmux split-window -h cppman " . expand(<q-args>))
+" Use <leader>K for calling cppman as K is used by coc for popup doc
+autocmd FileType cpp nnoremap <silent><buffer> <leader>K <Esc>:Cppman <cword><CR>
+"----------------------------------------------}}}
 
-" golang
-if v:version >= 800
-  Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-endif
+" Vim surround with anything
+Plug 'tpope/vim-surround'
 
-" Rainbow-csv
-Plug 'mechatroner/rainbow_csv'
-
-Plug 'rhysd/git-messenger.vim'
-
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-  let g:undotree_WindowLayout = 2
-  nnoremap <leader>U :UndotreeToggle<CR>
-
-Plug 'junegunn/vim-peekaboo'
+" LSP support
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Detect indent
 Plug 'timakro/vim-yadi'
+" Try to auto detect and use the indentation of a file when opened.
+autocmd BufRead * DetectIndent
 
 " Dispatch makeprg asynchronously
 Plug 'tpope/vim-dispatch'
@@ -175,27 +109,101 @@ Plug 'tpope/vim-dispatch'
 " Repl and plugin development helper for vim
 Plug 'tpope/vim-scriptease'
 
-" List ends here. Plugins become visible to Vim after this call.
-call plug#end()
+" taskwiki
+Plug 'tools-life/taskwiki'
 
-set runtimepath+=~/.vim/.misc_vim
-" }}}
+" vimwiki
+"----------------------------------------------{{{
+Plug 'vimwiki/vimwiki'
+" vimwiki use markdown by default
+let g:vimwiki_list = [{'path': '~/my-notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:vimwiki_markdown_link_ext = 1
+
+let g:taskwiki_markup_syntax = 'markdown'
+"----------------------------------------------}}}
+
+" golang
+"----------------------------------------------{{{
+if v:version >= 800
+  Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+endif
+" vim-go specific settings
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>gr <Plug>(go-run)
+autocmd FileType go nmap <leader>gt <Plug>(go-test)
+autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
+let g:go_list_type = "quickfix"
+"----------------------------------------------}}}
+
+"----------------------------------------------}}}
+
+" Tmux plugins
+"----------------------------------------------{{{
+" Focus events work properly for vim in tmux panes
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
+" Share vim clipboard across panes
+Plug 'roxma/vim-tmux-clipboard'
+
+"----------------------------------------------}}}
+
+" Git plugins
+"----------------------------------------------{{{
+
+" Git gutter for showing updated git diffs
+"----------------------------------------------{{{
+Plug 'airblade/vim-gitgutter'
+" Update Git Gutter signs column colors"
+set updatetime=250
+let g:gitgutter_max_signs = 500
+" No mapping
+let g:gitgutter_map_keys = 0
+" Colors
+let g:gitgutter_override_sign_column_highlight = 0
+autocmd SourcePre,VimEnter * highlight clear signcolumn
+highlight GitGutterAdd ctermfg=2
+highlight GitGutterChange ctermfg=3
+highlight GitGutterDelete ctermfg=1
+highlight GitGutterChangeDelete ctermfg=4
+nnoremap <Leader><leader>g :GitGutterToggle<CR>
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+"----------------------------------------------}}}
 
 
-" Plugings specific settings--------------------------------{{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim interface for git commands using :Git, :Gsplit :Gedit
+Plug 'tpope/vim-fugitive'
 
-" Add cppman support and add tmux split for cppman
-command! -nargs=+ Cppman silent! call system("tmux split-window -h cppman " . expand(<q-args>))
+" commit browser
+Plug 'junegunn/gv.vim'
 
-" Use <leader>K for calling cppman as K is used by coc for popup doc
-autocmd FileType cpp nnoremap <silent><buffer> <leader>K <Esc>:Cppman <cword><CR>
+Plug 'rhysd/git-messenger.vim'
 
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_width = 70
+"----------------------------------------------}}}
 
-nmap <F7> :NERDTreeToggle<CR>
+" Switching files
+"----------------------------------------------{{{
 
+" FZF
+"----------------------------------------------{{{
+" Fuzzy file finder for vim
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " FZF bindings
 nmap <leader><leader>p :FZF<CR>
 nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
@@ -229,45 +237,26 @@ endfunction
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
 
-" Update Git Gutter signs column colors"
-set updatetime=250
-let g:gitgutter_max_signs = 500
-" No mapping
-let g:gitgutter_map_keys = 0
-" Colors
-let g:gitgutter_override_sign_column_highlight = 0
-autocmd SourcePre,VimEnter * highlight clear signcolumn
-highlight GitGutterAdd ctermfg=2
-highlight GitGutterChange ctermfg=3
-highlight GitGutterDelete ctermfg=1
-highlight GitGutterChangeDelete ctermfg=4
-nnoremap <Leader><leader>g :GitGutterToggle<CR>
-nmap ghu <Plug>(GitGutterUndoHunk)
-nmap ghp <Plug>(GitGutterPreviewHunk)
-nmap ghs <Plug>(GitGutterStageHunk)
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-" incsearch
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+" Most Recently Used files search using fzf
+Plug 'pbogut/fzf-mru.vim'
 
-" incsearch-easymotion
-map z/ <Plug>(incsearch-easymotion-/)
-map z? <Plug>(incsearch-easymotion-?)
-map zg/ <Plug>(incsearch-easymotion-stay)
+"----------------------------------------------}}}
 
-nnoremap <leader><leader>u :MundoToggle<CR>
-
-" Easymotion higlight colors
-hi link EasyMotionTarget2First Statement
-hi link EasyMotionTarget2Second Statement
-
-"""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
-"""""""""""""""""""""""""""""""""""""""""""""""""
+"----------------------------------------------{{{
+"
+" Vim start screen
+Plug 'mhinz/vim-startify'
 " change to vcs root when file is directly opened
 let g:startify_change_to_vcs_root = 1
 
@@ -284,15 +273,28 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
             \ { 'z': '~/.zshrc' },
             \ ]
+"----------------------------------------------}}}
+" A tree explorer plugin for vim
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+nmap <F7> :NERDTreeToggle<CR>
 
-" vimwiki use markdown by default
-let g:vimwiki_list = [{'path': '~/my-notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+"----------------------------------------------}}}
 
-let g:vimwiki_markdown_link_ext = 1
+" Misc plugins
+"----------------------------------------------{{{
+" Repeat with '.' in plugins
+Plug 'tpope/vim-repeat'
 
-let g:taskwiki_markup_syntax = 'markdown'
+" Better incremental search
+Plug 'haya14busa/incsearch.vim'
+" incsearch
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
+" Airline statusline when powerline fonts are available
+"----------------------------------------------{{{
+Plug 'vim-airline/vim-airline'
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable powerline fonts if available
@@ -301,50 +303,26 @@ let g:airline_powerline_fonts = 1
 " Enable tabline if needed
 let g:airline#extensions#tabline#enabled = 1
 
-" --INSERT-- is unncessary because of lightline
+" --INSERT-- is unncessary because of airline
 set noshowmode
-
-" lightline theme
-"let g:lightline = {
-      "\ 'colorscheme': 'wombat',
-      "\ 'active': {
-      "\   'left': [ [ 'mode', 'paste' ],
-      "\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      "\ },
-      "\ 'component_function': {
-      "\   'cocstatus': 'coc#status',
-      "\   'currentfunction': 'CocCurrentFunction'
-      "\ },
-      "\ }
-
-" vim-go specific settings
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>gr <Plug>(go-run)
-autocmd FileType go nmap <leader>gt <Plug>(go-test)
-autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
-let g:go_list_type = "quickfix"
+"----------------------------------------------}}}
 
 
-" vim-commentary
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+" Visual search
+Plug 'nelstrom/vim-visual-star-search'
 
-" Try to auto detect and use the indentation of a file when opened.
-autocmd BufRead * DetectIndent
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+  let g:undotree_WindowLayout = 2
+  nnoremap <leader>U :UndotreeToggle<CR>
 
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
+Plug 'junegunn/vim-peekaboo'
 
+"----------------------------------------------}}}
 
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+set runtimepath+=~/.vim/.misc_vim
 " }}}
 
 " My personal defaults for vim --------------------------{{{
@@ -394,8 +372,10 @@ set cursorline
 set hlsearch
 
 " Set default foldmethod as indent and start with no folds
-set foldlevelstart=99
-set foldmethod=indent
+if &filetype !=# 'vim'
+  set foldlevelstart=99
+  set foldmethod=indent
+endif
 
 " Semi-persistent undo
 if has('persistent_undo')
