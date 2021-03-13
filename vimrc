@@ -44,13 +44,13 @@ Plug 'sickill/vim-monokai'
 " Rainbow-csv
 Plug 'mechatroner/rainbow_csv'
 
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 
 " vim-markdown
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'plasticboy/vim-markdown'
 
 " Enhanced syntax highlight for cpp
@@ -84,7 +84,7 @@ Plug 'chazy/cscope_maps'
 
 " access cppman from vim with keywordprg 'K' command
 "----------------------------------------------{{{
-Plug 'gauteh/vim-cppman'
+Plug 'gauteh/vim-cppman', { 'on': 'Cppman' }
 " Add cppman support and add tmux split for cppman
 command! -nargs=+ Cppman silent! call system("tmux split-window -h cppman " . expand(<q-args>))
 " Use <leader>K for calling cppman as K is used by coc for popup doc
@@ -190,9 +190,9 @@ nmap [h <Plug>(GitGutterPrevHunk)
 Plug 'tpope/vim-fugitive'
 
 " commit browser
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
-Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 
 "----------------------------------------------}}}
 
@@ -243,15 +243,16 @@ endfunction
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+function! RipgrepFzf(query, fullscreen, fixed)
+  let command_fmt = 'rg --column --line-number ' . a:fixed . ' --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0, '')
+command! -nargs=* -bang RGFixed call RipgrepFzf(<q-args>, <bang>0, '--fixed-strings')
 
 " Most Recently Used files search using fzf
 Plug 'pbogut/fzf-mru.vim'
@@ -322,6 +323,8 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
   nnoremap <leader>U :UndotreeToggle<CR>
 
 Plug 'junegunn/vim-peekaboo'
+
+Plug 'vim-scripts/VisIncr'
 
 "----------------------------------------------}}}
 

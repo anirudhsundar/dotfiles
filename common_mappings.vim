@@ -61,8 +61,8 @@ nnoremap <C-s>     :update<cr>
 
 " Quit
 inoremap <C-Q>     <esc>:q<cr>
-nnoremap <C-Q>     :q<cr>
-nnoremap <Leader>Q :qa!<cr>
+nnoremap <C-Q>     :quit<cr>
+nnoremap <Leader>Q :qall!<cr>
 
 " :Root -> Change directory to the root of the Git repository
 command! Root call myvim#root#changeRoot(myvim#root#root())
