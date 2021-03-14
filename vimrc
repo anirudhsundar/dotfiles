@@ -32,6 +32,7 @@ Plug 'tpope/vim-sensible'
 " A couple of dark themes
 Plug 'joshdick/onedark.vim'
 Plug 'gosukiwi/vim-atom-dark'
+Plug 'nanotech/jellybeans.vim'
 
 " Simple 256 bit color scheme
 Plug 'junegunn/seoul256.vim'
@@ -304,6 +305,8 @@ map g/ <Plug>(incsearch-stay)
 Plug 'vim-airline/vim-airline'
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:airline_extensions = ['tabline', 'searchcounts', 'hunks', 'branch', 'coc']
 " Enable tabline if needed
 let g:airline#extensions#tabline#enabled = 1
 
