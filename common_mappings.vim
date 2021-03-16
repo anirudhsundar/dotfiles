@@ -2,6 +2,11 @@
 " Common mappings
 "------------------------------------------{{{
 
+" Lexplore settings
+" Open left explore on F7 key with 20% width
+let g:netrw_winsize = 20
+nmap <F7> :Lexplore<CR>
+
 " super quick search and replace
 nnoremap <leader><leader><Space> :'{,'}s#\<<C-r>=expand("<cword>")<CR>\>#
 nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
@@ -51,8 +56,8 @@ let &t_EI = "\e[0 q"
 au VimLeave * silent !echo -ne "\e[5 q"
 
 " quickfix list mappings
-nnoremap <C-n> :cnext<CR>
-nnoremap <C-p> :cprevious<CR>
+nnoremap <C-n> :cnext<CR>zv
+nnoremap <C-p> :cprevious<CR>zv
 nnoremap <leader>qw :cclose<CR>
 
 " Save
@@ -68,6 +73,8 @@ nnoremap <Leader><C-Q> :qall!<cr>
 command! Root call myvim#root#changeRoot(myvim#root#root())
 " :RootCur -> change to the root of the git repo of current file
 command! RootCur call myvim#root#rootcur()
+" :Cdcur -> change directory to the current file head
+command! Cdcur execute 'lcd' expand("%:h")
 
 " " Jump to start and end of line using the home row keys
 map H ^

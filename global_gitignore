@@ -5,3 +5,4 @@ compile_commands.json
 *.swp
 *.swo
 setmakeprg.vim
+.cache/
