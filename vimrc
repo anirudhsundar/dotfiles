@@ -283,8 +283,9 @@ let g:startify_bookmarks = [
             \ ]
 "----------------------------------------------}}}
 " A tree explorer plugin for vim
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-nmap <F7> :NERDTreeToggle<CR>
+" Try out Lexplore
+" Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+" nmap <F7> :NERDTreeToggle<CR>
 
 "----------------------------------------------}}}
 
@@ -308,9 +309,10 @@ Plug 'vim-airline/vim-airline'
 " Enable powerline fonts if available
 let g:airline_powerline_fonts = 1
 
-let g:airline_extensions = ['tabline', 'searchcounts', 'hunks', 'branch', 'coc']
+let g:airline_extensions = ['tabline', 'searchcount', 'hunks', 'branch', 'coc']
 " Enable tabline if needed
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " --INSERT-- is unncessary because of airline
 set noshowmode
@@ -382,6 +384,23 @@ set cursorline
 " Always enable hlsearch
 set hlsearch
 
+" Don't redraw while executing macros
+set lazyredraw
+
+" Disable swap files
+set noswapfile
+
+" No backup (use Git instead)
+set nobackup
+
+" Prevents automatic write backup
+set nowritebackup
+
+" Autoread a file when it is changed from the outside
+set autoread
+
+set textwidth=80
+
 " Set default foldmethod as indent and start with no folds
 if &filetype !=# 'vim'
   set foldlevelstart=99
@@ -442,6 +461,11 @@ autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 autocmd FileType cpp call myvim#makeprg#setMakePrg()
+
+"return a list containing the lengths of the long lines in this buffer
+command! -nargs=? LongLinesToggle call myvim#longlines#LongLinesToggle(<q-args>)
+nnoremap <leader>ll :LongLinesToggle<CR>
+
 " }}}
 
 
@@ -686,11 +710,11 @@ endfunction
 " }}}
 
 
-let tmux_version = split(system("tmux -V"))
+let s:tmux_version = split(system("tmux -V"))
 
 if $TMUX != ''
-  if len(tmux_version) == 2
-    if str2float(tmux_version[1]) > 3.0
+  if len(s:tmux_version) == 2
+    if str2float(s:tmux_version[1]) > 3.0
       colorscheme onedark
     else
       colorscheme desert
