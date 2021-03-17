@@ -81,7 +81,7 @@ Plug 'tpope/vim-commentary'
 
 
 " cscope_maps
-Plug 'chazy/cscope_maps'
+" Plug 'chazy/cscope_maps'
 
 " access cppman from vim with keywordprg 'K' command
 "----------------------------------------------{{{
@@ -434,8 +434,8 @@ function SetVimPresentationMode()
 
   if exists(":Goyo")
     if !exists('#goyo')
-      nnoremap <buffer> <silent> G :Goyo 60%x75%+20%<CR>
-      nnoremap <buffer> <silent> g :Goyo!<CR>
+      nnoremap <buffer> <silent> <leader>G :Goyo 60%x75%+20%<CR>
+      nnoremap <buffer> <silent> <leader>g :Goyo!<CR>
       Goyo 60%x75%+20%
     endif
   endif
