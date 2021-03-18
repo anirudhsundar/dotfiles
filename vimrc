@@ -466,6 +466,23 @@ autocmd FileType cpp call myvim#makeprg#setMakePrg()
 command! -nargs=? LongLinesToggle call myvim#longlines#LongLinesToggle(<q-args>)
 nnoremap <leader>ll :LongLinesToggle<CR>
 
+let s:tmux_version = split(system("tmux -V"))
+
+if $TMUX != ''
+  if len(s:tmux_version) == 2
+    if str2float(s:tmux_version[1]) > 3.0
+      colorscheme onedark
+    else
+      colorscheme desert
+    endif
+  endif
+else
+  colorscheme onedark
+endif
+
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+
 " }}}
 
 
@@ -639,23 +656,6 @@ function! CocCurrentFunction()
 endfunction
 " }}}
 
-
-let s:tmux_version = split(system("tmux -V"))
-
-if $TMUX != ''
-  if len(s:tmux_version) == 2
-    if str2float(s:tmux_version[1]) > 3.0
-      colorscheme onedark
-    else
-      colorscheme desert
-    endif
-  endif
-else
-  colorscheme onedark
-endif
-
-let g:cpp_experimental_template_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
 
 
 
