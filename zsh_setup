@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# FZF
+# Oh-my-zsh
 if [[ ! -z `which zsh` && ! -d ~/.oh-my-zsh ]]; then
 	curl -Lo ~/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 	sh ~/install.sh --unattended --keep-zshrc
