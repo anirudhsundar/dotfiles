@@ -72,6 +72,9 @@ plugins=(git vi-mode taskwarrior)
 
 source $ZSH/oh-my-zsh.sh
 
+# Specific local config to be loaded after oh-my-zsh
+source $HOME/.local_zsh_config
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
