@@ -399,8 +399,6 @@ set nowritebackup
 " Autoread a file when it is changed from the outside
 set autoread
 
-set textwidth=80
-
 " Set default foldmethod as indent and start with no folds
 if &filetype !=# 'vim'
   set foldlevelstart=99
