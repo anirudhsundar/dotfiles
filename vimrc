@@ -649,7 +649,7 @@ endfunction
 "autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>crn <Plug>(coc-rename)
 
 " coc-clangd specific
 nnoremap <leader>cfh :CocCommand clangd.switchSourceHeader<cr>
@@ -657,6 +657,13 @@ nnoremap <leader>cfh :CocCommand clangd.switchSourceHeader<cr>
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
+
+" Formatting selected code.
+xmap <leader>cgq  <Plug>(coc-format-selected)
+nmap <leader>cgq  <Plug>(coc-format-selected)
+
+" Apply AutoFix to problem on the current line.
+nmap <leader>cqf  <Plug>(coc-fix-current)
 " }}}
 
 
