@@ -63,7 +63,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'kevinoid/vim-jsonc'
 
 " Add eye-candy icons
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 "----------------------------------------------}}}
 
@@ -331,6 +331,8 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'vim-scripts/VisIncr'
 
 Plug 'vim-utils/vim-man'
+
+Plug 'gyim/vim-boxdraw'
 
 "----------------------------------------------}}}
 

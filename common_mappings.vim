@@ -95,6 +95,18 @@ augroup HighlightTrailSpace
   autocmd SourcePre,VimEnter * match TrailSpace /\s\+$/
 augroup END
 
+function s:ToggleTrailSpaceHighlight(setHighlight)
+    if a:setHighlight
+        echom 'calling setHighlight'
+        highlight TrailSpace ctermbg=red ctermfg=yellow
+        call matchadd("TrailSpace", '\s\+$')
+    else
+        highlight clear TrailSpace
+    endif
+endfunction
+
+command! -bang TrailSpaceHighlightDisable call s:ToggleTrailSpaceHighlight(<bang>0)
+
 " grepprg is always set to use vimgrep as rg is always present at $HOME/.bin
 if trim(split(system('which rg'),'/')[-1]) ==# 'rg'
   set grepprg=rg\ --vimgrep
