@@ -309,7 +309,10 @@ Plug 'vim-airline/vim-airline'
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:airline_extensions = ['tabline', 'searchcount', 'hunks', 'branch', 'coc']
+let g:airline_extensions = ['tabline', 'hunks', 'branch', 'coc']
+if !has('nvim')
+  let g:airline_extensions = g:airline_extensions + ['searchcount']
+endif
 " Enable tabline if needed
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
