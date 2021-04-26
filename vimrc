@@ -115,14 +115,16 @@ Plug 'tools-life/taskwiki'
 
 " vimwiki
 "----------------------------------------------{{{
-Plug 'vimwiki/vimwiki'
-" vimwiki use markdown by default
-let g:vimwiki_list = [{'path': '~/my-notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+if has('nvim')
+  Plug 'vimwiki/vimwiki'
+  " vimwiki use markdown by default
+  let g:vimwiki_list = [{'path': '~/my-notes/',
+        \ 'syntax': 'markdown', 'ext': '.md'}]
 
-let g:vimwiki_markdown_link_ext = 1
+  let g:vimwiki_markdown_link_ext = 1
 
-let g:taskwiki_markup_syntax = 'markdown'
+  let g:taskwiki_markup_syntax = 'markdown'
+endif
 "----------------------------------------------}}}
 
 " golang
