@@ -311,7 +311,10 @@ Plug 'vim-airline/vim-airline'
 " Enable powerline fonts if available
 let g:airline_powerline_fonts = 1
 
-let g:airline_extensions = ['tabline', 'searchcount', 'hunks', 'branch', 'coc']
+let g:airline_extensions = ['tabline', 'hunks', 'branch', 'coc']
+if !has('nvim')
+  let g:airline_extensions = g:airline_extensions + ['searchcount']
+endif
 " Enable tabline if needed
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
