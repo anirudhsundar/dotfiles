@@ -410,9 +410,14 @@ if &filetype !=# 'vim'
 endif
 
 " Semi-persistent undo
-if has('persistent_undo')
-  set undodir=/tmp,.
-  set undofile
+if has('persistent_undo') 
+  if !has('nvim-0.5')
+    set undodir=/tmp
+    set undofile
+  else
+    set undodir=/tmp/nvim
+    set undofile
+  endif
 endif
 
 "-------------------------------------------------
