@@ -54,13 +54,19 @@ let g:limelight_conceal_ctermfg = 240
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'plasticboy/vim-markdown'
 
-" Enhanced syntax highlight for cpp
-Plug 'octol/vim-cpp-enhanced-highlight'
 
 
 
 " Syntax highlighting for jsonc
 Plug 'kevinoid/vim-jsonc'
+
+if has('nvim')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  Plug 'nvim-treesitter/playground'
+else
+  " Enhanced syntax highlight for cpp for vim
+  Plug 'octol/vim-cpp-enhanced-highlight'
+endif
 
 " Add eye-candy icons
 " Plug 'ryanoasis/vim-devicons'
@@ -347,6 +353,44 @@ call plug#end()
 set runtimepath+=~/.vim/.misc_vim
 " }}}
 
+" Treesitter_config --------------------{{{
+
+if has('nvim')
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<leader>tn",
+      node_incremental = "<leader>tl",
+      scope_incremental = "<leader>tsl",
+      node_decremental = "<leader>th",
+    },
+  },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = false
+  }
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+if &filetype !=# 'vim'
+  set foldlevelstart=99
+endif
+endif
+" --------------------------------------------------}}}
+
 " My personal defaults for vim --------------------------{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto toggle between relative and absolute number on focus
@@ -409,13 +453,13 @@ set nowritebackup
 set autoread
 
 " Set default foldmethod as indent and start with no folds
-if &filetype !=# 'vim'
+if &filetype !=# 'vim' && !has('nvim')
   set foldlevelstart=99
   set foldmethod=indent
 endif
 
 " Semi-persistent undo
-if has('persistent_undo') 
+if has('persistent_undo')
   if !has('nvim-0.5')
     set undodir=/tmp
     set undofile
