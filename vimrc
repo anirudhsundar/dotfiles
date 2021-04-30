@@ -69,7 +69,7 @@ else
 endif
 
 " Add eye-candy icons
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 "----------------------------------------------}}}
 
