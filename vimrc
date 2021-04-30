@@ -214,14 +214,15 @@ Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " FZF bindings
-nmap <leader><leader>p :FZF<CR>
-nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>m :FZFMru<CR>
-nnoremap <silent> <Leader>fm :History<CR>
-nnoremap <silent> <Leader><Leader>l :Lines<CR>
+nmap <leader>fp :FZF<CR>
+nnoremap <silent> <Leader>fg :GFiles<CR>
+nnoremap <silent> <Leader>f. :Files <C-r>=expand("%:h")<CR>/<CR>
+nnoremap <silent> <Leader>fb :Buffers<CR>
+nnoremap <silent> <Leader>fm :FZFMru<CR>
+nnoremap <silent> <Leader>fh :History<CR>
+nnoremap <silent> <Leader>fl :Lines<CR>
 " Unable to use <leader><leader>b as its mapped to easymotion
-nnoremap <silent> <Leader><Leader>c :BLines<CR>
+nnoremap <silent> <Leader>fc :BLines<CR>
 command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
@@ -231,8 +232,8 @@ inoremap <expr> <c-x><c-b> fzf#vim#complete#buffer_line()
 
 
 " operator mapping for ripgrep
-nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
-vnoremap <leader>rg :<c-u>call <SID>RipGrepOperator(visualmode())<cr>
+nnoremap <leader>frg :set operatorfunc=<SID>RipGrepOperator<cr>g@
+vnoremap <leader>frg :<c-u>call <SID>RipGrepOperator(visualmode())<cr>
 
 function! s:RipGrepOperator(type)
     let saved_unnamed_register = @@
