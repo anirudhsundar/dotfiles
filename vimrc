@@ -72,6 +72,7 @@ Plug 'kevinoid/vim-jsonc'
 if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'nvim-treesitter/playground'
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 else
   " Enhanced syntax highlight for cpp for vim
   Plug 'octol/vim-cpp-enhanced-highlight'
@@ -116,8 +117,6 @@ Plug 'antoinemadec/coc-fzf'
 
 " Detect indent
 Plug 'timakro/vim-yadi'
-" Try to auto detect and use the indentation of a file when opened.
-autocmd BufRead * DetectIndent
 
 " Dispatch makeprg asynchronously
 Plug 'tpope/vim-dispatch'
@@ -372,6 +371,8 @@ call plug#end()
 set runtimepath+=~/.vim/.misc_vim
 " }}}
 
+
+" Plugin specific config to be set after plug#end----------------------{{{
 " Treesitter_config --------------------{{{
 
 if has('nvim')
@@ -407,7 +408,79 @@ set foldexpr=nvim_treesitter#foldexpr()
 if &filetype !=# 'vim'
   set foldlevelstart=99
 endif
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["iF"] = "@conditional.inner",
+        ["aF"] = "@conditional.outer",
+
+        -- Or you can define your own textobjects like this
+        -- ["iF"] = {
+        --   python = "(function_definition) @function",
+        --   cpp = "(function_definition) @function",
+        --   c = "(function_definition) @function",
+        --   java = "(method_declaration) @function",
+        -- },
+      },
+    },
+  },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>ta"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>tA"] = "@parameter.inner",
+      },
+    },
+  },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+  },
+}
+EOF
 endif
+" --------------------------------------------------}}}
+
+" Try to auto detect and use the indentation of a file when opened.
+autocmd BufRead * DetectIndent
+
 " --------------------------------------------------}}}
 
 " My personal defaults for vim --------------------------{{{
