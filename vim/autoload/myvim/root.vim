@@ -1,7 +1,7 @@
 function! myvim#root#root()
   let root = systemlist('git rev-parse --show-toplevel')[0]
   if v:shell_error
-    echo 'Not in git repo'
+    echom 'Not in git repo'
   else
     return root
   endif
