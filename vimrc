@@ -26,6 +26,15 @@ call plug#begin('~/.vim/plugged')
 " Defaults everyone can agree on
 Plug 'tpope/vim-sensible'
 
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+" call which_key#register('<Space>', "g:which_key_map")
+let g:which_key_map =  {}
+
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+
 " Syntax highlighting related plugins
 "----------------------------------------------{{{
 
@@ -214,15 +223,24 @@ Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " FZF bindings
+let g:which_key_map.f = { 'name' : '+fzf' }
 nmap <leader>fp :FZF<CR>
+let g:which_key_map['f']['p'] = 'Files'
 nnoremap <silent> <Leader>fg :GFiles<CR>
+let g:which_key_map['f']['g'] = 'Git files'
 nnoremap <silent> <Leader>f. :Files <C-r>=expand("%:h")<CR>/<CR>
+let g:which_key_map['f']['.'] = 'Files in current directory'
 nnoremap <silent> <Leader>fb :Buffers<CR>
+let g:which_key_map['f']['b'] = 'List of open Buffers'
 nnoremap <silent> <Leader>fm :FZFMru<CR>
+let g:which_key_map['f']['m'] = 'Most recently opened files'
 nnoremap <silent> <Leader>fh :History<CR>
+let g:which_key_map['f']['h'] = 'Opened files hitory'
 nnoremap <silent> <Leader>fl :Lines<CR>
+let g:which_key_map['f']['l'] = 'Lines in all open buffer'
 " Unable to use <leader><leader>b as its mapped to easymotion
 nnoremap <silent> <Leader>fc :BLines<CR>
+let g:which_key_map['f']['c'] = 'Lines in current buffer'
 command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
