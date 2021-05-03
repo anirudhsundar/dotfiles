@@ -249,8 +249,8 @@ inoremap <expr> <c-x><c-b> fzf#vim#complete#buffer_line()
 
 
 " operator mapping for ripgrep
-nnoremap <leader>frg :set operatorfunc=<SID>RipGrepOperator<cr>g@
-vnoremap <leader>frg :<c-u>call <SID>RipGrepOperator(visualmode())<cr>
+nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
+vnoremap <leader>rg :<c-u>call <SID>RipGrepOperator(visualmode())<cr>
 
 function! s:RipGrepOperator(type)
     let saved_unnamed_register = @@
