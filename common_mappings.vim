@@ -45,6 +45,11 @@ nnoremap <leader>j :blast<CR>
 nnoremap <leader>k :bfirst<CR>
 nnoremap <leader><C-w> :bdelete<CR>
 
+
+" Close all but the current buffer
+nnoremap <leader>bd :execute "%bdelete \| edit # \| bdelete #"<CR>
+
+
 " Move to next and previous folds
 nnoremap zl zCzjzA
 nnoremap zh zCzkzA
