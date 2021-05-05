@@ -45,9 +45,11 @@ nnoremap <leader>j :blast<CR>
 nnoremap <leader>k :bfirst<CR>
 nnoremap <leader><C-w> :bdelete<CR>
 
+command! BufOnly call myvim#buffers#BufOnly()
 
 " Close all but the current buffer
-nnoremap <leader>bd :execute "%bdelete \| edit # \| bdelete #"<CR>
+" nnoremap <leader>bd :execute "%bdelete \| edit # \| bdelete #"<CR>
+nnoremap <leader>bd :BufOnly<CR>
 
 
 " Move to next and previous folds
