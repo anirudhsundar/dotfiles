@@ -57,10 +57,17 @@ nnoremap zl zCzjzA
 nnoremap zh zCzkzA
 
 " Change cursor for insert and normal mode
-let &t_SI = "\e[5 q"
-let &t_EI = "\e[0 q"
+if has('nvim')
+  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+        \,i-ci-ve:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+        \,sm:block-blinkwait175-blinkoff150-blinkon175
+  :au VimLeave * set guicursor=a:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+else
+  let &t_SI = "\e[5 q"
+  let &t_EI = "\e[0 q"
+  au VimLeave * silent !echo -ne "\e[5 q"
+endif
 
-au VimLeave * silent !echo -ne "\e[5 q"
 
 " quickfix list mappings
 nnoremap <C-n> :cnext<CR>zv
