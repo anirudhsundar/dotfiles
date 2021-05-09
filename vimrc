@@ -211,6 +211,8 @@ Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 
+Plug 'rbong/vim-flog'
+
 "----------------------------------------------}}}
 
 " Switching files
