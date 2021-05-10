@@ -111,7 +111,6 @@ augroup END
 
 function s:ToggleTrailSpaceHighlight(setHighlight)
     if a:setHighlight
-        echom 'calling setHighlight'
         highlight TrailSpace ctermbg=red ctermfg=yellow
         call matchadd("TrailSpace", '\s\+$')
     else
