@@ -33,7 +33,7 @@
     ~/.config/nvim: config/nvim
     ~/.common_mappings.vim:
     ~/.gdbinit: 
-    ~/libcxx-pretty-printers: gdb/libcxx-pretty-printers
+    ~/.gdb: gdb
 
 - shell:
   - 
