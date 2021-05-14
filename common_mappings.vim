@@ -29,20 +29,20 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 " Switching between tab buffers
-nnoremap <leader>L :tabnext<CR>
-nnoremap <leader>H :tabprevious<CR>
-nnoremap <leader>J :tablast<CR>
-nnoremap <leader>T :tabnew<CR>
+nnoremap ]t :tabnext<CR>
+nnoremap [t :tabprevious<CR>
+nnoremap ]T :tablast<CR>
+nnoremap [T :tabfirst<CR>
 nnoremap <leader><leader>t :tabnew
 
 nnoremap <leader>ev :execute 'edit '.fnameescape(resolve(fnamemodify('~/.vimrc', ':p')))<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Bindings for buffer switching
-nnoremap <leader>l :bnext<CR>
-nnoremap <leader>h :bprevious<CR>
-nnoremap <leader>j :blast<CR>
-nnoremap <leader>k :bfirst<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprevious<CR>
+nnoremap ]B :blast<CR>
+nnoremap [B :bfirst<CR>
 nnoremap <leader><C-w> :bdelete<CR>
 
 command! BufOnly call myvim#buffers#BufOnly()
@@ -70,8 +70,8 @@ endif
 
 
 " quickfix list mappings
-nnoremap <C-n> :cnext<CR>zv
-nnoremap <C-p> :cprevious<CR>zv
+nnoremap ]q :cnext<CR>zv
+nnoremap [q :cprevious<CR>zv
 nnoremap <leader>qw :cclose<CR>
 
 " Save
