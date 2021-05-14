@@ -642,24 +642,23 @@ let g:cpp_experimental_simple_template_highlight = 1
 " and modified a little
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" (Shift)Tab (de)indents code
-" vnoremap <Tab> >
-" vnoremap <S-Tab> <
+" <C-j/k> to move code lines/blocks up & down
+nnoremap <silent> <C-k>    :<C-U>exec "exec 'norm m`' \| move -" . (1+v:count1)<CR>``
+nnoremap <silent> <C-j>  :<C-U>exec "exec 'norm m`' \| move +" . (0+v:count1)<CR>``
 
-" Capital JK move code lines/blocks up & down
-" TODO improve functionality
-nnoremap <silent> <C-k> :move-2<CR>==
-nnoremap <silent> <C-j> :move+<CR>==
-xnoremap <silent> <C-k> :move-2<CR>gv=gv
-xnoremap <silent> <C-j> :move'>+<CR>gv=gv
+inoremap <silent> <C-k>    <C-O>m`<C-O>:move -2<CR><C-O>``
+inoremap <silent> <C-j>  <C-O>m`<C-O>:move +1<CR><C-O>``
+
+vnoremap <silent> <C-k>    :<C-U>exec "'<,'>move '<-" . (1+v:count1)<CR>gv
+vnoremap <silent> <C-j>  :<C-U>exec "'<,'>move '>+" . (0+v:count1)<CR>gv
 
 " " pair expansion on the cheap
 " inoremap (<CR> (<CR>)<Esc>O
 " inoremap (;    (<CR>);<Esc>O
 " inoremap (,    (<CR>),<Esc>O
-" inoremap {<CR> {<CR>}<Esc>O
-" inoremap {;    {<CR>};<Esc>O
-" inoremap {,    {<CR>},<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {;    {<CR>};<Esc>O
+inoremap {,    {<CR>},<Esc>O
 " inoremap [<CR> [<CR>]<Esc>O
 " inoremap [;    [<CR>];<Esc>O
 " inoremap [,    [<CR>],<Esc>O
@@ -703,10 +702,12 @@ command! Chomp %s/\s\+$// | normal! ``
 function! s:helptab()
   if &buftype == 'help'
     wincmd T
-    nnoremap <buffer> q :q<cr>
   endif
 endfunction
-autocmd vimrc BufEnter *.txt call s:helptab()
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt call s:helptab()
+augroup END
 
 " }}}
 
@@ -778,8 +779,8 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
