@@ -315,6 +315,10 @@ let g:startify_bookmarks = [
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 " nmap <F7> :NERDTreeToggle<CR>
 
+Plug 'voldikss/vim-floaterm'
+Plug 'ptzz/lf.vim'
+let g:lf_map_keys = 0
+
 "----------------------------------------------}}}
 
 " Misc plugins
@@ -362,6 +366,8 @@ Plug 'vim-scripts/VisIncr'
 Plug 'vim-utils/vim-man'
 
 Plug 'gyim/vim-boxdraw'
+
+Plug 'chrisbra/unicode.vim'
 
 "----------------------------------------------}}}
 
@@ -646,8 +652,8 @@ let g:cpp_experimental_simple_template_highlight = 1
 nnoremap <silent> <C-k>    :<C-U>exec "exec 'norm m`' \| move -" . (1+v:count1)<CR>``
 nnoremap <silent> <C-j>  :<C-U>exec "exec 'norm m`' \| move +" . (0+v:count1)<CR>``
 
-inoremap <silent> <C-k>    <C-O>m`<C-O>:move -2<CR><C-O>``
-inoremap <silent> <C-j>  <C-O>m`<C-O>:move +1<CR><C-O>``
+" inoremap <silent> <C-k>    <C-O>m`<C-O>:move -2<CR><C-O>``
+" inoremap <silent> <C-j>  <C-O>m`<C-O>:move +1<CR><C-O>``
 
 vnoremap <silent> <C-k>    :<C-U>exec "'<,'>move '<-" . (1+v:count1)<CR>gv
 vnoremap <silent> <C-j>  :<C-U>exec "'<,'>move '>+" . (0+v:count1)<CR>gv
