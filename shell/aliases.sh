@@ -4,6 +4,11 @@ alias grep='grep --color=auto'
 alias ta='tmux a'
 alias minivim='vim -u ~/.minivimrc'
 alias cdr='cd $(git rev-parse --show-toplevel)'
+function cdf() {
+  filepath=$(readlink -f $1)
+  dir=$(dirname $filepath)
+  cd $dir
+}
 
 function cd_up() {
   cd $(printf "%0.s../" $(seq 1 $1 ));
