@@ -369,6 +369,8 @@ Plug 'gyim/vim-boxdraw'
 
 Plug 'chrisbra/unicode.vim'
 
+Plug 'tpope/vim-eunuch'
+
 "----------------------------------------------}}}
 
 " List ends here. Plugins become visible to Vim after this call.

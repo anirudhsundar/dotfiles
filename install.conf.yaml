@@ -34,6 +34,7 @@
     ~/.common_mappings.vim:
     ~/.gdbinit: 
     ~/.gdb: gdb
+    ~/.vim/coc-settings.json: config/nvim/coc-settings.json
 
 - shell:
   - 
