@@ -704,7 +704,14 @@ vnoremap <Up> <Nop>
 " ----------------------------------------------------------------------------
 " :Chomp
 " ----------------------------------------------------------------------------
-command! Chomp %s/\s\+$// | normal! ``
+
+function! Chomp()
+  let saved_unnamed_register = @@
+  execute '%s/\s\+$//'." \| normal! ``"
+  let @@ = saved_unnamed_register
+endfunction
+
+command! Chomp call Chomp()
 
 " ----------------------------------------------------------------------------
 " Help in new tabs
