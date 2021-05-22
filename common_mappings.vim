@@ -28,6 +28,9 @@ nnoremap <leader><C-m> :set relativenumber!<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
+nnoremap p ]p
+nnoremap P [p
+
 " Switching between tab buffers
 nnoremap ]t :tabnext<CR>
 nnoremap [t :tabprevious<CR>
@@ -120,10 +123,12 @@ endfunction
 
 command! -bang TrailSpaceHighlightDisable call s:ToggleTrailSpaceHighlight(<bang>0)
 
-" grepprg is always set to use vimgrep as rg is always present at $HOME/.bin
-if trim(split(system('which rg'),'/')[-1]) ==# 'rg'
-  set grepprg=rg\ --vimgrep
-  let s:grepprg_val = 'rg'
+if exists("*trim") " This is needed because trim() does not exist in older vim versions
+  " grepprg is always set to use vimgrep as rg is always present at $HOME/.bin
+  if trim(split(system('which rg'),'/')[-1]) ==# 'rg'
+    set grepprg=rg\ --vimgrep
+    let s:grepprg_val = 'rg'
+  endif
 endif
 
 " GrepOperator defined from https://learnvimscriptthehardway.stevelosh.com
