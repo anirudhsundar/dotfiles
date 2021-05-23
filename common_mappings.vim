@@ -28,8 +28,20 @@ nnoremap <leader><C-m> :set relativenumber!<CR>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
-nnoremap p ]p
-nnoremap P [p
+function SetIndentedPasting(setIndentedPastingMaps)
+  let l:setIndentedPastingMaps = a:setIndentedPastingMaps
+  if l:setIndentedPastingMaps
+    nnoremap p ]p
+    nnoremap P [p
+    let l:setIndentedPastingMaps = 0
+  else
+    nunmap p
+    nunmap P
+    let l:setIndentedPastingMaps = 1
+  endif
+endfunction
+
+command! -bang SetIndentedPasting call SetIndentedPasting(<bang>1)
 
 " Switching between tab buffers
 nnoremap ]t :tabnext<CR>
