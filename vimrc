@@ -164,6 +164,11 @@ autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
 let g:go_list_type = "quickfix"
 "----------------------------------------------}}}
 
+" Python
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python', 'on': 'Pydocstring'}
+let g:pydocstring_enable_mapping = 0
+let g:pydocstring_formatter = 'numpy'
+
 "----------------------------------------------}}}
 
 " Tmux plugins
