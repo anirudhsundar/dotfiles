@@ -162,6 +162,8 @@ autocmd FileType go nmap <leader>gr <Plug>(go-run)
 autocmd FileType go nmap <leader>gt <Plug>(go-test)
 autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
 let g:go_list_type = "quickfix"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 "----------------------------------------------}}}
 
 " Python

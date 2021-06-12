@@ -36,6 +36,9 @@ for plugin ($custom_plugins); do
   fi
 done
 
+# Custom output format for time command
+TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
+
 # Autosuggestions bindkey for ctrl-space
 bindkey '^ ' autosuggest-accept
 eval `dircolors $HOME/dotfiles/misc/dircolors-solarized/dircolors.256dark`
