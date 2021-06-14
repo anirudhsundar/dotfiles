@@ -162,8 +162,11 @@ autocmd FileType go nmap <leader>gr <Plug>(go-run)
 autocmd FileType go nmap <leader>gt <Plug>(go-test)
 autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
 let g:go_list_type = "quickfix"
-let g:go_def_mode='gopls'
+" let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
 "----------------------------------------------}}}
 
 " Python
@@ -738,7 +741,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Global extensions list
-let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-jedi']
+let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-jedi', 'coc-go']
 
 " TextEdit might fail if hidden is not set.
 set hidden
