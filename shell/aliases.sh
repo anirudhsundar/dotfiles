@@ -17,5 +17,6 @@ alias 'cd..'='cd_up'
 
 alias tw='task +work'
 alias th='task +home'
+alias te='task +extra'
 
 source $HOME/.bin/lfcd.sh
