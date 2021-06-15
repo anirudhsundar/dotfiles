@@ -21,6 +21,7 @@ nnoremap q: <nop>
 " Manual toggle mappings for number and relative number
 nnoremap <C-m> :set number!<CR>
 nnoremap <leader><C-m> :set relativenumber!<CR>
+autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Show status line with row and col separated
 "set statusline=%F\ %=\col:%c\ line:%l\ %P
