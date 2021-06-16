@@ -21,6 +21,7 @@ nnoremap q: <nop>
 " Manual toggle mappings for number and relative number
 nnoremap <C-m> :set number!<CR>
 nnoremap <leader><C-m> :set relativenumber!<CR>
+" Restore default <CR> mapping for quickfix lists
 autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Show status line with row and col separated
@@ -45,21 +46,21 @@ endfunction
 command! -bang SetIndentedPasting call SetIndentedPasting(<bang>1)
 
 " Switching between tab buffers
-nnoremap ]t :tabnext<CR>
-nnoremap [t :tabprevious<CR>
-nnoremap ]T :tablast<CR>
-nnoremap [T :tabfirst<CR>
-nnoremap <leader><leader>t :tabnew
+nnoremap <silent> ]t :tabnext<CR>
+nnoremap <silent> [t :tabprevious<CR>
+nnoremap <silent> ]T :tablast<CR>
+nnoremap <silent> [T :tabfirst<CR>
+nnoremap <silent> <leader><leader>t :tabnew
 
-nnoremap <leader>ev :execute 'edit '.fnameescape(resolve(fnamemodify('~/.vimrc', ':p')))<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <silent> <leader>ev :execute 'edit '.fnameescape(resolve(fnamemodify('~/.vimrc', ':p')))<cr>
+nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 "Bindings for buffer switching
-nnoremap ]b :bnext<CR>
-nnoremap [b :bprevious<CR>
-nnoremap ]B :blast<CR>
-nnoremap [B :bfirst<CR>
-nnoremap <leader><C-w> :bdelete<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]B :blast<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> <leader><C-w> :bdelete<CR>
 
 command! BufOnly call myvim#buffers#BufOnly()
 
@@ -95,8 +96,6 @@ inoremap <C-s>     <C-O>:update<cr>
 nnoremap <C-s>     :update<cr>
 
 " Quit
-inoremap <C-Q>     <esc>:q<cr>
-nnoremap <C-Q>     :quit<cr>
 nnoremap <Leader><C-Q> :qall!<cr>
 
 " :Root -> Change directory to the root of the Git repository
