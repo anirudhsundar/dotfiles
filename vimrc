@@ -634,7 +634,7 @@ nnoremap <leader>ll :LongLinesToggle<CR>
 
 let s:tmux_version = split(system("tmux -V"))
 
-if $TMUX != ''
+if $TMUX != '' && !has('nvim')
   if len(s:tmux_version) == 2
     if str2float(s:tmux_version[1]) > 3.0
       colorscheme onedark
