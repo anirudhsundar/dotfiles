@@ -1,6 +1,7 @@
 set history save on
 set print pretty on
 set pagination off
+source ~/local.gdbinit
 #set confirm off
 
 # source TVM specific scripts
