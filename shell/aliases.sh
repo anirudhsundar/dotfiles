@@ -4,6 +4,7 @@ alias grep='grep --color=auto'
 alias ta='tmux a'
 alias minivim='vim -u ~/.minivimrc'
 alias cdr='cd $(git rev-parse --show-toplevel)'
+alias rf='readlink -f'
 function cdf() {
   filepath=$(readlink -f $1)
   dir=$(dirname $filepath)
