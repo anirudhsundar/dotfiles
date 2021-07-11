@@ -27,7 +27,7 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 " Show status line with row and col separated
 "set statusline=%F\ %=\col:%c\ line:%l\ %P
 "inoremap <F2> <nop>
-nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <C-E>p :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
 function SetIndentedPasting(setIndentedPastingMaps)
@@ -110,13 +110,14 @@ map H ^
 map L $
 
 " Useful insert mode mappings
-inoremap <C-H> <C-O>^
-inoremap <C-L> <C-O>$
-inoremap <C-B> <C-O><C-U>
-inoremap <C-F> <C-O><C-D>
+inoremap <C-E>h <C-O>^
+inoremap <C-E>l <C-O>$
+inoremap <C-E>b <C-O><C-B>
+inoremap <C-E>f <C-O><C-F>
 
 " Insert current date on <F4>
-inoremap <F4> <C-R>=strftime('%F')<CR>
+inoremap <C-E>d <C-R>=strftime('%F')<CR>
+inoremap <C-E>p <C-R>=resolve(expand("%:p"))<CR>
 
 augroup HighlightTrailSpace
   autocmd!

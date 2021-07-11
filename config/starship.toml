@@ -1,0 +1,13 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[username]
+disabled = true
+
+[custom.shell]
+command = "echo $SHELL | xargs basename"
+when = "echo 0"
+symbol = " "
+
+[golang]
+symbol = " "
