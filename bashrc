@@ -1,7 +1,7 @@
 export SHELL=$(which bash)
 
 # Setup multiline prompt with git branch info
-source $HOME/.bash/prompt.bash
+# source $HOME/.bash/prompt.bash
 
 # Setup common aliases
 source $HOME/.shell/aliases.sh
@@ -36,3 +36,4 @@ export TERM=xterm-256color
 shopt -s direxpand # enable
 
 source $HOME/.shell/fzf_aliases.sh
+eval "$(starship init bash)"
