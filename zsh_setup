@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
 
-# Oh-my-zsh
-if [[ ! -z `which zsh` && ! -d ~/.oh-my-zsh ]]; then
+# Oh-my-zsh - set INSTALL_OMZ env var to install Ohmyzsh
+if [[ ! -z `which zsh` && ! -d "$HOME/.oh-my-zsh" && $INSTALL_OMZ ]]; then
 	curl -Lo ~/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 	sh ~/install.sh --unattended --keep-zshrc
   rm ~/install.sh
+fi
+
+if [ ! -f "$HOME/bin/starship" ]; then
+  sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -b $HOME/bin --force --yes
 fi
