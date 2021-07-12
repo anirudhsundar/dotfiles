@@ -23,6 +23,9 @@ source $HOME/.zsh/dir_aliases.zsh
 
 source $HOME/.zsh/misc_aliases.zsh
 
+fpath=($HOME/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.bash/git-completion.bash
+
 #refer rg over ag
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'

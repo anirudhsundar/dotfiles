@@ -15,6 +15,9 @@ source $HOME/.bash/custom.bash
 # Update paths for binaries inside my repo
 source $HOME/.shell/common_paths.sh
 
+# Git completion
+source $HOME/.bash/git-completion.bash
+
 # Ignore and erase duplicates and 
 # ignore commands that start with space
 # (sets ignorespace, ignoredups and erasedups)
