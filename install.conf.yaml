@@ -37,6 +37,7 @@
     ~/.vim/coc-settings.json: config/nvim/coc-settings.json
     ~/.custom.zsh: zsh/custom.zsh
     ~/.config/starship.toml: config/starship.toml
+    ~/.man: 
 
 - shell:
   - 

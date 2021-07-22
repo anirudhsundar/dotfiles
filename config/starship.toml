@@ -4,10 +4,17 @@ add_newline = true
 [username]
 disabled = true
 
-[custom.shell]
-command = "echo $SHELL | xargs basename"
-when = "echo 0"
-symbol = " "
+# [custom.shell]
+# command = "echo $SHELL | xargs basename"
+# when = "echo 0"
+# symbol = " "
 
 [golang]
 symbol = " "
+
+[shell]
+disabled = false
+bash_indicator = "bash"
+
+[directory]
+fish_style_pwd_dir_length = 1
