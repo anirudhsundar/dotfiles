@@ -20,4 +20,7 @@ alias tw='task +work'
 alias th='task +home'
 alias te='task +extra'
 
+alias le='exa -lga --icons --group-directories-first'
+alias ex='exa --icons --group-directories-first'
+
 source $HOME/.bin/lfcd.sh
