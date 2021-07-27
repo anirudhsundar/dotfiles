@@ -616,7 +616,7 @@ endfunction
 
 autocmd FileType markdown set conceallevel=2
 " Toggle signcolumn mapping
-nnoremap <leader>s :call ToggleSignColumn()<CR>
+nnoremap <leader>sc :call ToggleSignColumn()<CR>
 
 " Toggle signcolumn. Works only on vim>=8.0 or NeoVim
 function! ToggleSignColumn()
