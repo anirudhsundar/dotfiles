@@ -1,5 +1,12 @@
 {
   "suggest.floatEnable": true,
-  "suggest.labelMaxLength": 80
+  "suggest.labelMaxLength": 80,
+  "languageserver": {
+    "ffi-navigator": {
+      "command": "python",
+      "args": ["-m", "ffi_navigator.langserver"],
+      "filetypes": ["cpp", "python"]
+    }
+  }
 
 }
