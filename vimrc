@@ -60,14 +60,14 @@ Plug 'plasticboy/vim-markdown'
 " Syntax highlighting for jsonc
 " Plug 'kevinoid/vim-jsonc'
 
-" if has('nvim')
-"   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-"   " Plug 'nvim-treesitter/playground'
-"   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-" else
-"   " Enhanced syntax highlight for cpp for vim
-" endif
-Plug 'octol/vim-cpp-enhanced-highlight'
+if has('nvim')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  " Plug 'nvim-treesitter/playground'
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+else
+  " Enhanced syntax highlight for cpp for vim
+  Plug 'octol/vim-cpp-enhanced-highlight'
+endif
 
 Plug 'cespare/vim-toml'
 
@@ -137,30 +137,38 @@ endif
 
 " golang
 "----------------------------------------------{{{
-if v:version >= 800
-  Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-  " vim-go specific settings
-  " run :GoBuild or :GoTestCompile based on the go file
-  function! s:build_go_files()
-    let l:file = expand('%')
-    if l:file =~# '^\f\+_test\.go$'
-      call go#test#Test(0, 1)
-    elseif l:file =~# '^\f\+\.go$'
-      call go#cmd#Build(0)
-    endif
-  endfunction
+" if v:version >= 800
+  " Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+  " " vim-go specific settings
+  " " run :GoBuild or :GoTestCompile based on the go file
+  " function! s:build_go_files()
+  "   let l:file = expand('%')
+  "   if l:file =~# '^\f\+_test\.go$'
+  "     call go#test#Test(0, 1)
+  "   elseif l:file =~# '^\f\+\.go$'
+  "     call go#cmd#Build(0)
+  "   endif
+  " endfunction
 
-  autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap <leader>gr <Plug>(go-run)
-  autocmd FileType go nmap <leader>gt <Plug>(go-test)
-  autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
-  let g:go_list_type = "quickfix"
-  " let g:go_def_mode='gopls'
-  " let g:go_info_mode='gopls'
-  " disable vim-go :GoDef short cut (gd)
-  " this is handled by LanguageClient [LC]
-  let g:go_def_mapping_enabled = 0
-endif
+  " autocmd FileType go nmap <leader>gb :<C-u>call <SID>build_go_files()<CR>
+  " autocmd FileType go nmap <leader>gr <Plug>(go-run)
+  " autocmd FileType go nmap <leader>gt <Plug>(go-test)
+  " autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
+  " let g:go_list_type = "quickfix"
+  " " let g:go_def_mode='gopls'
+  " " let g:go_info_mode='gopls'
+  " " disable vim-go :GoDef short cut (gd)
+  " " this is handled by LanguageClient [LC]
+  " let g:go_def_mapping_enabled = 0
+" endif
+
+augroup golang
+  autocmd!
+  autocmd BufRead *.go set autoread
+  autocmd BufWritePost *.go silent !gofmt -w %
+  autocmd BufWritePost *.go silent edit
+augroup END
+
 "----------------------------------------------}}}
 
 " Python
@@ -400,107 +408,107 @@ set runtimepath+=~/.vim/.misc_vim
 " Plugin specific config to be set after plug#end----------------------{{{
 " Treesitter_config --------------------{{{
 
-" if has('nvim')
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   highlight = {
-"     enable = true,
-"   },
-" }
-" EOF
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   incremental_selection = {
-"     enable = true,
-"     keymaps = {
-"       init_selection = "<leader>tn",
-"       node_incremental = "<leader>tl",
-"       scope_incremental = "<leader>tsl",
-"       node_decremental = "<leader>th",
-"     },
-"   },
-" }
-" EOF
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   indent = {
-"     enable = false
-"   }
-" }
-" EOF
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
-" if &filetype !=# 'vim'
-"   set foldlevelstart=99
-" endif
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   textobjects = {
-"     select = {
-"       enable = true,
-"       keymaps = {
-"         -- You can use the capture groups defined in textobjects.scm
-"         ["af"] = "@function.outer",
-"         ["if"] = "@function.inner",
-"         ["ac"] = "@class.outer",
-"         ["ic"] = "@class.inner",
-"         ["iF"] = "@conditional.inner",
-"         ["aF"] = "@conditional.outer",
-" 
-"         -- Or you can define your own textobjects like this
-"         -- ["iF"] = {
-"         --   python = "(function_definition) @function",
-"         --   cpp = "(function_definition) @function",
-"         --   c = "(function_definition) @function",
-"         --   java = "(method_declaration) @function",
-"         -- },
-"       },
-"     },
-"   },
-" }
-" EOF
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   textobjects = {
-"     swap = {
-"       enable = true,
-"       swap_next = {
-"         ["<leader>ta"] = "@parameter.inner",
-"       },
-"       swap_previous = {
-"         ["<leader>tA"] = "@parameter.inner",
-"       },
-"     },
-"   },
-" }
-" EOF
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   textobjects = {
-"     move = {
-"       enable = true,
-"       set_jumps = true, -- whether to set jumps in the jumplist
-"       goto_next_start = {
-"         ["]m"] = "@function.outer",
-"         ["]]"] = "@class.outer",
-"       },
-"       goto_next_end = {
-"         ["]M"] = "@function.outer",
-"         ["]["] = "@class.outer",
-"       },
-"       goto_previous_start = {
-"         ["[m"] = "@function.outer",
-"         ["[["] = "@class.outer",
-"       },
-"       goto_previous_end = {
-"         ["[M"] = "@function.outer",
-"         ["[]"] = "@class.outer",
-"       },
-"     },
-"   },
-" }
-" EOF
-" endif
+if has('nvim')
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ highlight = {
+   enable = true,
+ },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ incremental_selection = {
+   enable = true,
+   keymaps = {
+     init_selection = "<leader>tn",
+     node_incremental = "<leader>tl",
+     scope_incremental = "<leader>tsl",
+     node_decremental = "<leader>th",
+   },
+ },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ indent = {
+   enable = false
+ }
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+if &filetype !=# 'vim'
+ set foldlevelstart=99
+endif
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ textobjects = {
+   select = {
+     enable = true,
+     keymaps = {
+       -- You can use the capture groups defined in textobjects.scm
+       ["af"] = "@function.outer",
+       ["if"] = "@function.inner",
+       ["ac"] = "@class.outer",
+       ["ic"] = "@class.inner",
+       ["iF"] = "@conditional.inner",
+       ["aF"] = "@conditional.outer",
+
+       -- Or you can define your own textobjects like this
+       -- ["iF"] = {
+       --   python = "(function_definition) @function",
+       --   cpp = "(function_definition) @function",
+       --   c = "(function_definition) @function",
+       --   java = "(method_declaration) @function",
+       -- },
+     },
+   },
+ },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ textobjects = {
+   swap = {
+     enable = true,
+     swap_next = {
+       ["<leader>ta"] = "@parameter.inner",
+     },
+     swap_previous = {
+       ["<leader>tA"] = "@parameter.inner",
+     },
+   },
+ },
+}
+EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+ textobjects = {
+   move = {
+     enable = true,
+     set_jumps = true, -- whether to set jumps in the jumplist
+     goto_next_start = {
+       ["]m"] = "@function.outer",
+       ["]]"] = "@class.outer",
+     },
+     goto_next_end = {
+       ["]M"] = "@function.outer",
+       ["]["] = "@class.outer",
+     },
+     goto_previous_start = {
+       ["[m"] = "@function.outer",
+       ["[["] = "@class.outer",
+     },
+     goto_previous_end = {
+       ["[M"] = "@function.outer",
+       ["[]"] = "@class.outer",
+     },
+   },
+ },
+}
+EOF
+endif
 " --------------------------------------------------}}}
 
 " Try to auto detect and use the indentation of a file when opened.
