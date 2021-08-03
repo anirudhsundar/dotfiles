@@ -37,7 +37,7 @@ Plug 'joshdick/onedark.vim'
 " Simple 256 bit color scheme
 " Plug 'junegunn/seoul256.vim'
 
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
 " Molokai theme
 Plug 'sickill/vim-monokai'
@@ -224,6 +224,8 @@ Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 
 Plug 'rbong/vim-flog', {'on': 'Flog'}
+
+Plug 'pgr0ss/vim-github-url'
 
 "----------------------------------------------}}}
 
