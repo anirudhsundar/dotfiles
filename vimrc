@@ -42,6 +42,11 @@ Plug 'morhetz/gruvbox'
 " Molokai theme
 Plug 'sickill/vim-monokai'
 
+if has('nvim')
+  "Indent blankline
+  Plug 'lukas-reineke/indent-blankline.nvim'
+endif
+
 " Rainbow-csv
 " Plug 'mechatroner/rainbow_csv'
 

@@ -185,6 +185,12 @@ function! QuickfixToggle()
         let g:quickfix_is_open = 1
     endif
 endfunction
+
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?"
+      \ ? "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?"
+      \ ? "<CR>?<C-r>/" : "<S-Tab>"
+
 "---------------------------------------------
 " End of Common mappings
 "------------------------------------------}}}
