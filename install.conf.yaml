@@ -38,6 +38,7 @@
     ~/.custom.zsh: zsh/custom.zsh
     ~/.config/starship.toml: config/starship.toml
     ~/.man: 
+    ~/tvm-gdb-commands: gdb/tvm-gdb-commands
 
 - shell:
   - 

@@ -26,3 +26,6 @@
 [submodule "gdb/libcxx-pretty-printers"]
 	path = gdb/libcxx-pretty-printers
 	url = https://github.com/koutheir/libcxx-pretty-printers
+[submodule "gdb/tvm-gdb-commands"]
+	path = gdb/tvm-gdb-commands
+	url = https://github.com/anirudhsundar/tvm-gdb-commands.git

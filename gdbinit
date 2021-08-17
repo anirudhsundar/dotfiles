@@ -5,7 +5,7 @@ source ~/local.gdbinit
 #set confirm off
 
 # source TVM specific scripts
-source ~/.gdb/tvm/gdbinit
+source ~/tvm-gdb-commands/commands.py
 
 python
 import sys
