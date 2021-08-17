@@ -19,8 +19,8 @@ inoremap jk <esc>
 nnoremap q: <nop>
 
 " Manual toggle mappings for number and relative number
-nnoremap <C-m> :set number!<CR>
-nnoremap <leader><C-m> :set relativenumber!<CR>
+nnoremap <C-n> :set number!<CR>
+nnoremap <leader><C-n> :set relativenumber!<CR>
 " Restore default <CR> mapping for quickfix lists
 autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
