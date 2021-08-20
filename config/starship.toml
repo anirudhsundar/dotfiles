@@ -54,7 +54,6 @@ symbol = ".NET "
 
 [directory]
 read_only = " ro"
-fish_style_pwd_dir_length = 1
 
 [docker_context]
 symbol = "docker "
@@ -125,3 +124,6 @@ symbol = "scala "
 [swift]
 symbol = "swift "
 
+[shell]
+disabled = false
+bash_indicator = "bash"

@@ -6,6 +6,10 @@ source ~/local.gdbinit
 
 # source TVM specific scripts
 source ~/tvm-gdb-commands/commands.py
+alias tvd = tvm_dump
+alias tvt = tvm_type
+alias tvat = tvm_attr
+alias tvf = tvm_fields
 
 python
 import sys
