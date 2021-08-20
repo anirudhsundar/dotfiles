@@ -247,7 +247,7 @@ nnoremap <silent> <Leader>f. :Files <C-r>=expand("%:h")<CR>/<CR>
 " 'List of open Buffers'
 nnoremap <silent> <Leader>fb :Buffers<CR>
 " 'Most recently opened files'
-nnoremap <silent> <Leader>fm :FZFMru<CR>
+nnoremap <silent> <Leader>fm :FZFMru --multi<CR>
 " 'Opened files hitory'
 nnoremap <silent> <Leader>fh :History<CR>
 " 'Lines in all open buffer'
@@ -255,6 +255,7 @@ nnoremap <silent> <Leader>fl :Lines<CR>
 " 'Lines in current buffer'
 nnoremap <silent> <Leader>fbl :BLines<CR>
 command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* RgFixedCur call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': expand('%:p:h')}), <bang>0)
 
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
@@ -263,23 +264,36 @@ inoremap <expr> <c-x><c-b> fzf#vim#complete#buffer_line()
 
 
 " operator mapping for ripgrep
-nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
-vnoremap <leader>rg :<c-u>call <SID>RipGrepOperator(visualmode())<cr>
+nnoremap <expr> <leader>rg RipGrepOperator()
+vnoremap <leader>rg :<c-u>call RipGrepOperator(visualmode())<cr>
 
-function! s:RipGrepOperator(type)
-    let saved_unnamed_register = @@
+function! RipGrepOperator(...)
+  if !a:0
+    let char = nr2char(getchar())
+    let s:inputchar = char
+    set operatorfunc=RipGrepOperator
+    return 'g@'
+  endif
 
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
+  let type = a:1
+  let saved_unnamed_register = @@
 
+  if type ==# 'v'
+      normal! `<v`>y
+  elseif type ==# 'char'
+      normal! `[v`]y
+  else
+      return
+  endif
+
+  if s:inputchar == "."
+    silent execute "RgFixedCur " . @@
+  else
     silent execute "RgFixed " . @@
+  endif
 
-    let @@ = saved_unnamed_register
+  let @@ = saved_unnamed_register
+
 endfunction
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
@@ -641,7 +655,7 @@ endfunction
 
 " Always show my comment in grey
 autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
-autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+autocmd FileType c,cpp,cs,java,tablegen setlocal commentstring=//\ %s
 
 autocmd FileType cpp call myvim#makeprg#setMakePrg()
 

@@ -15,6 +15,3 @@ symbol = " "
 [shell]
 disabled = false
 bash_indicator = "bash"
-
-[directory]
-fish_style_pwd_dir_length = 1
