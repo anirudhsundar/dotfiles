@@ -264,18 +264,19 @@ inoremap <expr> <c-x><c-b> fzf#vim#complete#buffer_line()
 
 
 " operator mapping for ripgrep
-nnoremap <expr> <leader>rg RipGrepOperator()
+" nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
+nnoremap <expr> <leader>rg RipGrepOperatorWrapper(0)
+nnoremap <expr> <leader>.rg RipGrepOperatorWrapper(1)
 vnoremap <leader>rg :<c-u>call RipGrepOperator(visualmode())<cr>
 
-function! RipGrepOperator(...)
-  if !a:0
-    let char = nr2char(getchar())
-    let s:inputchar = char
-    set operatorfunc=RipGrepOperator
-    return 'g@'
-  endif
+function! RipGrepOperatorWrapper(cur)
+  let s:ripgrepCur = a:cur
+  set operatorfunc=RipGrepOperator
+  return 'g@'
+endfunction
 
-  let type = a:1
+function! RipGrepOperator(type)
+  let type = a:type
   let saved_unnamed_register = @@
 
   if type ==# 'v'
@@ -286,7 +287,7 @@ function! RipGrepOperator(...)
       return
   endif
 
-  if s:inputchar == "."
+  if s:ripgrepCur
     silent execute "RgFixedCur " . @@
   else
     silent execute "RgFixed " . @@
