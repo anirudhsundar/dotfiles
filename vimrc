@@ -287,7 +287,7 @@ function! RipGrepOperator(type)
       return
   endif
 
-  if s:ripgrepCur
+  if exists("s:ripgrepCur") && s:ripgrepCur
     silent execute "RgFixedCur " . @@
   else
     silent execute "RgFixed " . @@
@@ -659,6 +659,7 @@ nnoremap <leader><leader>n :set number!<cr>:set relativenumber!<cr>:call ToggleS
 " Always show my comment in grey
 autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 autocmd FileType c,cpp,cs,java,tablegen setlocal commentstring=//\ %s
+autocmd FileType ll setlocal commentstring=;\ %s
 
 autocmd FileType cpp call myvim#makeprg#setMakePrg()
 
