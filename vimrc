@@ -654,6 +654,8 @@ function! ToggleSignColumn()
     endif
 endfunction
 
+nnoremap <leader><leader>n :set number!<cr>:set relativenumber!<cr>:call ToggleSignColumn()<CR>
+
 " Always show my comment in grey
 autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
 autocmd FileType c,cpp,cs,java,tablegen setlocal commentstring=//\ %s
