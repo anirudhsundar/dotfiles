@@ -39,6 +39,8 @@
     ~/.config/starship.toml: config/starship.toml
     ~/.man: 
     ~/tvm-gdb-commands: gdb/tvm-gdb-commands
+    ~/.tmux-cht-command: tmux/tmux-cht-command
+    ~/.tmux-cht-languages: tmux/tmux-cht-languages
 
 - shell:
   - 
