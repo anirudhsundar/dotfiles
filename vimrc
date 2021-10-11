@@ -256,6 +256,7 @@ nnoremap <silent> <Leader>fl :Lines<CR>
 nnoremap <silent> <Leader>fbl :BLines<CR>
 command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=* RgFixedCur call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': expand('%:p:h')}), <bang>0)
+command! -bang -nargs=* RgWord call fzf#vim#grep('rg --column --line-number --no-heading -w --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': expand('%:p:h')}), <bang>0)
 
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
@@ -309,6 +310,7 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0, '')
 command! -nargs=* -bang RGFixed call RipgrepFzf(<q-args>, <bang>0, '--fixed-strings')
+command! -nargs=* -bang RGWord call RipgrepFzf(<q-args>, <bang>0, '-w')
 
 function! s:list_buffers()
   redir => list
@@ -318,7 +320,7 @@ function! s:list_buffers()
 endfunction
 
 function! s:delete_buffers(lines)
-  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+  execute 'bdelete' join(map(a:lines, {_, line -> split(line)[0]}))
 endfunction
 
 command! BD call fzf#run(fzf#wrap({
@@ -433,6 +435,8 @@ Plug 'chrisbra/unicode.vim'
 Plug 'tpope/vim-eunuch'
 
 Plug 'wellle/targets.vim'
+
+Plug 'vim-scripts/ReplaceWithRegister'
 
 "----------------------------------------------}}}
 
