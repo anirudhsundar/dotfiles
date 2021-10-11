@@ -106,8 +106,8 @@ command! RootCur call myvim#root#rootcur()
 command! Cdcur execute 'lcd' expand("%:h")
 
 " " Jump to start and end of line using the home row keys
-map H ^
-map L $
+map <leader>h ^
+map <leader>l $
 
 " Useful insert mode mappings
 inoremap <C-E>h <C-O>^
