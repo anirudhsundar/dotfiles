@@ -74,6 +74,8 @@ Plug 'cespare/vim-toml'
 " Add eye-candy icons
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'psf/black', { 'branch': 'stable' }
+
 "----------------------------------------------}}}
 
 "Programming related
@@ -434,6 +436,9 @@ Plug 'tpope/vim-eunuch'
 
 Plug 'wellle/targets.vim'
 
+nmap <Leader>rro  <Plug>ReplaceWithRegisterOperator
+nmap <Leader>rrl <Plug>ReplaceWithRegisterLine
+xmap <Leader>rrv  <Plug>ReplaceWithRegisterVisual
 Plug 'vim-scripts/ReplaceWithRegister'
 
 "----------------------------------------------}}}
@@ -688,7 +693,7 @@ autocmd FileType cpp call myvim#makeprg#setMakePrg()
 
 "return a list containing the lengths of the long lines in this buffer
 command! -nargs=? LongLinesToggle call myvim#longlines#LongLinesToggle(<q-args>)
-nnoremap <leader>ll :LongLinesToggle<CR>
+nnoremap <leader><leader>l :LongLinesToggle<CR>
 
 let s:tmux_version = split(system("tmux -V"))
 
