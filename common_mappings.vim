@@ -69,7 +69,7 @@ nnoremap <silent> ]B :blast<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> <leader><C-w> :bdelete<CR>
 
-nnoremap <silent> <leader><C-M> :call ToggleMouse()<CR>
+nnoremap <silent> <leader>m :call ToggleMouse()<CR>
 
 function! ToggleMouse()
     " check if mouse is enabled
