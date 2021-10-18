@@ -603,8 +603,12 @@ set shiftround
 set ignorecase smartcase
 set incsearch
 
-" Set cursorline always
-set cursorline
+" Set cursorline only on current window
+augroup cline
+    au!
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
+augroup END
 
 " Always enable hlsearch
 set hlsearch

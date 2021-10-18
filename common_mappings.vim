@@ -69,6 +69,19 @@ nnoremap <silent> ]B :blast<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> <leader><C-w> :bdelete<CR>
 
+nnoremap <silent> <leader><C-M> :call ToggleMouse()<CR>
+
+function! ToggleMouse()
+    " check if mouse is enabled
+    if &mouse == 'a'
+        " disable mouse
+        set mouse=
+    else
+        " enable mouse everywhere
+        set mouse=a
+    endif
+endfunc
+
 command! BufOnly call myvim#buffers#BufOnly()
 
 " Close all but the current buffer
