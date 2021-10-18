@@ -30,6 +30,13 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 nnoremap <C-E>p :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
+set list
+
+" Save when losing focus
+au FocusLost * :silent! wall
+
 function SetIndentedPasting(setIndentedPastingMaps)
   let l:setIndentedPastingMaps = a:setIndentedPastingMaps
   if l:setIndentedPastingMaps

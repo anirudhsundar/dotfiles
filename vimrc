@@ -441,6 +441,8 @@ nmap <Leader>rrl <Plug>ReplaceWithRegisterLine
 xmap <Leader>rrv  <Plug>ReplaceWithRegisterVisual
 Plug 'vim-scripts/ReplaceWithRegister'
 
+Plug 'lfv89/vim-interestingwords'
+
 "----------------------------------------------}}}
 
 " List ends here. Plugins become visible to Vim after this call.
