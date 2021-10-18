@@ -443,6 +443,8 @@ nmap <Leader>rrl <Plug>ReplaceWithRegisterLine
 xmap <Leader>rrv  <Plug>ReplaceWithRegisterVisual
 Plug 'vim-scripts/ReplaceWithRegister'
 
+Plug 'lfv89/vim-interestingwords'
+
 "----------------------------------------------}}}
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -603,8 +605,12 @@ set shiftround
 set ignorecase smartcase
 set incsearch
 
-" Set cursorline always
-set cursorline
+" Set cursorline only on current window
+augroup cline
+    au!
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
+augroup END
 
 " Always enable hlsearch
 set hlsearch

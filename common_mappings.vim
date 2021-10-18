@@ -30,6 +30,13 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 nnoremap <C-E>p :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
+set list
+
+" Save when losing focus
+au FocusLost * :silent! wall
+
 function SetIndentedPasting(setIndentedPastingMaps)
   let l:setIndentedPastingMaps = a:setIndentedPastingMaps
   if l:setIndentedPastingMaps
@@ -61,6 +68,19 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]B :blast<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> <leader><C-w> :bdelete<CR>
+
+nnoremap <silent> <leader>m :call ToggleMouse()<CR>
+
+function! ToggleMouse()
+    " check if mouse is enabled
+    if &mouse == 'a'
+        " disable mouse
+        set mouse=
+    else
+        " enable mouse everywhere
+        set mouse=a
+    endif
+endfunc
 
 command! BufOnly call myvim#buffers#BufOnly()
 
