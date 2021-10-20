@@ -119,6 +119,8 @@ Plug 'tpope/vim-dispatch'
 " Repl and plugin development helper for vim
 " Plug 'tpope/vim-scriptease'
 
+" Repl
+Plug 'metakirby5/codi.vim'
 
 " vimwiki
 "----------------------------------------------{{{
@@ -444,6 +446,10 @@ xmap <Leader>rrv  <Plug>ReplaceWithRegisterVisual
 Plug 'vim-scripts/ReplaceWithRegister'
 
 Plug 'lfv89/vim-interestingwords'
+
+Plug 'sjl/clam.vim'
+
+Plug 'mtth/scratch.vim'
 
 "----------------------------------------------}}}
 

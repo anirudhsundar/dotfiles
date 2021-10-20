@@ -93,6 +93,9 @@ nnoremap <leader>bd :BufOnly<CR>
 nnoremap zl zCzjzA
 nnoremap zh zCzkzA
 
+" Focus on current fold
+nnoremap <leader>z zMzvzz
+
 " Change cursor for insert and normal mode
 if has('nvim')
   set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -126,8 +129,45 @@ command! RootCur call myvim#root#rootcur()
 command! Cdcur execute 'lcd' expand("%:h")
 
 " " Jump to start and end of line using the home row keys
-noremap <leader>h ^
-noremap <leader>l $
+noremap H ^
+noremap L $
+
+" Always use very magic mode
+nnoremap / /\v
+vnoremap / /\v
+
+map <tab> %
+
+" When searching with # and *, stay in the current location
+nnoremap * *<c-o>
+nnoremap # #<c-o>
+
+" keep changelist jumps at the center of the screen
+nnoremap g; g;zz
+nnoremap g, g,zz
+
+" adjust split sizes with Ctrl-arrowkeys
+nnoremap <c-left> 5<c-w><
+nnoremap <c-right> 5<c-w>>
+nnoremap <c-up> <c-w>+
+nnoremap <c-down> <c-w>-
+
+" Open a quickfix window for the last search results
+nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+nnoremap <leader>V V`]
+
+augroup vim_specific
+autocmd!
+autocmd FileType vim vnoremap <leader>S y:execute @@<cr>
+autocmd FileType vim nnoremap <leader>S ^vg_y:execute @@<cr>
+augroup END
+
+noremap ' `
+noremap ` '
+noremap <C-x> <C-^>
+
+nnoremap vv ^vg_
 
 " Keep visual selection when indenting
 vnoremap > >gv
@@ -136,8 +176,8 @@ vnoremap < <gv
 " Useful insert mode mappings
 inoremap <C-E>h <C-O>^
 inoremap <C-E>l <C-O>$
-inoremap <C-E>b <C-O><C-B>
-inoremap <C-E>f <C-O><C-F>
+inoremap <C-B> <C-O><C-B>
+inoremap <C-F> <C-O><C-F>
 
 " Insert current date on <F4>
 inoremap <C-E>d <C-R>=strftime('%F')<CR>
@@ -214,6 +254,16 @@ cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?"
       \ ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?"
       \ ? "<CR>?<C-r>/" : "<S-Tab>"
+
+" Make sure Vim returns to the same line when you reopen a file.
+" Taken from SJL vimrc
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
 
 "---------------------------------------------
 " End of Common mappings
