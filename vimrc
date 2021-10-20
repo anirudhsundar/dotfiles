@@ -443,6 +443,8 @@ Plug 'vim-scripts/ReplaceWithRegister'
 
 Plug 'lfv89/vim-interestingwords'
 
+Plug 'sjl/clam.vim'
+
 "----------------------------------------------}}}
 
 " List ends here. Plugins become visible to Vim after this call.
