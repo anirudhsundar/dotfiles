@@ -33,6 +33,8 @@ Plug 'tpope/vim-sensible'
 Plug 'joshdick/onedark.vim'
 " Plug 'gosukiwi/vim-atom-dark'
 " Plug 'nanotech/jellybeans.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'jacoborus/tender.vim'
 
 " Simple 256 bit color scheme
 " Plug 'junegunn/seoul256.vim'
