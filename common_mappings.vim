@@ -138,10 +138,6 @@ vnoremap / /\v
 
 map <tab> %
 
-" When searching with # and *, stay in the current location
-nnoremap * *<c-o>
-nnoremap # #<c-o>
-
 " keep changelist jumps at the center of the screen
 nnoremap g; g;zz
 nnoremap g, g,zz
