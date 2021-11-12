@@ -88,6 +88,13 @@ command! BufOnly call myvim#buffers#BufOnly()
 " nnoremap <leader>bd :execute "%bdelete \| edit # \| bdelete #"<CR>
 nnoremap <leader>bd :BufOnly<CR>
 
+" Rebalance vim in tmux automatically
+autocmd VimResized * :wincmd =
+
+"zoom and rebalance vim pane
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
 
 " Move to next and previous folds
 nnoremap zl zCzjzA

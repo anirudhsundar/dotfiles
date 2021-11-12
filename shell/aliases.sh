@@ -24,3 +24,7 @@ alias le='exa -lga --icons --group-directories-first'
 alias ex='exa --icons --group-directories-first'
 
 source $HOME/.bin/lfcd.sh
+
+alias vman='MANPAGER="vim -M +MANPAGER -" man'
+alias tkill="for s in \$(tmux list-sessions | awk '{print \$1}' | rg ':' -r '' | fzf --multi); do tmux kill-session -t \$s; done;"
+
