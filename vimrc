@@ -192,6 +192,33 @@ let g:pydocstring_formatter = 'numpy'
 " Share vim clipboard across panes
 Plug 'roxma/vim-tmux-clipboard'
 
+Plug 'christoomey/vim-tmux-navigator'
+let g:tmux_navigator_no_mappings = 1
+
+" Meta keys only work properly on neovim
+" There are no equivalent keys on vim
+if has('nvim')
+  nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+  nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+  nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+  nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+endif
+
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+Plug 'christoomey/vim-tmux-runner'
+let g:VtrStripLeadingWhitespace = 0
+let g:VtrClearEmptyLines = 0
+let g:VtrAppendNewline = 1
+
+noremap <leader>vs :VtrSendLinesToRunner!<cr>
+nnoremap <leader>vf :VtrSendFile!<cr>
+nnoremap <leader>vk :VtrKillRunner<cr>
+nnoremap <leader>vo :VtrOpenRunner<cr>
+nnoremap <leader>vr :VtrFocusRunner<cr>
+
 "----------------------------------------------}}}
 
 " Git plugins
@@ -262,7 +289,19 @@ nnoremap <silent> <Leader>fl :Lines<CR>
 nnoremap <silent> <Leader>fbl :BLines<CR>
 command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=* RgFixedCur call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': expand('%:p:h')}), <bang>0)
-command! -bang -nargs=* RgWord call fzf#vim#grep('rg --column --line-number --no-heading -w --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': expand('%:p:h')}), <bang>0)
+command! -bang -nargs=* RgWord call fzf#vim#grep('rg --column --line-number --no-heading -w --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+
+function! RipGrepWithOptions(options, bang)
+  let l:defaultOptions = '--column --line-number --no-heading --smart-case --follow --color "always"'
+  let l:defaultOptionsList = split(l:defaultOptions)
+  let l:newOptionsList = split(a:options)
+  let l:allOptions = l:defaultOptionsList + l:newOptionsList
+  let l:optionString = join(l:allOptions, " ")
+  echom l:optionString
+  call fzf#vim#grep('rg ' . l:optionString, 1, fzf#vim#with_preview(), a:bang)
+endfunction
+
+command! -bang -nargs=* RgOpt call RipGrepWithOptions(<q-args>, <bang>0)
 
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 0.9, 'xoffset': 1 }})
@@ -272,8 +311,9 @@ inoremap <expr> <c-x><c-b> fzf#vim#complete#buffer_line()
 
 " operator mapping for ripgrep
 " nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
-nnoremap <expr> <leader>rg RipGrepOperatorWrapper(0)
-nnoremap <expr> <leader>.rg RipGrepOperatorWrapper(1)
+nnoremap <expr> <leader>rg RipGrepOperatorWrapper('')
+nnoremap <expr> <leader>.rg RipGrepOperatorWrapper('.')
+nnoremap <expr> <leader>wrg RipGrepOperatorWrapper('w')
 vnoremap <leader>rg :<c-u>call RipGrepOperator(visualmode())<cr>
 
 function! RipGrepOperatorWrapper(cur)
@@ -294,8 +334,10 @@ function! RipGrepOperator(type)
       return
   endif
 
-  if exists("s:ripgrepCur") && s:ripgrepCur
+  if exists("s:ripgrepCur") && s:ripgrepCur == '.'
     silent execute "RgFixedCur " . @@
+  elseif exists("s:ripgrepCur") && s:ripgrepCur == 'w'
+    silent execute "RgWord " . @@
   else
     silent execute "RgFixed " . @@
   endif

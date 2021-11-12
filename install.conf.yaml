@@ -41,6 +41,7 @@
     ~/tvm-gdb-commands: gdb/tvm-gdb-commands
     ~/.tmux-cht-command: tmux/tmux-cht-command
     ~/.tmux-cht-languages: tmux/tmux-cht-languages
+    ~/.tmux-3.2.conf: tmux/tmux-3.2.conf
 
 - shell:
   - 
