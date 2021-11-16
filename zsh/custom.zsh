@@ -56,5 +56,10 @@ TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
 bindkey '^ ' autosuggest-accept
 #source $MY_CUSTOM_PLUGINS/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
+LOCAL_ZSH_CONFIG_MINE=$HOME/.local_zsh_config
+if [[ -a $LOCAL_ZSH_CONFIG_MINE ]]; then
+  source $LOCAL_ZSH_CONFIG_MINE
+fi
+
 # Add starship prompt
 eval "$(starship init zsh)"
