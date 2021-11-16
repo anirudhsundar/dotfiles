@@ -312,8 +312,9 @@ inoremap <expr> <c-x><c-b> fzf#vim#complete#buffer_line()
 " operator mapping for ripgrep
 " nnoremap <leader>rg :set operatorfunc=<SID>RipGrepOperator<cr>g@
 nnoremap <expr> <leader>rg RipGrepOperatorWrapper('')
-nnoremap <expr> <leader>.rg RipGrepOperatorWrapper('.')
-nnoremap <expr> <leader>wrg RipGrepOperatorWrapper('w')
+nnoremap <expr> <leader>r.g RipGrepOperatorWrapper('.')
+nnoremap <expr> <leader>rwg RipGrepOperatorWrapper('w')
+nnoremap <expr> <leader>rig RipGrepOperatorWrapper('i')
 vnoremap <leader>rg :<c-u>call RipGrepOperator(visualmode())<cr>
 
 function! RipGrepOperatorWrapper(cur)
@@ -338,6 +339,8 @@ function! RipGrepOperator(type)
     silent execute "RgFixedCur " . @@
   elseif exists("s:ripgrepCur") && s:ripgrepCur == 'w'
     silent execute "RgWord " . @@
+  elseif exists("s:ripgrepCur") && s:ripgrepCur == 'i'
+    silent execute "RgOpt --no-ignore -- " . @@
   else
     silent execute "RgFixed " . @@
   endif

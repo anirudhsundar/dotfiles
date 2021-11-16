@@ -57,5 +57,10 @@ bindkey '^ ' autosuggest-accept
 eval `dircolors $HOME/dotfiles/misc/dircolors-solarized/dircolors.256dark`
 #source $MY_CUSTOM_PLUGINS/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
+LOCAL_ZSH_CONFIG_MINE=$HOME/.local_zsh_config
+if [[ -a $LOCAL_ZSH_CONFIG_MINE ]]; then
+  source $LOCAL_ZSH_CONFIG_MINE
+fi
+
 # Add starship prompt
 eval "$(starship init zsh)"
