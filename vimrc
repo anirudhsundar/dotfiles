@@ -340,7 +340,7 @@ function! RipGrepOperator(type)
   elseif exists("s:ripgrepCur") && s:ripgrepCur == 'w'
     silent execute "RgWord " . @@
   elseif exists("s:ripgrepCur") && s:ripgrepCur == 'i'
-    silent execute "RgOpt --no-ignore -- " . @@
+    silent execute "RgOpt --no-ignore-vcs -- " . @@
   else
     silent execute "RgFixed " . @@
   endif
