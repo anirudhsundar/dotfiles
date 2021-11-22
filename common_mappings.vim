@@ -168,7 +168,7 @@ augroup END
 
 noremap ' `
 noremap ` '
-noremap <C-x> <C-^>
+noremap <C-p> <C-^>
 
 nnoremap vv ^vg_
 
