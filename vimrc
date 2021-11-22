@@ -102,7 +102,7 @@ Plug 'gauteh/vim-cppman', { 'on': 'Cppman' }
 " Add cppman support and add tmux split for cppman
 command! -nargs=+ Cppman silent! call system("tmux split-window -h cppman " . expand(<q-args>))
 " Use <leader>K for calling cppman as K is used by coc for popup doc
-autocmd FileType cpp nnoremap <silent><buffer> <leader>K <Esc>:Cppman <cword><CR>
+autocmd FileType cpp nnoremap <silent><buffer> <leader>cK <Esc>:Cppman <cword><CR>
 "----------------------------------------------}}}
 
 " Vim surround with anything
