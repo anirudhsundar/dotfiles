@@ -30,9 +30,11 @@ autocmd FileType qf nnoremap <buffer> <CR> <CR>
 nnoremap <C-E>p :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set showbreak=↪
-set list
+if has('nvim')
+  set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+  set showbreak=↪
+  set list
+endif
 
 " Save when losing focus
 au FocusLost * :silent! wall
