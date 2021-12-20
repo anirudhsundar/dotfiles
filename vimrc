@@ -315,12 +315,20 @@ nnoremap <expr> <leader>rg RipGrepOperatorWrapper('')
 nnoremap <expr> <leader>r.g RipGrepOperatorWrapper('.')
 nnoremap <expr> <leader>rwg RipGrepOperatorWrapper('w')
 nnoremap <expr> <leader>rig RipGrepOperatorWrapper('i')
-vnoremap <leader>rg :<c-u>call RipGrepOperator(visualmode())<cr>
+vnoremap <leader>rg :<c-u>call RipGrepOperatorWrapper('', 1)<cr>
+vnoremap <leader>r.g :<c-u>call RipGrepOperatorWrapper('.', 1)<cr>
+vnoremap <leader>rwg :<c-u>call RipGrepOperatorWrapper('w', 1)<cr>
+vnoremap <leader>rig :<c-u>call RipGrepOperatorWrapper('i', 1)<cr>
 
-function! RipGrepOperatorWrapper(cur)
+function! RipGrepOperatorWrapper(cur, visualFlag=0)
   let s:ripgrepCur = a:cur
-  set operatorfunc=RipGrepOperator
-  return 'g@'
+  if !a:visualFlag
+    set operatorfunc=RipGrepOperator
+    return 'g@'
+  else
+    echom "test"
+    execute 'call RipGrepOperator(visualmode())'
+  endif
 endfunction
 
 function! RipGrepOperator(type)
