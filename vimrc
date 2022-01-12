@@ -483,7 +483,9 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 Plug 'junegunn/vim-peekaboo'
 
-Plug 'vim-scripts/VisIncr'
+" Not needed in vim 8+/nvim as it can be
+" achieved with visual block + g<C-a>
+" Plug 'vim-scripts/VisIncr'
 
 Plug 'vim-utils/vim-man'
 
@@ -967,6 +969,10 @@ endif
 
 " Symbol renaming.
 nmap <leader>crn <Plug>(coc-rename)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+nmap <leader>cbq :Format<cr>
 
 " coc-clangd specific
 nnoremap <leader>cfh :CocCommand clangd.switchSourceHeader<cr>

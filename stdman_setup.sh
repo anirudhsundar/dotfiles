@@ -138,5 +138,6 @@ git clone $STDMAN_URL $STDMAN_PATH
 $STDMAN_PATH/configure --prefix="$STDMAN_PATH/install_dir"
 make -C ${STDMAN_PATH} install
 
-echo "export MANPATH=${MANPATH_VAL}" >> "$_arg_man_path"
+echo "export MANPATH=${MANPATH_VAL}" >> "$HOME/.local_manpath"
+echo "source $HOME/.local_manpath" >> "$_arg_man_path"
 # ] <-- needed because of Argbash
