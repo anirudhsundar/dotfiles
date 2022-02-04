@@ -22,7 +22,7 @@ nnoremap q: <nop>
 nnoremap <C-n> :set number!<CR>
 nnoremap <leader><C-n> :set relativenumber!<CR>
 " Restore default <CR> mapping for quickfix lists
-autocmd FileType qf nnoremap <buffer> <CR> <CR>
+" autocmd FileType qf nnoremap <buffer> <CR> <CR>
 
 " Show status line with row and col separated
 "set statusline=%F\ %=\col:%c\ line:%l\ %P
