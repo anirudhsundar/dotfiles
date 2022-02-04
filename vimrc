@@ -397,25 +397,25 @@ Plug 'pbogut/fzf-mru.vim'
 
 " vim-startify
 "----------------------------------------------{{{
-""
-"" Vim start screen
-"Plug 'mhinz/vim-startify'
-"" change to vcs root when file is directly opened
-"let g:startify_change_to_vcs_root = 1
+"
+" Vim start screen
+Plug 'mhinz/vim-startify'
+" change to vcs root when file is directly opened
+let g:startify_change_to_vcs_root = 1
 
-"" start listing from current directory as MRU files are accessible from
-"" fzf-mru
-"let g:startify_lists = [
-"          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
-"          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-"          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-"          \ ]
-"          "\ { 'type': 'files',     'header': ['   Files']            }
+" start listing from current directory as MRU files are accessible from
+" fzf-mru
+let g:startify_lists = [
+          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ ]
+          "\ { 'type': 'files',     'header': ['   Files']            }
 
-"" basic bookmarks template, not really used right now
-"let g:startify_bookmarks = [
-"            \ { 'z': '~/.zshrc' },
-"            \ ]
+" basic bookmarks template, not really used right now
+let g:startify_bookmarks = [
+            \ { 'z': '~/.zshrc' },
+            \ ]
 "----------------------------------------------}}}
 " A tree explorer plugin for vim
 " Try out Lexplore
