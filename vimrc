@@ -508,6 +508,12 @@ Plug 'sjl/clam.vim'
 
 Plug 'mtth/scratch.vim'
 
+if has('nvim')
+  Plug 'ggandor/lightspeed.nvim'
+else
+  Plug 'justinmk/vim-sneak'
+endif
+
 "----------------------------------------------}}}
 
 " List ends here. Plugins become visible to Vim after this call.
