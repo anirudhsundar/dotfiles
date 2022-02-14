@@ -64,8 +64,9 @@ Plug 'plasticboy/vim-markdown'
 
 if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-  " Plug 'nvim-treesitter/playground'
+  Plug 'nvim-treesitter/playground'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'RRethy/nvim-treesitter-textsubjects'
 else
   " Enhanced syntax highlight for cpp for vim
   Plug 'octol/vim-cpp-enhanced-highlight'
@@ -123,6 +124,11 @@ Plug 'tpope/vim-dispatch'
 
 " Repl
 Plug 'metakirby5/codi.vim'
+
+if has('nvim')
+  " nvim lua config
+  Plug 'rafcamlet/coc-nvim-lua'
+endif
 
 " vimwiki
 "----------------------------------------------{{{
