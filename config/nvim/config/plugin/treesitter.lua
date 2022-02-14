@@ -92,3 +92,15 @@ require'nvim-treesitter.configs'.setup {
    },
  },
 }
+
+require('nvim-treesitter.configs').setup {
+    textsubjects = {
+        enable = true,
+        prev_selection = '<leader>,', -- (Optional) keymap to select the previous selection
+        keymaps = {
+            ['<leader>.'] = 'textsubjects-smart',
+            ['<leader>;'] = 'textsubjects-container-outer',
+            ['<leader>i;'] = 'textsubjects-container-inner',
+        },
+    },
+}
