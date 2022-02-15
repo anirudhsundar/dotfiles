@@ -31,6 +31,7 @@ Plug 'tpope/vim-sensible'
 
 " A couple of dark themes
 Plug 'joshdick/onedark.vim'
+let g:onedark_terminal_italics=1
 " Plug 'gosukiwi/vim-atom-dark'
 " Plug 'nanotech/jellybeans.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -433,6 +434,13 @@ let g:startify_bookmarks = [
 " let g:lf_map_keys = 0
 
 Plug 'thezeroalpha/vim-lf'
+
+if has('nvim')
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  nmap <leader>tf :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<cr>
+endif
+
 
 "----------------------------------------------}}}
 
