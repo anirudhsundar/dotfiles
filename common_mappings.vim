@@ -112,9 +112,15 @@ if has('nvim')
         \,sm:block-blinkwait175-blinkoff150-blinkon175
   :au VimLeave * set guicursor=a:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 else
-  let &t_SI = "\e[5 q"
-  let &t_EI = "\e[0 q"
-  au VimLeave * silent !echo -ne "\e[5 q"
+  if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+    au VimLeave * silent !echo -ne "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+  else
+    let &t_SI = "\e[5 q"
+    let &t_EI = "\e[0 q"
+    au VimLeave * silent !echo -ne "\e[5 q"
+  endif
 endif
 
 
