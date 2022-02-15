@@ -23,6 +23,10 @@ alias te='task +extra'
 alias le='exa -lga --icons --group-directories-first'
 alias ex='exa --icons --group-directories-first'
 
+# Install screen-256color terminfo using the below command
+# tic /path/to/dotfiles/screen-256color.terminfo
+alias tmux='env TERM=screen-256color tmux'
+
 source $HOME/.bin/lfcd.sh
 
 alias vman='MANPAGER="vim -M +MANPAGER -" man'
