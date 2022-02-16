@@ -27,6 +27,8 @@ alias ex='exa --icons --group-directories-first'
 # tic /path/to/dotfiles/screen-256color.terminfo
 alias tmux='env TERM=screen-256color tmux'
 
+alias chompeof="perl -pi -e 'chomp if eof'"
+
 source $HOME/.bin/lfcd.sh
 
 alias vman='MANPAGER="vim -M +MANPAGER -" man'
