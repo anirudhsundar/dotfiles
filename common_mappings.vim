@@ -30,11 +30,43 @@ nnoremap <leader><C-n> :set relativenumber!<CR>
 nnoremap <C-E>p :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
-if has('nvim')
-  set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-  set showbreak=↪
-  set list
-endif
+let s:toggleListChars = 1
+function! ToggleListChars()
+  if s:toggleListChars
+    set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+    set showbreak=↪
+    set list
+    let s:toggleListChars = 0
+  else
+    set listchars=
+    set showbreak=
+    set nolist
+    let s:toggleListChars = 1
+  endif
+endfunction
+
+command! ToggleListChars call ToggleListChars()
+
+" Set listchars and showbreak on file open
+call ToggleListChars()
+
+" Toggle signcolumn mapping
+nnoremap <leader>sc :call ToggleSignColumn()<CR>
+
+" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
+function! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=yes
+        let b:signcolumn_on=1
+    endif
+endfunction
+
+" <leader>cm mapping for copy mode
+" It removes line numbers, signcolumn, listchars and showbreak
+nnoremap <leader>cm :set number!<CR>:set relativenumber!<CR>:call ToggleSignColumn()<CR>:call ToggleListChars()<CR>
 
 " Save when losing focus
 au FocusLost * :silent! wall
