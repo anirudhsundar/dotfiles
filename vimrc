@@ -35,7 +35,6 @@ let g:onedark_terminal_italics=1
 " Plug 'gosukiwi/vim-atom-dark'
 " Plug 'nanotech/jellybeans.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'jacoborus/tender.vim'
 
 " Simple 256 bit color scheme
 " Plug 'junegunn/seoul256.vim'
@@ -67,7 +66,6 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'nvim-treesitter/playground'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-  Plug 'RRethy/nvim-treesitter-textsubjects'
 else
   " Enhanced syntax highlight for cpp for vim
   Plug 'octol/vim-cpp-enhanced-highlight'
@@ -99,12 +97,14 @@ Plug 'tpope/vim-commentary'
 " Plug 'chazy/cscope_maps'
 
 " access cppman from vim with keywordprg 'K' command
+" Comment out cppman as its replaced by my tmux setup for cppreference
+" manpages
 "----------------------------------------------{{{
-Plug 'gauteh/vim-cppman', { 'on': 'Cppman' }
-" Add cppman support and add tmux split for cppman
-command! -nargs=+ Cppman silent! call system("tmux split-window -h cppman " . expand(<q-args>))
-" Use <leader>K for calling cppman as K is used by coc for popup doc
-autocmd FileType cpp nnoremap <silent><buffer> <leader>cK <Esc>:Cppman <cword><CR>
+" Plug 'gauteh/vim-cppman', { 'on': 'Cppman' }
+" " Add cppman support and add tmux split for cppman
+" command! -nargs=+ Cppman silent! call system("tmux split-window -h cppman " . expand(<q-args>))
+" " Use <leader>K for calling cppman as K is used by coc for popup doc
+" autocmd FileType cpp nnoremap <silent><buffer> <leader>cK <Esc>:Cppman <cword><CR>
 "----------------------------------------------}}}
 
 " Vim surround with anything
@@ -215,17 +215,6 @@ endif
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
-Plug 'christoomey/vim-tmux-runner'
-let g:VtrStripLeadingWhitespace = 0
-let g:VtrClearEmptyLines = 0
-let g:VtrAppendNewline = 1
-
-noremap <leader>vs :VtrSendLinesToRunner!<cr>
-nnoremap <leader>vf :VtrSendFile!<cr>
-nnoremap <leader>vk :VtrKillRunner<cr>
-nnoremap <leader>vo :VtrOpenRunner<cr>
-nnoremap <leader>vr :VtrFocusRunner<cr>
-
 "----------------------------------------------}}}
 
 " Git plugins
@@ -257,9 +246,6 @@ nmap [h <Plug>(GitGutterPrevHunk)
 
 " Vim interface for git commands using :Git, :Gsplit :Gedit
 Plug 'tpope/vim-fugitive'
-
-" commit browser
-Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 
@@ -430,10 +416,6 @@ let g:startify_bookmarks = [
 " nmap <F7> :NERDTreeToggle<CR>
 
 " Plug 'voldikss/vim-floaterm'
-" Plug 'ptzz/lf.vim'
-" let g:lf_map_keys = 0
-
-Plug 'thezeroalpha/vim-lf'
 
 if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
@@ -450,11 +432,11 @@ endif
 Plug 'tpope/vim-repeat'
 
 " Better incremental search
-Plug 'haya14busa/incsearch.vim'
-" incsearch
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+" Plug 'haya14busa/incsearch.vim'
+" " incsearch
+" map / <Plug>(incsearch-forward)
+" map ? <Plug>(incsearch-backward)
+" map g/ <Plug>(incsearch-stay)
 
 " Airline statusline when powerline fonts are available
 "----------------------------------------------{{{
@@ -501,8 +483,6 @@ Plug 'junegunn/vim-peekaboo'
 " achieved with visual block + g<C-a>
 " Plug 'vim-scripts/VisIncr'
 
-Plug 'vim-utils/vim-man'
-
 Plug 'gyim/vim-boxdraw'
 
 Plug 'chrisbra/unicode.vim'
@@ -510,11 +490,6 @@ Plug 'chrisbra/unicode.vim'
 Plug 'tpope/vim-eunuch'
 
 Plug 'wellle/targets.vim'
-
-nmap <Leader>rro  <Plug>ReplaceWithRegisterOperator
-nmap <Leader>rrl <Plug>ReplaceWithRegisterLine
-xmap <Leader>rrv  <Plug>ReplaceWithRegisterVisual
-Plug 'vim-scripts/ReplaceWithRegister'
 
 Plug 'lfv89/vim-interestingwords'
 
@@ -654,21 +629,6 @@ function SetVimPresentationMode()
 endfunction
 
 autocmd FileType markdown set conceallevel=2
-" Toggle signcolumn mapping
-nnoremap <leader>sc :call ToggleSignColumn()<CR>
-
-" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
-function! ToggleSignColumn()
-    if !exists("b:signcolumn_on") || b:signcolumn_on
-        set signcolumn=no
-        let b:signcolumn_on=0
-    else
-        set signcolumn=yes
-        let b:signcolumn_on=1
-    endif
-endfunction
-
-nnoremap <leader><leader>n :set number!<cr>:set relativenumber!<cr>:call ToggleSignColumn()<CR>
 
 " Always show my comment in grey
 autocmd SourcePre,VimEnter * highlight Comment ctermfg=DarkGrey
