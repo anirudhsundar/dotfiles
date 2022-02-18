@@ -28,6 +28,8 @@ alias ex='exa --icons --group-directories-first'
 alias tmux='env TERM=screen-256color tmux'
 
 alias chompeof="perl -pi -e 'chomp if eof'"
+alias unique="awk '!a[\$0]++'"
+alias tmpd="cd \$(mktemp -d)"
 
 source $HOME/.bin/lfcd.sh
 
