@@ -451,17 +451,110 @@ endif
 " Enable tabline if needed
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>0 <Plug>AirlineSelectTab0
+let g:airline#extensions#tabline#buffer_idx_mode = 3
+
+" Airline tab mappings for buffer jump
+"----------------------------------------------{{{
+nmap <leader>01 <Plug>AirlineSelectTab01
+nmap <leader>02 <Plug>AirlineSelectTab02
+nmap <leader>03 <Plug>AirlineSelectTab03
+nmap <leader>04 <Plug>AirlineSelectTab04
+nmap <leader>05 <Plug>AirlineSelectTab05
+nmap <leader>06 <Plug>AirlineSelectTab06
+nmap <leader>07 <Plug>AirlineSelectTab07
+nmap <leader>08 <Plug>AirlineSelectTab08
+nmap <leader>09 <Plug>AirlineSelectTab09
+nmap <leader>10 <Plug>AirlineSelectTab10
+nmap <leader>11 <Plug>AirlineSelectTab11
+nmap <leader>12 <Plug>AirlineSelectTab12
+nmap <leader>13 <Plug>AirlineSelectTab13
+nmap <leader>14 <Plug>AirlineSelectTab14
+nmap <leader>15 <Plug>AirlineSelectTab15
+nmap <leader>16 <Plug>AirlineSelectTab16
+nmap <leader>17 <Plug>AirlineSelectTab17
+nmap <leader>18 <Plug>AirlineSelectTab18
+nmap <leader>19 <Plug>AirlineSelectTab19
+nmap <leader>20 <Plug>AirlineSelectTab20
+nmap <leader>21 <Plug>AirlineSelectTab21
+nmap <leader>22 <Plug>AirlineSelectTab22
+nmap <leader>23 <Plug>AirlineSelectTab23
+nmap <leader>24 <Plug>AirlineSelectTab24
+nmap <leader>25 <Plug>AirlineSelectTab25
+nmap <leader>26 <Plug>AirlineSelectTab26
+nmap <leader>27 <Plug>AirlineSelectTab27
+nmap <leader>28 <Plug>AirlineSelectTab28
+nmap <leader>29 <Plug>AirlineSelectTab29
+nmap <leader>30 <Plug>AirlineSelectTab30
+nmap <leader>31 <Plug>AirlineSelectTab31
+nmap <leader>32 <Plug>AirlineSelectTab32
+nmap <leader>33 <Plug>AirlineSelectTab33
+nmap <leader>34 <Plug>AirlineSelectTab34
+nmap <leader>35 <Plug>AirlineSelectTab35
+nmap <leader>36 <Plug>AirlineSelectTab36
+nmap <leader>37 <Plug>AirlineSelectTab37
+nmap <leader>38 <Plug>AirlineSelectTab38
+nmap <leader>39 <Plug>AirlineSelectTab39
+nmap <leader>40 <Plug>AirlineSelectTab40
+nmap <leader>41 <Plug>AirlineSelectTab41
+nmap <leader>42 <Plug>AirlineSelectTab42
+nmap <leader>43 <Plug>AirlineSelectTab43
+nmap <leader>44 <Plug>AirlineSelectTab44
+nmap <leader>45 <Plug>AirlineSelectTab45
+nmap <leader>46 <Plug>AirlineSelectTab46
+nmap <leader>47 <Plug>AirlineSelectTab47
+nmap <leader>48 <Plug>AirlineSelectTab48
+nmap <leader>49 <Plug>AirlineSelectTab49
+nmap <leader>50 <Plug>AirlineSelectTab50
+nmap <leader>51 <Plug>AirlineSelectTab51
+nmap <leader>52 <Plug>AirlineSelectTab52
+nmap <leader>53 <Plug>AirlineSelectTab53
+nmap <leader>54 <Plug>AirlineSelectTab54
+nmap <leader>55 <Plug>AirlineSelectTab55
+nmap <leader>56 <Plug>AirlineSelectTab56
+nmap <leader>57 <Plug>AirlineSelectTab57
+nmap <leader>58 <Plug>AirlineSelectTab58
+nmap <leader>59 <Plug>AirlineSelectTab59
+nmap <leader>60 <Plug>AirlineSelectTab60
+nmap <leader>61 <Plug>AirlineSelectTab61
+nmap <leader>62 <Plug>AirlineSelectTab62
+nmap <leader>63 <Plug>AirlineSelectTab63
+nmap <leader>64 <Plug>AirlineSelectTab64
+nmap <leader>65 <Plug>AirlineSelectTab65
+nmap <leader>66 <Plug>AirlineSelectTab66
+nmap <leader>67 <Plug>AirlineSelectTab67
+nmap <leader>68 <Plug>AirlineSelectTab68
+nmap <leader>69 <Plug>AirlineSelectTab69
+nmap <leader>70 <Plug>AirlineSelectTab70
+nmap <leader>71 <Plug>AirlineSelectTab71
+nmap <leader>72 <Plug>AirlineSelectTab72
+nmap <leader>73 <Plug>AirlineSelectTab73
+nmap <leader>74 <Plug>AirlineSelectTab74
+nmap <leader>75 <Plug>AirlineSelectTab75
+nmap <leader>76 <Plug>AirlineSelectTab76
+nmap <leader>77 <Plug>AirlineSelectTab77
+nmap <leader>78 <Plug>AirlineSelectTab78
+nmap <leader>79 <Plug>AirlineSelectTab79
+nmap <leader>80 <Plug>AirlineSelectTab80
+nmap <leader>81 <Plug>AirlineSelectTab81
+nmap <leader>82 <Plug>AirlineSelectTab82
+nmap <leader>83 <Plug>AirlineSelectTab83
+nmap <leader>84 <Plug>AirlineSelectTab84
+nmap <leader>85 <Plug>AirlineSelectTab85
+nmap <leader>86 <Plug>AirlineSelectTab86
+nmap <leader>87 <Plug>AirlineSelectTab87
+nmap <leader>88 <Plug>AirlineSelectTab88
+nmap <leader>89 <Plug>AirlineSelectTab89
+nmap <leader>90 <Plug>AirlineSelectTab90
+nmap <leader>91 <Plug>AirlineSelectTab91
+nmap <leader>92 <Plug>AirlineSelectTab92
+nmap <leader>93 <Plug>AirlineSelectTab93
+nmap <leader>94 <Plug>AirlineSelectTab94
+nmap <leader>95 <Plug>AirlineSelectTab95
+nmap <leader>96 <Plug>AirlineSelectTab96
+nmap <leader>97 <Plug>AirlineSelectTab97
+nmap <leader>98 <Plug>AirlineSelectTab98
+nmap <leader>99 <Plug>AirlineSelectTab99
+"----------------------------------------------}}}
 
 " --INSERT-- is unncessary because of airline
 set noshowmode
