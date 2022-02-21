@@ -33,7 +33,7 @@ set pastetoggle=<F2>
 let s:toggleListChars = 1
 function! ToggleListChars()
   if s:toggleListChars
-    set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+    set listchars=tab:▸\ ,extends:❯,precedes:❮
     set showbreak=↪
     set list
     let s:toggleListChars = 0
