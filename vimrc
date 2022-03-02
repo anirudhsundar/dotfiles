@@ -89,14 +89,7 @@ let g:tagbar_width = 70
 
 "Vim commentary with repeat support
 Plug 'tpope/vim-commentary'
-" vim-commentary
 
-
-
-" cscope_maps
-" Plug 'chazy/cscope_maps'
-
-" access cppman from vim with keywordprg 'K' command
 " Comment out cppman as its replaced by my tmux setup for cppreference
 " manpages
 "----------------------------------------------{{{
@@ -130,6 +123,8 @@ if has('nvim')
   " nvim lua config
   Plug 'rafcamlet/coc-nvim-lua'
 endif
+
+Plug 'vim-scripts/DoxygenToolkit.vim'
 
 " vimwiki
 "----------------------------------------------{{{
@@ -167,7 +162,7 @@ endif
   " autocmd FileType go nmap <leader>gr <Plug>(go-run)
   " autocmd FileType go nmap <leader>gt <Plug>(go-test)
   " autocmd FileType go nmap <Leader>gc <Plug>(go-coverage-toggle)
-  " let g:go_list_type = "quickfix"
+  " let g:go_list_type = 'quickfix'
   " " let g:go_def_mode='gopls'
   " " let g:go_info_mode='gopls'
   " " disable vim-go :GoDef short cut (gd)
@@ -242,7 +237,6 @@ nmap ghs <Plug>(GitGutterStageHunk)
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 "----------------------------------------------}}}
-
 
 " Vim interface for git commands using :Git, :Gsplit :Gedit
 Plug 'tpope/vim-fugitive'
