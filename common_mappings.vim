@@ -293,6 +293,36 @@ function! QuickfixToggle()
     endif
 endfunction
 
+function! s:clangCmdImpl(cmd)
+  if &autowrite | wall | endif
+  echo "Running " . a:cmd . " ..."
+  let l:output = system(a:cmd)
+  cexpr l:output
+  cwindow
+  let w:quickfix_title = a:cmd
+  if v:shell_error != 0
+    cc
+    echo "Done!"
+  endif
+  let g:clang_check_last_cmd = a:cmd
+endfunction
+
+function! ClangTool(tool)
+  if !empty(a:tool)
+    let l:filename = expand('%')
+    " if l:filename =~ '\.\(cpp\|cxx\|cc\|c\)$'
+    if &filetype =~ 'cpp' || &filetype =~ 'c'
+      call s:clangCmdImpl(a:tool . " " . l:filename)
+    endif
+  else
+    echom "Tool not defined, please mention a tool name in argument like 'clang-tidy', 'clang-check', etc"
+  endif
+endfunction
+
+command! -nargs=1 ClangTool call ClangTool(<q-args>)
+nmap <silent> <leader><leader>cc :ClangTool 'clang-check'<CR>
+nmap <silent> <leader><leader>ct :ClangTool 'clang-tidy'<CR>
+
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?"
       \ ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?"
