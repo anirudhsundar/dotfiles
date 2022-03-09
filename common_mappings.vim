@@ -180,8 +180,8 @@ noremap H ^
 noremap L $
 
 " Always use very magic mode
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 
 map <tab> %
 
