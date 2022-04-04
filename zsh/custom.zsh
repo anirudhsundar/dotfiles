@@ -47,7 +47,8 @@ for plugin ($custom_plugins); do
   fi
 done
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=44'
+# Uncomment when using solarized theme for visibility of autosuggestion highlight
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=44'
 
 # Custom output format for time command
 TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
