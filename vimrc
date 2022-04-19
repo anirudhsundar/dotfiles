@@ -313,7 +313,6 @@ function! RipGrepOperatorWrapper(cur, visualFlag=0)
     set operatorfunc=RipGrepOperator
     return 'g@'
   else
-    echom "test"
     execute 'call RipGrepOperator(visualmode())'
   endif
 endfunction
@@ -335,7 +334,7 @@ function! RipGrepOperator(type)
   elseif exists("s:ripgrepCur") && s:ripgrepCur == 'w'
     silent execute "RgWord " . @@
   elseif exists("s:ripgrepCur") && s:ripgrepCur == 'i'
-    silent execute "RgOpt --no-ignore-vcs -- " . @@
+    silent execute "RgOpt --no-ignore-vcs --fixed-strings -- " . @@
   else
     silent execute "RgFixed " . @@
   endif
