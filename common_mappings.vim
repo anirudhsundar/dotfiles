@@ -15,6 +15,9 @@ nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
 " My left hand will think me
 inoremap jk <esc>
 
+" paste without yank, I'll never expect that
+vnoremap p "_dP
+
 " I'll never use the command-line window
 nnoremap q: <nop>
 
