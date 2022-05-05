@@ -182,6 +182,11 @@ command! Cdcur execute 'lcd' expand("%:h")
 noremap H ^
 noremap L $
 
+" Reset the original H and L with leader versions
+noremap <leader>H H
+noremap <leader>L L
+noremap <leader>M M
+
 " Always use very magic mode
 " nnoremap / /\v
 " vnoremap / /\v
