@@ -66,6 +66,7 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
   Plug 'nvim-treesitter/playground'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'lewis6991/nvim-treesitter-context'
 else
   " Enhanced syntax highlight for cpp for vim
   Plug 'octol/vim-cpp-enhanced-highlight'
