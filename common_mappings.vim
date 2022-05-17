@@ -18,6 +18,9 @@ inoremap jk <esc>
 " paste without yank, I'll never expect that
 vnoremap p "_dP
 
+" When pasting with p instead of P by mistake
+nnoremap <leader>P uh.
+
 " I'll never use the command-line window
 nnoremap q: <nop>
 
