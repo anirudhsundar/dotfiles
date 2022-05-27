@@ -49,13 +49,13 @@ fi
 #######################
 # Node for COC vim
 #######################
-if [[ ! -d $HOME/.node_local ]]; then
-  mkdir -p $HOME/.node_local/node
-  curl -sLo $HOME/.node_local/install-node.now.sh install-node.now.sh/lts
-  chmod +x $HOME/.node_local/install-node.now.sh
-  $HOME/.node_local/install-node.now.sh --prefix=$HOME/.node_local/node --yes
-fi
-add_to_path "export PATH=$HOME/.node_local/node/bin:\$PATH"
+# if [[ ! -d $HOME/.node_local ]]; then
+#   mkdir -p $HOME/.node_local/node
+#   curl -sLo $HOME/.node_local/install-node.now.sh install-node.now.sh/lts
+#   chmod +x $HOME/.node_local/install-node.now.sh
+#   $HOME/.node_local/install-node.now.sh --prefix=$HOME/.node_local/node --yes
+# fi
+# add_to_path "export PATH=$HOME/.node_local/node/bin:\$PATH"
 
 #######################
 # FORGIT

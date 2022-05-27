@@ -23,11 +23,11 @@ function cppsymbol(){
   BASE_CMD="$READELF -sW "
 	FILTER_CMD="awk '{print \$NF}'| c++filt"
 	if [ -n "$2" ]; then
-    echo "command to be run: $BASE_CMD $1 | $FILTER_CMD | grep $2"
+    # echo "command to be run: $BASE_CMD $1 | $FILTER_CMD | grep $2"
 		eval "$BASE_CMD $1 | $FILTER_CMD | grep $2"
     return $?
 	else
-    echo "command to be run: $BASE_CMD $1 | $FILTER_CMD | fzf"
+    # echo "command to be run: $BASE_CMD $1 | $FILTER_CMD | fzf"
 		eval "$BASE_CMD $1 | $FILTER_CMD | fzf"
 		return $?
 	fi
