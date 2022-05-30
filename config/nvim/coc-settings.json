@@ -4,9 +4,80 @@
   "languageserver": {
     "ffi-navigator": {
       "command": "python",
-      "args": ["-m", "ffi_navigator.langserver"],
-      "filetypes": ["cpp", "python"]
+      "args": [
+        "-m",
+        "ffi_navigator.langserver"
+      ],
+      "filetypes": [
+        "cpp",
+        "python"
+      ]
+    }
+  },
+  "diagnostic-languageserver.filetypes": {
+    "python": "flake8"
+  },
+  "diagnostic-languageserver.linters": {
+    "flake8": {
+      "sourceName": "flake8",
+      "command": "flake8",
+      "debounce": 200,
+      "rootPatterns": [
+        ".git",
+        "pyproject.toml",
+        "setup.py"
+      ],
+      "args": [
+        "--select=E9,F63,F7"
+      ],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "formatLines": 1,
+      "formatPattern": [
+        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
+        }
+      ],
+      "securities": {
+        "W": "info",
+        "E": "warning",
+        "F": "info",
+        "C": "info",
+        "N": "hint"
+      }
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": [
+      "black",
+      "isort",
+      "docformatter"
+    ]
+  },
+  "diagnostic-languageserver.formatters": {
+    "black": {
+      "command": "black",
+      "args": [
+        "-q",
+        "-"
+      ]
+    },
+    "isort": {
+      "command": "isort",
+      "args": [
+        "-q",
+        "-"
+      ]
+    },
+    "docformatter": {
+      "command": "docformatter",
+      "args": [
+        "-"
+      ]
     }
   }
-
 }
