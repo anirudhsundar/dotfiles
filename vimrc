@@ -272,9 +272,9 @@ nnoremap <silent> <Leader>fm :FZFMru --multi<CR>
 " 'Opened files hitory'
 nnoremap <silent> <Leader>fh :History<CR>
 " 'Lines in all open buffer'
-nnoremap <silent> <Leader>fl :Lines<CR>
+nnoremap <silent> <Leader>fla :Lines<CR>
 " 'Lines in current buffer'
-nnoremap <silent> <Leader>fc :BLines<CR>
+nnoremap <silent> <Leader>flb :BLines<CR>
 command! -bang -nargs=* RgFixed call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 command! -bang -nargs=* RgFixedCur call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview({'dir': expand('%:p:h')}), <bang>0)
 command! -bang -nargs=* RgWord call fzf#vim#grep('rg --column --line-number --no-heading -w --smart-case --follow --color "always" '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
