@@ -4,3 +4,4 @@ if !has('nvim')
 endif
 let s:notend = '\%(\<else\s\+\)\@<!'
 let b:match_words= '\<if\>:\<else\>,' . s:notend . '\<if\>:\<else\s\+if\>'
+set matchpairs+=<:>
