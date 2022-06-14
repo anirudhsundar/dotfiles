@@ -165,7 +165,7 @@ endif
 " quickfix list mappings
 nnoremap ]q :cnext<CR>zv
 nnoremap [q :cprevious<CR>zv
-nnoremap <leader>qw :cclose<CR>
+" nnoremap <leader>qw :cclose<CR>
 
 " Save
 inoremap <C-s>     <C-O>:update<cr>
@@ -288,19 +288,25 @@ function! s:GrepOperator(type)
     let @@ = saved_unnamed_register
 endfunction
 
-nnoremap <leader>q :call QuickfixToggle()<cr>
+nnoremap <leader>qf :call QuickfixToggle()<cr>
 
 let g:quickfix_is_open = 0
 
 function! QuickfixToggle()
+    for winnr in range(1, winnr('$'))
+      echom getwinvar(winnr, '&syntax')
+      if getwinvar(winnr, '&syntax') == 'qf'
+        let g:quickfix_is_open = 1
+      else
+        let g:quickfix_is_open = 0
+      endif
+    endfor
     if g:quickfix_is_open
         cclose
-        let g:quickfix_is_open = 0
         execute g:quickfix_return_to_window . "wincmd w"
     else
         let g:quickfix_return_to_window = winnr()
         copen
-        let g:quickfix_is_open = 1
     endif
 endfunction
 
