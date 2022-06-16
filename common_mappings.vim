@@ -288,7 +288,7 @@ function! s:GrepOperator(type)
     let @@ = saved_unnamed_register
 endfunction
 
-nnoremap <leader>qf :call QuickfixToggle()<cr>
+nnoremap <leader>qw :call QuickfixToggle()<cr>
 
 let g:quickfix_is_open = 0
 
