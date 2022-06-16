@@ -19,8 +19,8 @@
   save = commit -am "Save"
 	d = difftool
 	tr = log --oneline --graph --decorate --all
-  pushom = push origin master
-  pullom = pull origin master
+  pushom = push origin main
+  pullom = pull origin main
   files = show --name-only --oneline
   list-all-files = ls-tree --name-only --full-tree -r
 	pullrb = pull --rebase
