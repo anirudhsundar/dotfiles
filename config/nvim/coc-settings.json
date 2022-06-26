@@ -15,26 +15,25 @@
     }
   },
   "diagnostic-languageserver.filetypes": {
-    "python": "flake8"
+    "python": "pylint"
   },
   "diagnostic-languageserver.linters": {
-    "flake8": {
-      "sourceName": "flake8",
-      "command": "flake8",
-      "debounce": 200,
-      "rootPatterns": [
-        ".git",
-        "pyproject.toml",
-        "setup.py"
-      ],
+    "pylint": {
+      "sourceName": "pylint",
+      "command": "pylint",
       "args": [
-        "--select=E9,F63,F7"
+        "--output-format",
+        "text",
+        "--rcfile",
+        "~/.pylintrc",
+        "--score",
+        "no",
+        "--msg-template",
+        "'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
+        "%file"
       ],
-      "offsetLine": 0,
-      "offsetColumn": 0,
-      "formatLines": 1,
       "formatPattern": [
-        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+        "^(\\d+?):(\\d+?):([a-z]+?):(.*)$",
         {
           "line": 1,
           "column": 2,
@@ -42,13 +41,21 @@
           "message": 4
         }
       ],
+      "rootPatterns": [
+        ".git",
+        "pyproject.toml",
+        "setup.py"
+      ],
       "securities": {
-        "W": "info",
-        "E": "warning",
-        "F": "info",
-        "C": "info",
-        "N": "hint"
-      }
+        "informational": "hint",
+        "refactor": "info",
+        "convention": "info",
+        "warning": "warning",
+        "error": "error",
+        "fatal": "error"
+      },
+      "offsetColumn": 1,
+      "formatLines": 1
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
