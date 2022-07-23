@@ -355,6 +355,8 @@ augroup line_return
         \ endif
 augroup END
 
+command! -nargs=0 JsonFormat :%!python -m json.tool
+
 "---------------------------------------------
 " End of Common mappings
 "------------------------------------------}}}
