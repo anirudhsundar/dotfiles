@@ -1,5 +1,5 @@
 {
-  "suggest.floatEnable": true,
+  "suggest.noselect": true,
   "suggest.labelMaxLength": 80,
   "languageserver": {
     "ffi-navigator": {
