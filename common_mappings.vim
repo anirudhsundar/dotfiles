@@ -100,7 +100,7 @@ nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]T :tablast<CR>
 nnoremap <silent> [T :tabfirst<CR>
-nnoremap <silent> <leader><leader>t :tabnew
+nnoremap <silent> <leader><leader>t :tabnew<CR>
 
 nnoremap <silent> <leader>ev :execute 'edit '.fnameescape(resolve(fnamemodify('~/.vimrc', ':p')))<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
@@ -119,9 +119,11 @@ function! ToggleMouse()
     if &mouse == 'a'
         " disable mouse
         set mouse=
+        echom "mouse disabled"
     else
         " enable mouse everywhere
         set mouse=a
+        echom "mouse enabled"
     endif
 endfunc
 

@@ -35,4 +35,5 @@ source $HOME/.bin/lfcd.sh
 
 alias vman='MANPAGER="vim -M +MANPAGER -" man'
 alias tkill="for s in \$(tmux list-sessions | awk '{print \$1}' | rg ':' -r '' | fzf --multi); do tmux kill-session -t \$s; done;"
+alias recent='ls -lrtha | tail -n 1 | awk "{print \$NF}"'
 
