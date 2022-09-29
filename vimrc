@@ -488,6 +488,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'wellle/targets.vim'
 
 Plug 'lfv89/vim-interestingwords'
+let g:interestingWordsRandomiseColors = 1
 
 Plug 'sjl/clam.vim'
 
