@@ -1,6 +1,7 @@
 alias ls='ls --color=auto'
 alias l='ls -lrtha --color=auto'
 alias grep='grep --color=auto'
+alias rgc="rg --color=always"
 alias ta='tmux a'
 alias minivim='vim -u ~/.minivimrc'
 alias cdr='cd $(git rev-parse --show-toplevel)'
