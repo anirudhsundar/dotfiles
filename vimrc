@@ -747,7 +747,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Global extensions list
-let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-jedi', 'coc-go']
+let g:coc_global_extensions = ['coc-clangd', 'coc-cmake', 'coc-go', 'coc-pyright']
 
 " TextEdit might fail if hidden is not set.
 set hidden
