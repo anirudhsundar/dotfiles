@@ -1,6 +1,7 @@
 {
   "suggest.noselect": true,
   "suggest.labelMaxLength": 80,
+  "clangd.fallbackFlags": [ "-std=c++17" ],
   "languageserver": {
     "ffi-navigator": {
       "command": "python",
