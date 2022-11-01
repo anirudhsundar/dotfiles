@@ -67,6 +67,8 @@ if has('nvim')
   Plug 'nvim-treesitter/playground'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'lewis6991/nvim-treesitter-context'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'ThePrimeagen/refactoring.nvim'
 else
   " Enhanced syntax highlight for cpp for vim
   Plug 'octol/vim-cpp-enhanced-highlight'
