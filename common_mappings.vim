@@ -39,6 +39,19 @@ nnoremap <leader><C-n> :set relativenumber!<CR>
 nnoremap <C-E>p :set invpaste paste?<CR>
 set pastetoggle=<F2>
 
+function! ToggleDiff()
+  if &diff
+    execute 'diffoff'
+    echom 'diffoff'
+  else
+    execute 'diffthis'
+    echom 'diffthis'
+  endif
+endfunction
+
+nnoremap <leader><leader>d :call ToggleDiff()<CR>
+
+
 let s:toggleListChars = 1
 function! ToggleListChars()
   if s:toggleListChars
