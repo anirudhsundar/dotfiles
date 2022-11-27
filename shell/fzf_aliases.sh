@@ -28,7 +28,7 @@ function cppsymbol(){
     return $?
 	else
     # echo "command to be run: $BASE_CMD $1 | $FILTER_CMD | fzf"
-		eval "$BASE_CMD $1 | $FILTER_CMD | fzf"
+		eval "$BASE_CMD $1 | $FILTER_CMD | fzf --multi"
 		return $?
 	fi
 }

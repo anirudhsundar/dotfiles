@@ -18,7 +18,7 @@
   ds = diff --staged
   save = commit -am "Save"
 	d = difftool
-	tr = log --oneline --graph --decorate --all
+	tr = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   pushom = push origin main
   pullom = pull origin main
   files = show --name-only --oneline
@@ -27,7 +27,7 @@
 	count = diff --stat "4b825dc642cb6eb9a060e54bf8d69288fbee4904" # hash of empty tree
   grc = grep -C 1
   ec = config --global -e
-	patch = !git --no-pager diff --no-color
+	patch = !git --no-pager diff --no-ext-diff --no-color
   authors = shortlog -ns
 [filter "lfs"]
 	clean = git-lfs clean -- %f
