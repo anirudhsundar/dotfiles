@@ -21,7 +21,7 @@ alias tw='task +work'
 alias th='task +home'
 alias te='task +extra'
 
-alias le='exa -lga --icons --group-directories-first'
+alias le='exa -lga --icons --group-directories-first --git --grid -snew'
 alias ex='exa --icons --group-directories-first'
 
 # Install screen-256color terminfo using the below command
@@ -36,5 +36,44 @@ source $HOME/.bin/lfcd.sh
 
 alias vman='MANPAGER="vim -M +MANPAGER -" man'
 alias tkill="for s in \$(tmux list-sessions | awk '{print \$1}' | rg ':' -r '' | fzf --multi); do tmux kill-session -t \$s; done;"
-alias recent='ls -lrtha | tail -n 1 | awk "{print \$NF}"'
+alias recent='ls -lrth | tail -n 1 | awk "{print \$NF}"'
+alias recentd='ls -lrthd */ | tail -n 1 | awk "{print \$NF}"'
+
+padd() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    if [[ $2 == "front" ]]; then
+      PATH="$1${PATH:+":$PATH"}"
+    else
+      PATH="${PATH:+"$PATH:"}$1"
+    fi
+  fi
+}
+
+ldadd() {
+  if [ -d "$1" ] && [[ ":$LD_LIBRARY_PATH:" != *":$1:"* ]]; then
+    if [[ $2 == "front" ]]; then
+      LD_LIBRARY_PATH="$1${LD_LIBRARY_PATH:+":$LD_LIBRARY_PATH"}"
+    else
+      LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+"$LD_LIBRARY_PATH:"}$1"
+    fi
+  fi
+}
+
+pypadd() {
+  if [ -d "$1" ] && [[ ":$PYTHONPATH:" != *":$1:"* ]]; then
+    if [[ $2 == "front" ]]; then
+      PYTHONPATH="$1${PYTHONPATH:+":$PYTHONPATH"}"
+    else
+      PYTHONPATH="${PYTHONPATH:+"$PYTHONPATH:"}$1"
+    fi
+  fi
+}
+
+export HOWDOI_COLORIZE=1
+
+if command -v thefuck >& /dev/null
+then
+  eval $(thefuck --alias)
+  alias fk=fuck
+fi
 

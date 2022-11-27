@@ -1,6 +1,4 @@
 bindkey -v
-# Setup common aliases
-source $HOME/.shell/aliases.sh
 
 # Update PATH env with auto installed packages
 source $HOME/.shell/paths.sh
@@ -63,5 +61,12 @@ if [[ -a $LOCAL_ZSH_CONFIG_MINE ]]; then
   source $LOCAL_ZSH_CONFIG_MINE
 fi
 
+# Setup common aliases
+source $HOME/.shell/aliases.sh
+
+eval "$(zoxide init zsh)"
+
 # Add starship prompt
 eval "$(starship init zsh)"
+
+

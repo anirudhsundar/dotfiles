@@ -129,6 +129,8 @@ endif
 
 Plug 'vim-scripts/DoxygenToolkit.vim'
 
+Plug 'honza/vim-snippets'
+
 " vimwiki
 "----------------------------------------------{{{
 if has('nvim')
@@ -613,16 +615,18 @@ autocmd! BufNewFile,BufRead *.vpm call SetVimPresentationMode()
 function SetVimPresentationMode()
   nnoremap <buffer> <silent> <Right> :n<CR>
   nnoremap <buffer> <silent> <Left> :N<CR>
-  set syntax=markdown
   set filetype=markdown
-  set textwidth=80
+  set syntax=markdown
+  set conceallevel=2
+  set linebreak
+  " set textwidth=80
   set shortmess+=F
 
   if exists(":Goyo")
     if !exists('#goyo')
-      nnoremap <buffer> <silent> <leader>G :Goyo 60%x75%+20%<CR>
+      nnoremap <buffer> <silent> <leader>G :Goyo x75%<CR>
       nnoremap <buffer> <silent> <leader>g :Goyo!<CR>
-      Goyo 60%x75%+20%
+      Goyo x75%
     endif
   endif
 endfunction
@@ -703,17 +707,17 @@ inoremap {,    {<CR>},<Esc>O
 "inoremap <Right> <Nop>
 "inoremap <Up> <Nop>
 
-" Remove newbie crutches in Normal Mode
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
+" " Remove newbie crutches in Normal Mode
+" nnoremap <Down> <Nop>
+" nnoremap <Left> <Nop>
+" nnoremap <Right> <Nop>
+" nnoremap <Up> <Nop>
 
-" Remove newbie crutches in Visual Mode
-vnoremap <Down> <Nop>
-vnoremap <Left> <Nop>
-vnoremap <Right> <Nop>
-vnoremap <Up> <Nop>
+" " Remove newbie crutches in Visual Mode
+" vnoremap <Down> <Nop>
+" vnoremap <Left> <Nop>
+" vnoremap <Right> <Nop>
+" vnoremap <Up> <Nop>
 
 " Taken from junegunn's vimrc on github
 
@@ -888,6 +892,9 @@ nmap <leader>cgq  <Plug>(coc-format-selected)
 
 " Apply AutoFix to problem on the current line.
 nmap <leader>cqf  <Plug>(coc-fix-current)
+
+vmap <leader>ccs <Plug>(coc-convert-snippet)
+imap <C-l> <Plug>(coc-snippets-expand)
 " }}}
 
 

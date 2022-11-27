@@ -15,6 +15,7 @@
       ]
     }
   },
+  "python.analysis.typeCheckingMode": "off",
   "python.pythonPath": "~/.bin/coc_pyright.sh",
   "diagnostic-languageserver.filetypes": {
     "python": "pylint"
