@@ -75,6 +75,12 @@ pypadd() {
   fi
 }
 
+# Remove a directory from $PATH
+premove() {
+    DIR=$1
+    PATH=$(tr : '\n' <<<"$PATH" | grep -x -v "$DIR" | paste -sd:)
+}
+
 export HOWDOI_COLORIZE=1
 
 if command -v thefuck >& /dev/null
