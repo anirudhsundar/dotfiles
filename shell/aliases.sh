@@ -6,6 +6,12 @@ alias ta='tmux a'
 alias minivim='vim -u ~/.minivimrc'
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias rf='readlink -f'
+
+function mkd() {
+  mkdir -p $1
+  cd $1
+}
+
 function cdf() {
   filepath=$(readlink -f $1)
   dir=$(dirname $filepath)
