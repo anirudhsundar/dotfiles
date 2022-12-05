@@ -38,6 +38,8 @@ alias chompeof="perl -pi -e 'chomp if eof'"
 alias unique="awk '!a[\$0]++'"
 alias tmpd="cd \$(mktemp -d)"
 
+export NPM_CONFIG_PREFIX=~/.node_local/node_modules
+
 source $HOME/.bin/lfcd.sh
 
 alias vman='MANPAGER="vim -M +MANPAGER -" man'
