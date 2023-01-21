@@ -31,7 +31,7 @@ Plug 'tpope/vim-sensible'
 
 " A couple of dark themes
 Plug 'joshdick/onedark.vim'
-let g:onedark_terminal_italics=1
+let g:onedark_terminal_italics=0
 " Plug 'gosukiwi/vim-atom-dark'
 " Plug 'nanotech/jellybeans.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
