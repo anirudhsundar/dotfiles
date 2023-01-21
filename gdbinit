@@ -6,11 +6,7 @@ source ~/local.gdbinit
 #set confirm off
 
 # source TVM specific scripts
-source ~/tvm-gdb-commands/commands.py
-alias tvd = tvm_dump
-alias tvt = tvm_type
-alias tvat = tvm_attr
-alias tvf = tvm_fields
+source ~/.gdb/tvm-gdb-commands/commands.py
 
 python
 import sys
