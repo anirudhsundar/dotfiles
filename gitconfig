@@ -28,6 +28,7 @@
   grc = grep -C 1
   ec = config --global -e
 	patch = !git --no-pager diff --no-ext-diff --no-color
+  modified = !git stn | tail -n +2 | awk '{print $NF}' | xargs readlink -f
   authors = shortlog -ns
 [filter "lfs"]
 	clean = git-lfs clean -- %f
