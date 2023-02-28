@@ -63,7 +63,7 @@ fi
 # Setup common aliases
 source $HOME/.shell/aliases.sh
 
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 
 # Add starship prompt
 eval "$(starship init zsh)"
