@@ -125,6 +125,7 @@ nnoremap <silent> ]B :blast<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> <leader><C-w> :bdelete<CR>
 
+set mouse=
 nnoremap <silent> <leader>m :call ToggleMouse()<CR>
 
 function! ToggleMouse()
