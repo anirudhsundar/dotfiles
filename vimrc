@@ -72,6 +72,14 @@ if has('nvim')
   Plug 'ThePrimeagen/refactoring.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'gfanto/fzf-lsp.nvim'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  " Plug 'hrsh7th/cmp-buffer'
+  " Plug 'hrsh7th/cmp-path'
+  " Plug 'hrsh7th/cmp-cmdline'
+  " Plug 'hrsh7th/cmp-vsnip'
+  " Plug 'hrsh7th/vim-vsnip'
+
   Plug 'nvim-telescope/telescope.nvim'
   nmap <leader>tf :Telescope find_files find_command=rg,--ignore,--hidden,--files prompt_prefix=🔍<cr>
 else
@@ -112,8 +120,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 
 " LSP support
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'antoinemadec/coc-fzf'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'antoinemadec/coc-fzf'
 
 " Detect indent
 Plug 'timakro/vim-yadi'
@@ -129,7 +137,7 @@ Plug 'metakirby5/codi.vim'
 
 if has('nvim')
   " nvim lua config
-  Plug 'rafcamlet/coc-nvim-lua'
+  " Plug 'rafcamlet/coc-nvim-lua'
 endif
 
 Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -441,7 +449,7 @@ Plug 'vim-airline/vim-airline'
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:airline_extensions = ['tabline', 'hunks', 'branch', 'coc']
+let g:airline_extensions = ['tabline', 'hunks', 'branch']
 if !has('nvim')
   let g:airline_extensions = g:airline_extensions + ['searchcount']
 endif
