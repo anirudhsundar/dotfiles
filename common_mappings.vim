@@ -8,8 +8,8 @@ let g:netrw_winsize = 20
 nmap <F7> :Lexplore<CR>
 
 " super quick search and replace
-nnoremap <leader><leader><Space> :s#<C-r>=expand("<cword>")<CR>#
-nnoremap <leader><leader>%       :%s#<C-r>=expand("<cword>")<CR>#
+" nnoremap <leader><leader><Space> :s#<C-r>=expand("<cword>")<CR>#
+nnoremap <leader><leader><Space>       :%s#<C-r>=expand("<cword>")<CR>#
 
 " nnoremap <leader><leader><Space> :s#\<<C-r>=expand("<cword>")<CR>\>#
 " nnoremap <leader><leader>%       :%s#\<<C-r>=expand("<cword>")<CR>\>#
