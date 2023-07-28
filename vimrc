@@ -44,6 +44,10 @@ Plug 'morhetz/gruvbox'
 " Molokai theme
 Plug 'sickill/vim-monokai'
 
+if has('nvim')
+  Plug 'folke/tokyonight.nvim'
+endif
+
 " Rainbow-csv
 " Plug 'mechatroner/rainbow_csv'
 
@@ -446,6 +450,7 @@ Plug 'tpope/vim-repeat'
 " Airline statusline when powerline fonts are available
 "----------------------------------------------{{{
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Lightline or Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -457,6 +462,7 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline_theme='base16_synth_midnight_dark'
 
 " Airline tab mappings for buffer jump
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -660,7 +666,7 @@ if $TMUX != '' && !has('nvim')
     endif
   endif
 else
-  colorscheme onedark
+  colorscheme tokyonight-moon
 endif
 
 let g:cpp_experimental_template_highlight = 1
