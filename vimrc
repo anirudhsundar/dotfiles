@@ -666,7 +666,7 @@ if $TMUX != '' && !has('nvim')
     endif
   endif
 else
-  colorscheme tokyonight-moon
+  colorscheme tokyonight-night
 endif
 
 let g:cpp_experimental_template_highlight = 1
