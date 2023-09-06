@@ -1,7 +1,20 @@
 -- lspconfig
 local nvim_lsp = require('lspconfig')
 local fzf_lsp = require('fzf_lsp')
-local servers = { 'clangd', 'pylsp', 'tsserver'}
+local servers = { clangd = {}, pylsp = {}, tsserver = {}}
+
+-- language specific lsp configs
+--
+-- pylsp config
+servers['pylsp'] = {
+  pylsp = {
+    plugins = {
+      pylint = {
+        enabled = true
+      }
+    }
+  }
+}
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -27,8 +40,9 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<space>cgq', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
 
-for _, lsp in ipairs(servers) do
+for lsp, settings in pairs(servers) do
 	nvim_lsp[lsp].setup {
+    settings = settings,
 		on_attach = on_attach
 	}
 end
