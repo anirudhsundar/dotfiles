@@ -3,7 +3,14 @@ alias l='ls -lrtha --color=auto'
 alias grep='grep --color=auto'
 alias rgc="rg --color=always"
 alias ta='tmux a'
-alias minivim='vim -u ~/.minivimrc'
+
+if command -v nvim &> /dev/null
+then
+  alias minivim='nvim -u ~/.minivimrc'
+else
+  alias minivim='vim -u ~/.minivimrc'
+fi
+
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias rf='readlink -f'
 
