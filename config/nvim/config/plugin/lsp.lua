@@ -11,6 +11,9 @@ servers['pylsp'] = {
     plugins = {
       pylint = {
         enabled = true
+      },
+      pycodestyle = {
+        enabled = false
       }
     }
   }
