@@ -13,6 +13,8 @@ fi
 
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias rf='readlink -f'
+alias lwp="grep '-' | sed -E 's/[0-9]+_/_/g' | awk -F ',' -v OFS=, '{print \$1,\$2,\$6}'"
+alias lwp_sum="grep '-' | sed -E 's/[0-9]+_/_/g' | awk -F ',' -v OFS=, 'NR>1{a[\$1]+=\$6;} END{for(i in a) print i,a[i]}' | sed '1ifunction name,pcycles'"
 
 function mkd() {
   mkdir -p $1
@@ -45,7 +47,7 @@ alias chompeof="perl -pi -e 'chomp if eof'"
 alias unique="awk '!a[\$0]++'"
 alias tmpd="cd \$(mktemp -d)"
 
-export NPM_CONFIG_PREFIX=~/.node_local/node_modules
+# export NPM_CONFIG_PREFIX=~/.node_local/node_modules
 
 source $HOME/.bin/lfcd.sh
 
