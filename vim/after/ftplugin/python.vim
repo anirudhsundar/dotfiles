@@ -7,3 +7,4 @@ nnoremap <buffer> <leader>ipdb :normal oimport ipdb; ipdb.set_trace()<esc>
 
 command! -nargs=0 ISort silent! :!isort %
 command! -nargs=0 Black silent! :!black %
+command! -nargs=0 RemoveUnusedImports silent! :!autoflake --remove-all-unused-imports -i %
