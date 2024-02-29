@@ -1,7 +1,7 @@
 -- lspconfig
 local nvim_lsp = require('lspconfig')
 local fzf_lsp = require('fzf_lsp')
-local servers = { clangd = {}, pylsp = {}, tsserver = {}}
+local servers = { clangd = {}, pylsp = {}, tsserver = {}, cmake = {}}
 
 -- language specific lsp configs
 --
