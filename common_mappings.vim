@@ -256,22 +256,14 @@ inoremap <C-F> <C-O><C-F>
 inoremap <C-E>d <C-R>=strftime('%F')<CR>
 inoremap <C-E>p <C-R>=resolve(expand("%:p"))<CR>
 
-augroup HighlightTrailSpace
-  autocmd!
-  autocmd SourcePre,VimEnter * highlight TrailSpace ctermbg=red ctermfg=yellow
-  autocmd SourcePre,VimEnter * match TrailSpace /\s\+$/
-augroup END
+" Define the highlight group for trailing spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
 
-function s:ToggleTrailSpaceHighlight(setHighlight)
-    if a:setHighlight
-        highlight TrailSpace ctermbg=red ctermfg=yellow
-        call matchadd("TrailSpace", '\s\+$')
-    else
-        highlight clear TrailSpace
-    endif
-endfunction
-
-command! -bang TrailSpaceHighlightDisable call s:ToggleTrailSpaceHighlight(<bang>0)
+" Match trailing spaces and apply the highlight group
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 if exists("*trim") " This is needed because trim() does not exist in older vim versions
   " grepprg is always set to use vimgrep as rg is always present at $HOME/.bin
@@ -375,6 +367,10 @@ augroup line_return
 augroup END
 
 command! -nargs=0 JsonFormat :%!python -m json.tool
+
+
+                            
+
 
 "---------------------------------------------
 " End of Common mappings
