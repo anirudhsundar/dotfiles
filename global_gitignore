@@ -2,6 +2,7 @@
 __pycache__/
 .clangd/
 compile_commands.json
+tablegen_compile_commands.yml
 *.swp
 *.swo
 setmakeprg.vim

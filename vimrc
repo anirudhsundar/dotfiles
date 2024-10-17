@@ -20,6 +20,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+function! IsPluginLoaded(name)
+  return has_key(g:plugs, a:name) && isdirectory(g:plugs[a:name].dir) && stridx(&runtimepath, trim(g:plugs[a:name].dir, "/")) >= 0
+endfunction
+
+
+
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
@@ -515,6 +521,11 @@ if has('nvim')
   Plug 'ggandor/lightspeed.nvim'
 else
   Plug 'justinmk/vim-sneak'
+endif
+
+" Source local plugins
+if has('nvim')
+  source $HOME/.local_nvim.plugins
 endif
 
 "----------------------------------------------}}}

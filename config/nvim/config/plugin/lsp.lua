@@ -1,7 +1,7 @@
 -- lspconfig
 local nvim_lsp = require('lspconfig')
 local fzf_lsp = require('fzf_lsp')
-local servers = { clangd = {}, pylsp = {}, tsserver = {}, cmake = {}}
+local servers = { clangd = {}, pylsp = {}, tsserver = {}, cmake = {}, lua_ls = {}, tblgen_lsp_server = {}}
 
 -- language specific lsp configs
 --
@@ -50,17 +50,28 @@ for lsp, settings in pairs(servers) do
 	}
 end
 
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = {'tablegen'},
+--   callback = function()
+--     local compile_commands_arg = '--tablegen-compilation-database='..util.find_git_ancestor(vim.fn.expand('%:p'))..'/tablegen_compile_commands.yml'
+--     vim.lsp.start({
+--         name = "tblgen_lsp_server",
+--         cmd = {"tblgen-lsp-server", compile_commands_arg},
+--         root_dir = vim.fs.dirname(vim.fs.find({'tablegen_compile_commands.yml', '.git'}, { upward = true })[1]),
+--     })
+--   end,
+-- })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'python', 'cpp'},
-  callback = function()
-    vim.lsp.start({
-        name = "ffi-navigator",
-        cmd = {"python", "-m", "ffi_navigator.langserver"},
-        root_dir = vim.fs.dirname(vim.fs.find({'.git', 'pyproject.toml'}, { upward = true })[1]),
-    })
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = {'python', 'cpp'},
+--   callback = function()
+--     vim.lsp.start({
+--         name = "ffi-navigator",
+--         cmd = {"python", "-m", "ffi_navigator.langserver"},
+--         root_dir = vim.fs.dirname(vim.fs.find({'.git', 'pyproject.toml'}, { upward = true })[1]),
+--     })
+--   end,
+-- })
 
 -- Don't like virtual text for diagnostics
 vim.diagnostic.config({ virtual_text = false })
