@@ -15,4 +15,8 @@ base_gdb_path = os.path.expanduser('~')+'/.gdb'
 sys.path.insert(0, base_gdb_path+'/libcxx-pretty-printers/src')
 from libcxx.v1.printers import register_libcxx_printers
 register_libcxx_printers (None)
+end
 
+# std::string pretty printer causes issues sometimes. Enable again to try out
+# if needed
+disable pretty-printer global libc;std::basic_string
