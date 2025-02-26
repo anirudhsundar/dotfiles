@@ -8,6 +8,8 @@ source $HOME/.shell/paths.sh
 
 source $HOME/.shell/fzf_aliases.sh
 
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
 # Update paths for binaries inside my repo
 source $HOME/.shell/common_paths.sh
 
