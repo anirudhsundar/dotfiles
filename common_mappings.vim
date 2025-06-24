@@ -37,7 +37,7 @@ nnoremap <leader><C-n> :set relativenumber!<CR>
 "set statusline=%F\ %=\col:%c\ line:%l\ %P
 "inoremap <F2> <nop>
 nnoremap <C-E>p :set invpaste paste?<CR>
-set pastetoggle=<F2>
+nnoremap <F2> :set paste!<CR>:set paste?<CR>
 
 function! ToggleDiff()
   if &diff
