@@ -162,7 +162,7 @@ Plug 'honza/vim-snippets'
 
 " vimwiki
 "----------------------------------------------{{{
-if has('nvim')
+if has('nvim') && executable('task')
   " taskwiki
   Plug 'tools-life/taskwiki'
 
