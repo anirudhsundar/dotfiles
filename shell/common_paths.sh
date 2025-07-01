@@ -1,3 +1,4 @@
+echo $SSH_CLIENT | awk '{print $1}' > ~/.last_ssh_ip
 export PATH=$PATH:$HOME/.bin
 # export MANPAGER="vim -M +MANPAGER -"
 export MANPAGER=less
