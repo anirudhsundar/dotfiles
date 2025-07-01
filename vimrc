@@ -690,6 +690,7 @@ let g:cpp_experimental_template_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 
 command! -nargs=0 JsonFormat :%!python -m json.tool
+command! -nargs=0 JsonMinify :%!python -m json.tool --compact
 
 " }}}
 
