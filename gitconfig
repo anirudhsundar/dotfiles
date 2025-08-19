@@ -1,5 +1,5 @@
 [user]
-  name = Anirudh Sundar
+  name = Anirudh Sundar Subramaniam
   useConfigOnly = true
 [diff]
   tool = vimdiff
@@ -31,6 +31,7 @@
   mod = !git stn | tail -n +2 | awk '{print $NF}' | xargs readlink -f
   authors = shortlog -ns
   modc = "!f() { git files $1 | tail -n +2 | awk '{print $NF}' | xargs readlink -f; }; f"
+  substatus = "!git submodule foreach --quiet 'expected=$(git -C \"$toplevel\" rev-parse HEAD:\"$path\") || expected=\"(none)\"; current=$(git rev-parse HEAD) || current=\"(uninitialized)\"; status=\"OK\"; [ \"$expected\" != \"$current\" ] && status=\"MISMATCH\"; printf \"%-40s %-40s %-40s %s\\n\" \"$path\" \"$expected\" \"$current\" \"$status\"'"
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
@@ -39,7 +40,7 @@
 [core]
   whitespace = cr-at-eol
   pager = diff-so-fancy | less --tabs=4 -RFX
-  editor = vim
+	editor = $EDITOR
   excludesFile = ~/.global_gitignore
 [pull]
   ff = only

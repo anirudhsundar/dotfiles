@@ -24,6 +24,10 @@ vnoremap p "_dP
 " When pasting with p instead of P by mistake
 nnoremap <leader>P uh.
 
+" Move up/down in wrapped lines with arrow keys
+nnoremap <up> gk
+nnoremap <down> gj
+
 " I'll never use the command-line window
 nnoremap q: <nop>
 
