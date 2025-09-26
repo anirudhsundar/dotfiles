@@ -3,6 +3,14 @@ local nvim_lsp = require('lspconfig')
 local fzf_lsp = require('fzf_lsp')
 local servers = { clangd = {}, pylsp = {}, cmake = {}, lua_ls = {}, tblgen_lsp_server = {}, mlir_lsp_server = {}, mojo = {} }
 
+servers['clangd'] = {
+  cmd = {
+    "clangd",
+    "--log=verbose",
+    "--query-driver=/usr/bin/g++"
+  }
+}
+
 -- language specific lsp configs
 --
 -- pylsp config
@@ -111,6 +119,17 @@ cmp.setup.cmdline({ '/', '?' }, {
     { name = 'buffer' }
   }
 })
+
+require("aerial").setup({
+  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+    vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+  end,
+})
+-- You probably also want to set a keymap to toggle aerial
+vim.keymap.set("n", "<F8>", "<cmd>AerialToggle!<CR>")
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- cmp.setup.cmdline(':', {

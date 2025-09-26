@@ -88,6 +88,8 @@ if has('nvim')
   Plug 'ThePrimeagen/refactoring.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'gfanto/fzf-lsp.nvim'
+  Plug 'stevearc/aerial.nvim'
+  nmap <silent> <leader>ds <cmd>call aerial#fzf()<cr>
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
   " Plug 'hrsh7th/cmp-buffer'
@@ -115,9 +117,9 @@ Plug 'psf/black', { 'branch': 'stable' }
 "Programming related
 "----------------------------------------------{{{
 " Vim plugin that displays tags in a window, ordered by scope
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_width = 70
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+" nmap <F8> :TagbarToggle<CR>
+" let g:tagbar_width = 70
 
 "Vim commentary with repeat support
 Plug 'tpope/vim-commentary'
@@ -162,19 +164,19 @@ Plug 'honza/vim-snippets'
 
 " vimwiki
 "----------------------------------------------{{{
-if has('nvim') && executable('task')
-  " taskwiki
-  Plug 'tools-life/taskwiki'
+" if has('nvim') && executable('task')
+"   " taskwiki
+"   Plug 'tools-life/taskwiki'
 
-  Plug 'vimwiki/vimwiki'
-  " vimwiki use markdown by default
-  let g:vimwiki_list = [{'path': '~/my-notes/',
-        \ 'syntax': 'markdown', 'ext': '.md'}]
+"   Plug 'vimwiki/vimwiki'
+"   " vimwiki use markdown by default
+"   let g:vimwiki_list = [{'path': '~/my-notes/',
+"         \ 'syntax': 'markdown', 'ext': '.md'}]
 
-  let g:vimwiki_markdown_link_ext = 1
+"   let g:vimwiki_markdown_link_ext = 1
 
-  let g:taskwiki_markup_syntax = 'markdown'
-endif
+"   let g:taskwiki_markup_syntax = 'markdown'
+" endif
 "----------------------------------------------}}}
 
 " golang
@@ -280,6 +282,8 @@ Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 Plug 'rbong/vim-flog', {'on': 'Flog'}
 
 Plug 'pgr0ss/vim-github-url'
+
+Plug 'anirudhsundar/open-gitiles.vim'
 
 "----------------------------------------------}}}
 
@@ -522,7 +526,9 @@ Plug 'sjl/clam.vim'
 Plug 'mtth/scratch.vim'
 
 if has('nvim')
-  Plug 'ggandor/lightspeed.nvim'
+  Plug 'ggandor/leap.nvim'
+  nmap <silent> s <Plug>(leap)
+  nmap <silent> S <Plug>(leap-from-window)
 else
   Plug 'justinmk/vim-sneak'
 endif
