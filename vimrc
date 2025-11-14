@@ -85,6 +85,7 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'nvim-treesitter/nvim-treesitter-context'
   Plug 'nvim-lua/plenary.nvim'
+  Plug 'yochem/jq-playground.nvim'
   Plug 'ThePrimeagen/refactoring.nvim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'gfanto/fzf-lsp.nvim'
@@ -92,6 +93,18 @@ if has('nvim')
   nmap <silent> <leader>ds <cmd>call aerial#fzf()<cr>
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
+
+  " Check if node is available before installing Copilot
+  if executable('node')
+    " Only load Copilot if Node.js is installed
+    Plug 'github/copilot.vim'
+    imap <C-L> <Plug>(copilot-accept-word)
+    imap <C-J> <Plug>(copilot-accept-line)
+  else
+    echo "Skipping Copilot: Node.js not found"
+  endif
+
+
   " Plug 'hrsh7th/cmp-buffer'
   " Plug 'hrsh7th/cmp-path'
   " Plug 'hrsh7th/cmp-cmdline'
