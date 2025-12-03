@@ -3,6 +3,7 @@ alias l='ls -lrtha --color=auto'
 alias grep='grep --color=auto'
 alias rgc="rg --color=always"
 alias ta='tmux a'
+alias ipython='python -m IPython'
 
 if command -v nvim &> /dev/null
 then
