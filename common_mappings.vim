@@ -370,7 +370,8 @@ augroup line_return
         \ endif
 augroup END
 
-command! -nargs=0 JsonFormat :%!python -m json.tool
+command! -nargs=0 JsonFormat :%!python -m json.tool --indent 2
+command! -nargs=0 JsonMinify :%!python -m json.tool --compact
 
 
                             
