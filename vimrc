@@ -65,6 +65,7 @@ let g:limelight_conceal_ctermfg = 240
 " vim-markdown
 " Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_no_default_key_mappings = 1
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_open_ip = '127.0.0.1'
@@ -538,6 +539,8 @@ Plug 'wellle/targets.vim'
 Plug 'anirudhsundar/vim-interestingwords'
 let g:interestingWordsRandomiseColors = 1
 
+Plug 'chrisbra/Colorizer'
+
 Plug 'sjl/clam.vim'
 
 Plug 'mtth/scratch.vim'
@@ -711,6 +714,49 @@ endif
 
 let g:cpp_experimental_template_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
+
+" ------------------------------------------------------------
+" OSC 52 clipboard support (works over SSH + tmux)
+" ------------------------------------------------------------
+"------------------------------------------{{{
+
+if has('nvim')
+  if exists('+clipboard')
+    set clipboard=unnamedplus
+  endif
+
+  function! s:osc52_copy(lines) abort
+    " Join lines with newline and base64 encode
+    let l:text = join(a:lines, "\n")
+    let l:encoded = system('printf %s ' . shellescape(l:text) . ' | base64 | tr -d "\n"')
+
+    " OSC 52 escape sequence
+    let l:osc52 = "\e]52;c;" . l:encoded . "\a"
+
+    " Send to terminal
+    call chansend(v:stderr, l:osc52)
+  endfunction
+
+  function! s:osc52_paste() abort
+    " Paste from terminal clipboard is not reliably supported
+    return []
+  endfunction
+
+  let g:clipboard = {
+        \ 'name': 'OSC 52',
+        \ 'copy': {
+        \    '+': function('s:osc52_copy'),
+        \    '*': function('s:osc52_copy'),
+        \  },
+        \ 'paste': {
+        \    '+': function('s:osc52_paste'),
+        \    '*': function('s:osc52_paste'),
+        \  },
+        \ }
+endif
+
+"------------------------------------------}}}
+
 
 
 " }}}
