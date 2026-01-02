@@ -277,7 +277,9 @@ if exists("*trim") " This is needed because trim() does not exist in older vim v
   endif
 endif
 
+"---------------------------------------------
 " GrepOperator defined from https://learnvimscriptthehardway.stevelosh.com
+"------------------------------------------{{{
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
 
@@ -302,6 +304,7 @@ function! s:GrepOperator(type)
 
     let @@ = saved_unnamed_register
 endfunction
+"------------------------------------------}}}
 
 nnoremap <leader>qw :call QuickfixToggle()<cr>
 
@@ -373,9 +376,7 @@ augroup END
 command! -nargs=0 JsonFormat :%!python -m json.tool --indent 2
 command! -nargs=0 JsonMinify :%!python -m json.tool --compact
 
-
-                            
-
+nnoremap <leader>yp :let @+ = expand('%:p')<CR>
 
 "---------------------------------------------
 " End of Common mappings
