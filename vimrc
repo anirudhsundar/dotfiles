@@ -65,6 +65,7 @@ let g:limelight_conceal_ctermfg = 240
 " vim-markdown
 " Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_no_default_key_mappings = 1
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_open_ip = '127.0.0.1'
@@ -535,6 +536,8 @@ Plug 'wellle/targets.vim'
 
 Plug 'anirudhsundar/vim-interestingwords'
 let g:interestingWordsRandomiseColors = 1
+
+Plug 'chrisbra/Colorizer'
 
 Plug 'sjl/clam.vim'
 
