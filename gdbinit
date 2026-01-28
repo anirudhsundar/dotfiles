@@ -8,6 +8,11 @@ source ~/local.gdbinit
 # source TVM specific scripts
 source ~/.gdb/tvm-gdb-commands/commands.py
 
+# Define a shortcut to print objects using their operator<< overload
+define osp
+  call operator<<(std::cout, $arg0)
+end
+
 python
 import sys
 import os
