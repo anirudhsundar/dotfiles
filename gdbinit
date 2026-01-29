@@ -15,7 +15,7 @@ end
 
 # Define a function to take a std::string and print it as a C-style string
 define cstr
-  set $str = $arg0.c__str()
+  set $str = $arg0.c_str()
   printf "%s\n", $str
 end
 
