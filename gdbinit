@@ -13,6 +13,12 @@ define osp
   call operator<<(std::cout, $arg0)
 end
 
+# Define a function to take a std::string and print it as a C-style string
+define cstr
+  set $str = $arg0.c__str()
+  printf "%s\n", $str
+end
+
 python
 import sys
 import os
