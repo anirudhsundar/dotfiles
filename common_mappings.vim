@@ -373,8 +373,13 @@ augroup line_return
         \ endif
 augroup END
 
-command! -nargs=0 JsonFormat :%!python -m json.tool --indent 2
-command! -nargs=0 JsonMinify :%!python -m json.tool --compact
+if executable('jq')
+  command! -nargs=0 JsonFormat :%!jq .
+  command! -nargs=0 JsonMinify :%!jq -c .
+else
+  command! -nargs=0 JsonFormat :%!python -m json.tool --indent 2
+  command! -nargs=0 JsonMinify :%!python -m json.tool --compact
+endif
 
 nnoremap <leader>yp :let @+ = expand('%:p')<CR>
 
