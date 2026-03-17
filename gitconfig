@@ -1,10 +1,11 @@
 [user]
   name = Anirudh Sundar Subramaniam
   useConfigOnly = true
+	email = anirudhsundar.subramaniam@arm.com
 [diff]
-  tool = vimdiff
+	tool = nvimdiff
 [difftool]
-  prompt = false
+	prompt = false
 [alias]
   st = status -sb
   stn = status -sb --untracked-files=no

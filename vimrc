@@ -158,6 +158,11 @@ Plug 'tpope/vim-surround'
 " Detect indent
 Plug 'timakro/vim-yadi'
 
+" opencode.nvim AI integration
+if executable('opencode')
+  Plug 'nickjvandyke/opencode.nvim'
+endif
+
 " Dispatch makeprg asynchronously
 Plug 'tpope/vim-dispatch'
 
@@ -290,6 +295,8 @@ nmap [h <Plug>(GitGutterPrevHunk)
 
 " Vim interface for git commands using :Git, :Gsplit :Gedit
 Plug 'tpope/vim-fugitive'
+
+Plug 'sindrets/diffview.nvim'
 
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 
@@ -962,6 +969,5 @@ if filereadable(expand("~/.local_vimrc"))
 endif
 
 " }}}
-
 
 
