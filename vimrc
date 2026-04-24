@@ -291,6 +291,28 @@ nmap ghp <Plug>(GitGutterPreviewHunk)
 nmap ghs <Plug>(GitGutterStageHunk)
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
+
+" Function to set the gitgutter base and refresh signs
+function! SetGutterBase(base)
+  let g:gitgutter_diff_base = a:base
+  " Force a refresh of the current buffer
+  GitGutter
+  " Optional: print confirmation to the status line
+  echo "GitGutter base set to: " . a:base
+endfunction
+
+" Command to call it easily: :Gbase <commit_hash_or_branch>
+command! -nargs=1 Gbase call SetGutterBase(<q-args>)
+
+" Shortcut to set it to the previous commit
+command! GGprev call SetGutterBase('HEAD~1')
+
+"Shortcut to set it to main branch
+command! GGmain call SetGutterBase('main')
+
+" Shortcut to reset it back to HEAD
+command! GGreset call SetGutterBase('HEAD')
+
 "----------------------------------------------}}}
 
 " Vim interface for git commands using :Git, :Gsplit :Gedit
