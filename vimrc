@@ -158,6 +158,9 @@ Plug 'tpope/vim-surround'
 " Detect indent
 Plug 'timakro/vim-yadi'
 
+" Plugin for AI-powered code assistance in Neovim
+Plug 'olimorris/codecompanion.nvim', { 'tag': 'v19.11.0' }
+
 " opencode.nvim AI integration
 if executable('opencode')
   Plug 'nickjvandyke/opencode.nvim'

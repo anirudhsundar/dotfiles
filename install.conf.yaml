@@ -42,6 +42,7 @@
     ~/.tmux-cht-command: tmux/tmux-cht-command
     ~/.tmux-cht-languages: tmux/tmux-cht-languages
     ~/.tmux-3.2.conf: tmux/tmux-3.2.conf
+    ~/.agents/skills/grill-me: skills/grill-me
 
 - shell:
   - 
