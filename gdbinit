@@ -7,6 +7,7 @@ source ~/local.gdbinit
 
 # source TVM specific scripts
 source ~/.gdb/tvm-gdb-commands/commands.py
+source ~/.gdb/capture_output.py
 
 # Define a shortcut to print objects using their operator<< overload
 define osp
