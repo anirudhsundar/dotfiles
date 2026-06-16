@@ -7,6 +7,7 @@ source ~/local.gdbinit
 
 # source TVM specific scripts
 source ~/.gdb/tvm-gdb-commands/commands.py
+source ~/.gdb/capture_output.py
 
 # Define a shortcut to print objects using their operator<< overload
 define osp
@@ -28,6 +29,13 @@ from libcxx.v1.printers import register_libcxx_printers
 register_libcxx_printers (None)
 end
 
+python
+import sys
+sys.path.insert(0, '/usr/share/gcc/python')
+from libstdcxx.v6.printers import register_libstdcxx_printers
+register_libstdcxx_printers (None)
+end
+
 # std::string pretty printer causes issues sometimes. Enable again to try out
 # if needed
-disable pretty-printer global libc;std::basic_string
+# disable pretty-printer global libc;std::basic_string
