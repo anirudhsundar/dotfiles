@@ -305,7 +305,7 @@ function! SetGutterBase(base)
 endfunction
 
 " Command to call it easily: :Gbase <commit_hash_or_branch>
-command! -nargs=1 Gbase call SetGutterBase(<q-args>)
+command! -nargs=1 GGbase call SetGutterBase(<q-args>)
 
 " Shortcut to set it to the previous commit
 command! GGprev call SetGutterBase('HEAD~1')
